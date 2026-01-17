@@ -1,6 +1,6 @@
 <div align="center">
 
-![Project Banner Placeholder](https://via.placeholder.com/800x200/FFC0CB/000000?text=it-girl+devs+%F0%9F%8E%80)
+![Project Banner](main_images/banner.png)
 
 # 🎀 it-girl devs 🎀
 
