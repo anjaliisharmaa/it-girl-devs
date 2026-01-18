@@ -53,12 +53,15 @@ export default function Navbar() {
             : '0 0 0 0 rgba(0, 0, 0, 0)',
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed top-0 left-0 right-0 z-50 px-6 py-4 lg:px-12"
+        className="fixed top-0 left-0 right-0 z-50 px-6 py-4 lg:px-12 overflow-visible"
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between overflow-visible">
           {/* Logo - Left */}
-          <Link href="/" className="flex items-center">
-            <span className="font-syne font-extrabold text-2xl lg:text-3xl text-it-girl-maroon hover:opacity-80 transition-opacity leading-relaxed pb-1">
+          <Link href="/" className="flex items-center overflow-visible -mb-2">
+            <span 
+              className="font-syne font-extrabold text-2xl lg:text-3xl text-it-girl-maroon hover:opacity-80 transition-opacity inline-block"
+              style={{ lineHeight: '1.75', paddingBottom: '0.5rem' }}
+            >
               it-girl devs
             </span>
           </Link>

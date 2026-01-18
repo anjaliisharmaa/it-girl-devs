@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Syne, Outfit } from 'next/font/google';
+import { Syne, Outfit, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 
@@ -15,6 +15,12 @@ const outfit = Outfit({
   variable: '--font-outfit',
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-space-grotesk',
+});
+
 export const metadata: Metadata = {
   title: 'it-girl devs | Making ML Aesthetic 🎀',
   description: 'The Legally Blonde of Ed-Tech - Learn Machine Learning with style',
@@ -27,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${syne.variable} ${outfit.variable} antialiased`}>
+      <body className={`${syne.variable} ${outfit.variable} ${spaceGrotesk.variable} antialiased`}>
         <Navbar />
         {children}
       </body>

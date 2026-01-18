@@ -16,6 +16,7 @@ const config: Config = {
       fontFamily: {
         syne: ['var(--font-syne)', 'sans-serif'],
         outfit: ['var(--font-outfit)', 'sans-serif'],
+        'space-grotesk': ['var(--font-space-grotesk)', 'sans-serif'],
       },
     },
   },
