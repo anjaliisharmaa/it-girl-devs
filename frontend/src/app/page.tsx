@@ -188,9 +188,11 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="font-fraunces font-bold text-5xl md:text-7xl text-it-girl-maroon leading-tight mb-6">
-              You don't have to choose <br className="hidden md:block" />
-              between Pink and Python.
+              New Standards just Dropped! 
             </h2>
+            <p className="font-outfit text-lg text-it-girl-maroon/70 max-w-2xl mx-auto">
+              You don't have to choose between Pink and Python.
+            </p>
             <div className="w-24 h-1 bg-it-girl-maroon mx-auto opacity-30"></div>
           </motion.div>
 
