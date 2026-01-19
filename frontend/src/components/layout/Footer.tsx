@@ -1,81 +1,95 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { Github, Instagram, Twitter, Linkedin, MessageCircle } from 'lucide-react';
 
 export default function Footer() {
   const socialLinks = [
-    { name: 'The Code (GitHub)', href: 'https://github.com/anjaliisharmaa/it-girl-devs' },
-    { name: 'The Career (LinkedIn)', href: '#' },
-    { name: 'The Visuals 🎨 (Instagram)', href: 'https://www.instagram.com/itgirldevs/' },
-    { name: 'Daily Rants 🗣️ (Twitter)', href: 'https://x.com/itgirldevs' },
-    { name: 'Group Chat (WhatsApp)', href: '#' },
+    { name: 'The Code', href: 'https://github.com/anjaliisharmaa/it-girl-devs', icon: Github },
+    { name: 'The Career', href: '#', icon: Linkedin },
+    { name: 'The Visuals', href: 'https://www.instagram.com/itgirldevs/', icon: Instagram },
+    { name: 'Daily Rants', href: 'https://x.com/itgirldevs', icon: Twitter },
+    { name: 'Group Chat', href: '#', icon: MessageCircle },
   ];
 
   return (
-    <footer className="relative bg-it-girl-pink py-12 px-6 overflow-hidden">
+    <footer className="relative bg-[#FFD1DC] py-16 px-6 overflow-hidden border-t border-[#590D22]/20">
       <div className="max-w-7xl mx-auto">
-        {/* Main Content: Split Layout */}
-        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+        {/* Main Content: 12-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           
-          {/* Left Column: Brand Identity */}
+          {/* Left Column: Brand Badge (4 columns) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            className="col-span-1 md:col-span-4 space-y-6"
           >
-            {/* Logo */}
-            <div>
+            {/* Circular Logo Container */}
+            <div className="w-24 h-24 rounded-full border-2 border-[#590D22] overflow-hidden">
               <Image
                 src="/images/hero/logo.png"
                 alt="it-girl devs logo"
                 width={96}
                 height={96}
-                className="object-contain"
+                className="object-cover w-full h-full"
               />
             </div>
 
-            {/* Contact Info */}
+            {/* Brand Text */}
             <div className="space-y-2">
+              <p className="font-fraunces text-lg text-[#590D22]">
+                © 2026
+              </p>
+              <p className="font-outfit text-sm text-[#590D22]/80">
+                It-Girl Devs
+              </p>
               <a
                 href="mailto:itgirldevs@gmail.com"
-                className="font-outfit text-sm text-it-girl-maroon hover:underline block transition-all"
+                className="font-outfit text-sm text-[#590D22]/80 hover:underline block transition-all"
               >
                 itgirldevs@gmail.com
               </a>
-              <p className="font-outfit text-xs text-it-girl-maroon/80">
-                © 2026 It-Girl Devs. Coded with 💖 and a dream.
+              <p className="font-outfit text-xs text-[#590D22]/70">
+                Coded with 💖 and a dream.
               </p>
             </div>
           </motion.div>
 
-          {/* Right Column: Connect Section */}
+          {/* Middle Spacer (4 columns) */}
+          <div className="hidden md:block md:col-span-4"></div>
+
+          {/* Right Column: Link Stack (4 columns) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="lg:text-right"
+            className="col-span-1 md:col-span-4"
           >
             {/* Header */}
-            <h3 className="font-fraunces font-bold text-2xl text-it-girl-maroon mb-6">
+            <h3 className="font-fraunces text-xl text-[#590D22] mb-6">
               Don't Be A Stranger 💌
             </h3>
 
-            {/* Social Links */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
-              {socialLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  target={link.href !== '#' ? '_blank' : '_self'}
-                  rel={link.href !== '#' ? 'noopener noreferrer' : ''}
-                  className="font-outfit text-sm text-it-girl-maroon hover:text-white hover:drop-shadow-[0_2px_4px_rgba(89,13,34,0.8)] transition-all duration-200 lg:text-right"
-                >
-                  {link.name}
-                </Link>
-              ))}
+            {/* Social Links with Icons */}
+            <div className="flex flex-col gap-3">
+              {socialLinks.map((link, index) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={index}
+                    href={link.href}
+                    target={link.href !== '#' ? '_blank' : '_self'}
+                    rel={link.href !== '#' ? 'noopener noreferrer' : ''}
+                    className="flex items-center gap-3 font-outfit text-sm text-[#590D22] hover:translate-x-1 transition-transform duration-200 group"
+                  >
+                    <Icon size={18} className="flex-shrink-0 group-hover:text-[#590D22]/70" />
+                    <span className="group-hover:text-[#590D22]/70">{link.name}</span>
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         </div>
@@ -87,9 +101,9 @@ export default function Footer() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
         viewport={{ once: true }}
-        className="absolute bottom-4 right-4 md:bottom-6 md:right-6"
+        className="absolute bottom-6 right-6 p-2"
       >
-        <p className="font-outfit text-[10px] text-it-girl-maroon/80 font-medium">
+        <p className="font-outfit text-[10px] text-[#590D22]/80 font-medium">
           You look pretty today. Now go study. 🪞
         </p>
       </motion.div>
