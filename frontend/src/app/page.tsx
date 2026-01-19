@@ -268,7 +268,7 @@ export default function Home() {
             </div>
 
             {/* Right Side - Sticky Image */}
-            <div className="relative lg:sticky lg:top-24 h-[600px] lg:h-[700px]">
+            <div className="relative lg:sticky lg:top-24 h-[550px] lg:h-[650px]">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -276,23 +276,12 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="relative h-full rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(89,13,34,0.2)]"
               >
-                {/* Placeholder for stuff.jpg - Using a gradient until image is added */}
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-200 via-white to-purple-200 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="text-8xl mb-4">✨</div>
-                    <p className="font-outfit text-it-girl-maroon/50 text-sm">
-                      Add stuff.jpg to /public/images/
-                    </p>
-                  </div>
-                </div>
-                {/* Uncomment when image is available:
                 <Image
-                  src="/images/stuff.jpg"
+                  src="/images/hero/coffee.jpg"
                   alt="What's in the bag"
                   fill
                   className="object-cover"
                 />
-                */}
               </motion.div>
             </div>
           </div>
