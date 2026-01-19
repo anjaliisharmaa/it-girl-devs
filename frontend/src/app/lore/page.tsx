@@ -55,7 +55,7 @@ const socialLinks: SocialLink[] = [
 
 export default function LorePage() {
   return (
-    <div className="min-h-screen bg-[#FFD1DC] text-[#590D22] py-16 px-4">
+    <div className="min-h-screen bg-[#FFD1DC] text-[#590D22] pt-32 px-4">
       <article className="max-w-3xl mx-auto">
         {/* Main Title */}
         <h1 className="font-fraunces text-4xl md:text-5xl font-bold text-center mb-12">
@@ -76,24 +76,24 @@ export default function LorePage() {
         </div>
 
         {/* Body Content */}
-        <div className="font-outfit space-y-8 text-lg leading-relaxed">
+        <div className="font-outfit space-y-4 text-lg leading-relaxed">
           {/* Introduction */}
-          <p>
+          <p className="text-justify">
             Hi bestie! I'm Anjali, but you can call me Anjo. 🎀
           </p>
 
-          <p>
+          <p className="text-justify">
             If you are wondering who is writing all these pink tutorials and turning Python into an aesthetic, it is me. 
             I am a third-year CSE-AI student at IGDTUW, but honestly, I am just a girl who loves building cool things.
           </p>
 
-          <p>
+          <p className="text-justify">
             For a long time, I thought I had to choose. I thought I could either be the "creative art girl" who spends 
             hours sketching and digital painting, or the "serious tech girl" who builds AI models. But then I realized... 
             why not both?
           </p>
 
-          <p>
+          <p className="text-justify">
             That is actually how this whole platform started. I literally drew the It-Girl Devs logo myself on my tablet 
             while sipping my third coffee of the day (yes, I survive entirely on caffeine). I realized that coding is just 
             another form of art. Instead of paintbrushes, we use syntax. Instead of a canvas, we use an IDE.
@@ -104,11 +104,11 @@ export default function LorePage() {
             The Serious Stuff (But Make It Cute)
           </h2>
 
-          <p>
+          <p className="text-justify">
             Okay, I know everything here looks pink and sparkly, but I promise I know my stuff! 👩‍💻
           </p>
 
-          <p>
+          <p className="text-justify">
             When I am not listening to Jade Thirlwall's solo music on repeat, I am actually deep into AI research. 
             I recently interned at DRDO, where I built SHAKTI-AI, a system designed to help women scientist access health 
             and legal info easily. It was such a special project for me because I have always wanted to use tech to help 
@@ -116,7 +116,7 @@ export default function LorePage() {
             but also kind of a power move. 💅
           </p>
 
-          <p>
+          <p className="text-justify">
             I also published a research paper on Deepfake Detection (yep, the scary AI stuff) at an international conference. 
             Wanna read?{' '}
             <Link 
@@ -132,12 +132,12 @@ export default function LorePage() {
             Why I Built This
           </h2>
 
-          <p>
+          <p className="text-justify">
             I started It-Girl Devs because I was tired of the gatekeeping. Tech can feel so intimidating, especially when 
             you are the only girl in the room or when tutorials feel like they are written by robots.
           </p>
 
-          <p>
+          <p className="text-justify">
             I wanted to create a space where we can be smart and cute. Where we can talk about Neural Networks and nail art 
             in the same sentence. This isn't about me teaching you from a pedestal; it is about us growing together. I am 
             still learning every day, and I want to take you along for the ride.
@@ -148,7 +148,7 @@ export default function LorePage() {
             Where To Find Me 🗺️
           </h2>
 
-          <p className="mb-8">
+          <p className="text-justify mb-8">
             I am basically living on the internet, so here is where you can come say hi:
           </p>
 
@@ -182,7 +182,7 @@ export default function LorePage() {
             Don't Be A Stranger
           </h2>
 
-          <p>
+          <p className="text-justify">
             Seriously, my email is always open. Whether you are stuck on a bug, want career advice, or just want to talk 
             about Little Mix, drop me a message at{' '}
             <Link 
@@ -194,7 +194,7 @@ export default function LorePage() {
             .
           </p>
 
-          <p>
+          <p className="text-justify">
             I reply to everyone because you are the reason I am doing this.
           </p>
 
