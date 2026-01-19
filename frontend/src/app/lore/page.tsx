@@ -52,9 +52,9 @@ const socialLinks: SocialLink[] = [
 
 export default function LorePage() {
   return (
-    <div className="min-h-screen bg-[#FFD1DC] text-[#590D22] pt-32 pb-20 px-4">
+    <div className="min-h-screen bg-[#FFD1DC] text-[#590D22] pt-32 pb-0 px-4">
       {/* Journal Card Container */}
-      <article className="max-w-3xl mx-auto bg-white/50 backdrop-blur-sm border border-white/60 rounded-[3rem] p-8 md:p-16 shadow-xl shadow-[#590D22]/5 mb-24">
+      <article className="max-w-3xl mx-auto bg-white/50 backdrop-blur-sm border border-white/60 rounded-[3rem] p-8 md:p-16 shadow-xl shadow-[#590D22]/5 mb-12">
         {/* Main Title */}
         <h1 className="font-fraunces text-4xl md:text-5xl font-bold text-center mb-12">
           The Girl Behind The Screen
