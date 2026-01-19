@@ -1,11 +1,8 @@
-import type { Metadata } from 'next';
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Lore - It-Girl Devs',
-  description: 'Get to know Anjali - the girl behind It-Girl Devs',
-};
+import Footer from '@/components/layout/Footer';
 
 interface SocialLink {
   title: string;
@@ -177,9 +174,9 @@ export default function LorePage() {
             ))}
           </div>
 
-          {/* Don't Be A Stranger Section */}
+          {/* Say Hello Section */}
           <h2 className="font-fraunces text-3xl md:text-4xl font-bold mt-16 mb-6">
-            Don't Be A Stranger
+            Say Hello 👋
           </h2>
 
           <p className="text-justify">
@@ -200,12 +197,15 @@ export default function LorePage() {
 
           {/* Signature */}
           <div className="mt-16 text-center">
-            <p className="font-fraunces text-3xl italic">
-              Love, Anjo 💖
+            <p className="text-2xl">
+              <span className="italic font-light tracking-wide">
+                Love, Anjo 💖
+              </span>
             </p>
           </div>
         </div>
       </article>
+      <Footer />
     </div>
   );
 }
