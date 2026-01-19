@@ -1,10 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Home() {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
   const visionBoardCards = [
     {
       id: 1,
@@ -72,6 +75,34 @@ export default function Home() {
       title: 'The Power Move',
       description: 'We do not do basic toy projects here. You are building portfolio ready software that proves you are the smartest person in the room. High impact skills for high ambition girls.',
     },
+  ];
+
+  const faqItems = [
+    {
+      id: 1,
+      question: "Be honest, do I need to be a math genius?",
+      answer: "Bestie, no. If you can calculate a discount code during a Sephora sale, you are overqualified. We translate the 'scary' math into plain English. No calculus trauma allowed here."
+    },
+    {
+      id: 2,
+      question: "I have literally never coded before. Is that a red flag?",
+      answer: "That is a green flag! 🟩 We love a clean slate. We start from the absolute basics and hold your hand all the way until you are building Neural Networks. You don't need a CS degree, you just need wifi."
+    },
+    {
+      id: 3,
+      question: "Is this just aesthetic or will it actually get me a job?",
+      answer: "The aesthetic is for the soul, but the code is for the bank account. 💅 You are learning the exact industry-standard tech stack (Python, TensorFlow, Pandas) used by Senior Engineers. Your GitHub is about to look expensive."
+    },
+    {
+      id: 4,
+      question: "Why is everything so... pink?",
+      answer: "Because standard gray code editors give us the ick. We are proving that you can be a serious engineer and a girly girl at the same time. We are multitasking."
+    },
+    {
+      id: 5,
+      question: "What if I get stuck and want to cry?",
+      answer: "We have an AI for that. Our Hype Woman bot (Elle) fixes your errors gently and hypes you up so you never feel stupid. It is a safe space to fail, fix it, and glow up."
+    }
   ];
 
   return (
@@ -285,6 +316,98 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section - Spilling The Tea */}
+      <section className="relative min-h-screen py-24 px-6 overflow-hidden bg-gradient-to-br from-[#590D22] via-[#6b1028] to-[#4a0c1e]">
+        {/* Subtle Texture Overlay */}
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255, 209, 220, 0.1) 0%, transparent 50%)',
+          }}
+        />
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          {/* Section Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-fraunces font-bold text-6xl md:text-7xl text-it-girl-cream mb-6 leading-tight">
+              Spilling The Tea 🫖
+            </h2>
+            <div className="w-24 h-1 bg-it-girl-pink mx-auto opacity-50"></div>
+          </motion.div>
+
+          {/* FAQ Accordion */}
+          <div className="space-y-4">
+            {faqItems.map((faq, index) => (
+              <motion.div
+                key={faq.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <button
+                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                  className={`w-full text-left transition-all duration-300 rounded-2xl p-6 ${
+                    openFaqIndex === index
+                      ? 'bg-white/20 backdrop-blur-lg border-2 border-it-girl-pink/50 shadow-[0_8px_32px_rgba(255,209,220,0.2)]'
+                      : 'bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/15 hover:border-it-girl-pink/30'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-syne font-bold text-xl md:text-2xl text-white pr-4">
+                      {faq.question}
+                    </h3>
+                    <motion.div
+                      animate={{ rotate: openFaqIndex === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex-shrink-0 text-it-girl-pink text-2xl"
+                    >
+                      {openFaqIndex === index ? '−' : '+'}
+                    </motion.div>
+                  </div>
+
+                  <AnimatePresence>
+                    {openFaqIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <p className="font-outfit text-base md:text-lg text-it-girl-cream/90 leading-relaxed mt-4 pt-4 border-t border-white/10">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </button>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom Decoration */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <p className="font-outfit text-it-girl-pink/70 text-sm">
+              Still have questions? We've got answers. ✨
+            </p>
+          </motion.div>
         </div>
       </section>
     </main>
