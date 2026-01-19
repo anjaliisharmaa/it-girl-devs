@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Github, Instagram, Twitter, Linkedin, MessageCircle } from 'lucide-react';
+import { Github, Instagram, Twitter, Linkedin, MessageCircle, YoutubeIcon } from 'lucide-react';
 
 export default function Footer() {
   const socialLinks = [
-    { name: 'The Code', href: 'https://github.com/anjaliisharmaa/it-girl-devs', icon: Github },
-    { name: 'The Career', href: '#', icon: Linkedin },
     { name: 'The Visuals', href: 'https://www.instagram.com/itgirldevs/', icon: Instagram },
-    { name: 'Daily Rants', href: 'https://x.com/itgirldevs', icon: Twitter },
+    { name: 'The Series', href: '#', icon: YoutubeIcon },
     { name: 'Group Chat', href: '#', icon: MessageCircle },
+    { name: 'Daily Rants', href: 'https://x.com/itgirldevs', icon: Twitter },
+    { name: 'The Career', href: '#', icon: Linkedin },
+    { name: 'The Code', href: 'https://github.com/anjaliisharmaa/it-girl-devs', icon: Github },
   ];
 
   return (
