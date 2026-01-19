@@ -28,7 +28,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: 'it-girl devs | Making ML Aesthetic 🎀',
+  title: 'it-girl devs 🎀',
   description: 'The Legally Blonde of Ed-Tech - Learn Machine Learning with style',
 };
 
