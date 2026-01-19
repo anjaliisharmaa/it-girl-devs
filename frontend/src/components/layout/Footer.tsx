@@ -17,15 +17,15 @@ export default function Footer() {
     <footer className="relative bg-[#FFD1DC] py-16 px-6 overflow-hidden border-t border-[#590D22]/20">
       <div className="max-w-7xl mx-auto">
         {/* Main Content: 12-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
           
-          {/* Left Column: Brand Badge (4 columns) */}
+          {/* Left Column: Brand Badge (3 columns) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="col-span-1 md:col-span-4 space-y-6"
+            className="col-span-12 md:col-span-3 space-y-6 flex flex-col items-center md:items-start text-center md:text-left"
           >
             {/* Circular Logo Container */}
             <div className="w-24 h-24 rounded-full border-2 border-[#590D22] overflow-hidden">
@@ -58,13 +58,13 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Middle Column: Newsletter (4 columns) */}
+          {/* Middle Column: Newsletter (6 columns) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
             viewport={{ once: true }}
-            className="col-span-1 md:col-span-4"
+            className="col-span-12 md:col-span-6 flex flex-col items-center text-center"
           >
             {/* Header */}
             <h3 className="font-fraunces text-xl text-[#590D22] mb-4">
@@ -77,7 +77,7 @@ export default function Footer() {
             </p>
 
             {/* Input Form */}
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 w-full max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="your@email.com"
@@ -89,13 +89,13 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Right Column: Link Stack (4 columns) */}
+          {/* Right Column: Link Stack (3 columns) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="col-span-1 md:col-span-4"
+            className="col-span-12 md:col-span-3 flex flex-col items-center md:items-end text-center md:text-right"
           >
             {/* Header */}
             <h3 className="font-fraunces text-xl text-[#590D22] mb-6">
