@@ -95,7 +95,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="col-span-12 md:col-span-3 flex flex-col items-center md:items-end text-center md:text-right"
+            className="col-span-12 md:col-span-3 flex flex-col items-center md:items-start text-center md:text-left"
           >
             {/* Header */}
             <h3 className="font-fraunces text-xl text-[#590D22] mb-6">
