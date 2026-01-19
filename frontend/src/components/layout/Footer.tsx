@@ -57,8 +57,36 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Middle Spacer (4 columns) */}
-          <div className="hidden md:block md:col-span-4"></div>
+          {/* Middle Column: Newsletter (4 columns) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            viewport={{ once: true }}
+            className="col-span-1 md:col-span-4"
+          >
+            {/* Header */}
+            <h3 className="font-fraunces text-xl text-[#590D22] mb-4">
+              The Manifest 🔮
+            </h3>
+
+            {/* Subtext */}
+            <p className="font-outfit text-sm text-[#590D22]/80 mb-4 leading-relaxed">
+              Where manifest.json meets manifesting your dream job. Weekly affirmations, project ideas, and tech updates.
+            </p>
+
+            {/* Input Form */}
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                className="w-full px-4 py-2 rounded-full border border-[#590D22]/20 bg-white/50 focus:outline-none focus:border-[#590D22] font-outfit text-sm placeholder:text-[#590D22]/40 transition-colors"
+              />
+              <button className="px-6 py-2 rounded-full bg-[#590D22] text-white font-outfit text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap">
+                Claim It ✨
+              </button>
+            </div>
+          </motion.div>
 
           {/* Right Column: Link Stack (4 columns) */}
           <motion.div
