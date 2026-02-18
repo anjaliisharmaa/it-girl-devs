@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Footer from '@/components/layout/Footer';
 
 // Washi Tape Component
 const WashiTape = ({ color = 'pink' }: { color?: 'pink' | 'blue' | 'yellow' }) => {
@@ -396,7 +397,7 @@ export default function VisionBoard() {
       </section>
 
       {/* Bottom Navigation */}
-      <section className="pb-20 px-6">
+      <section className="pb-24 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -420,6 +421,9 @@ export default function VisionBoard() {
           </motion.div>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
