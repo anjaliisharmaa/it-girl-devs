@@ -123,7 +123,7 @@ export default function Home() {
 
           {/* CTA Button */}
           <div className="pt-8">
-            <Link href="/dashboard">
+            <Link href="/episodes">
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
