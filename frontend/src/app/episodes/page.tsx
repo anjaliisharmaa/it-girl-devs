@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Footer from "@/components/layout/Footer";
 
 interface Module {
   id: number;
@@ -146,13 +147,13 @@ export default function EpisodesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
-      <div className="max-w-7xl mx-auto px-6 py-12 pt-32">
+      <div className="max-w-7xl mx-auto px-6 py-12 pt-32 pb-24">
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="font-fraunces text-4xl md:text-5xl font-bold text-[#590D22] mb-4">
             The Blueprint 🗺️
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto text-balance">
             The complete roadmap from Python basics to Deep Learning. Trust the process.
           </p>
         </div>
@@ -239,6 +240,7 @@ export default function EpisodesPage() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
