@@ -19,12 +19,12 @@ const LoadingBar = () => {
         </motion.div>
       </div>
       <motion.p
-        className="text-center mt-3 font-mono text-[#590D22]/70 text-sm"
+        className="text-center mt-3 text-[#590D22]/70 text-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        System Loading: 98%
+        <span className="font-mono">System Loading: 98%</span>
       </motion.p>
     </div>
   );
@@ -86,7 +86,7 @@ const SpotifyPlaceholder = ({ title, mood }: { title: string; mood: string }) =>
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="bg-gradient-to-br from-[#1DB954] to-[#191414] rounded-2xl p-8 shadow-xl"
+      className="bg-gradient-to-br from-[#590D22] to-[#800F2F] rounded-2xl p-8 shadow-xl"
     >
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-2xl font-bold text-white">{title}</h3>
