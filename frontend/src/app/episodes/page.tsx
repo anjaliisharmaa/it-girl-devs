@@ -149,50 +149,68 @@ export default function EpisodesPage() {
       <div className="max-w-7xl mx-auto px-6 py-12 pt-32">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="font-fraunces text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-            Season 1: The Foundation
+          <h1 className="font-fraunces text-4xl md:text-5xl font-bold text-[#590D22] mb-4">
+            The Blueprint 🗺️
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            From zero to deployed. Binge-watch your way to a career.
+            The complete roadmap from Python basics to Deep Learning. Trust the process.
           </p>
         </div>
 
         {/* Episodes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {modules.map((module) => (
             <div
               key={module.id}
-              className="bg-white/40 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden border border-white/60 hover:scale-105 transition-transform duration-300 flex flex-col"
+              className={`rounded-lg overflow-hidden border-2 border-[#590D22] shadow-[4px_4px_0px_0px_rgba(89,13,34,0.3)] hover:scale-105 transition-all duration-300 flex flex-col ${
+                module.status === "locked" ? "opacity-70" : ""
+              }`}
             >
-              {/* Card Content */}
-              <div className="p-6 flex-grow">
-                {/* Episode Header */}
-                <div className="mb-4">
-                  <div className="text-sm font-semibold text-pink-600 mb-1">
-                    EP {String(module.id).padStart(2, "0")}
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {module.title}
-                  </h3>
-                  <div className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-                    {module.vibeTitle}
-                  </div>
+              {/* Window Header (Mac-style Terminal) */}
+              <div className="h-10 bg-[#590D22] flex items-center px-4 relative">
+                {/* Window Control Dots */}
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                {/* Filename */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 text-white/60 text-xs font-mono">
+                  module_{String(module.id).padStart(2, "0")}.py
+                </div>
+              </div>
+
+              {/* Window Body */}
+              <div className="bg-white/80 backdrop-blur p-6 flex-grow flex flex-col">
+                {/* Episode Tag */}
+                <div className="font-mono text-xs text-[#590D22] bg-pink-100 px-2 py-1 rounded-md w-fit mb-3">
+                  &gt; EP_{String(module.id).padStart(2, "0")}
                 </div>
 
-                {/* Topics List */}
-                <ul className="space-y-2 mb-6">
+                {/* Module Title */}
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {module.title}
+                </h3>
+
+                {/* Vibe Title */}
+                <div className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent mb-4">
+                  {module.vibeTitle}
+                </div>
+
+                {/* Topics List (Code Comments Style) */}
+                <ul className="space-y-2 mb-6 flex-grow">
                   {module.topics.slice(0, 3).map((topic, index) => (
                     <li
                       key={index}
-                      className="text-sm text-gray-700 flex items-start"
+                      className="text-sm text-gray-700 font-mono flex items-start"
                     >
-                      <span className="mr-2 text-pink-500">•</span>
+                      <span className="mr-2 text-[#590D22]">//</span>
                       <span>{topic}</span>
                     </li>
                   ))}
                   {module.topics.length > 3 && (
-                    <li className="text-sm text-gray-500 italic ml-4">
-                      and more...
+                    <li className="text-sm text-gray-500 font-mono italic ml-5">
+                      // and more...
                     </li>
                   )}
                 </ul>
@@ -200,13 +218,13 @@ export default function EpisodesPage() {
                 {/* Action Button */}
                 <button
                   disabled={module.status === "locked"}
-                  className={`w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 ${
+                  className={`w-full py-3 px-4 rounded-lg font-mono font-semibold transition-all duration-200 ${
                     module.status === "unlocked"
-                      ? "bg-pink-600 text-white hover:bg-pink-700 shadow-md hover:shadow-lg"
-                      : "bg-gray-400 text-gray-200 opacity-50 cursor-not-allowed"
+                      ? "bg-[#590D22] text-white hover:bg-[#7a1129] shadow-md hover:shadow-lg"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
                   }`}
                 >
-                  {module.status === "unlocked" ? "Play ▶️" : "Locked 🔒"}
+                  {module.status === "unlocked" ? "Run Module ▶" : "Access Denied 🔒"}
                 </button>
               </div>
 
