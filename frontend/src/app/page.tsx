@@ -186,7 +186,7 @@ export default function Home() {
             <p className="font-outfit text-it-girl-maroon/60 mb-6">
               Ready to start collecting? 💅
             </p>
-            <Link href="/dashboard">
+            <Link href="/vision-board">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
