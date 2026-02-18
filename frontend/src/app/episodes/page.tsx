@@ -202,14 +202,14 @@ export default function EpisodesPage() {
                   {module.topics.slice(0, 3).map((topic, index) => (
                     <li
                       key={index}
-                      className="text-sm text-gray-700 font-mono flex items-start"
+                      className="text-xs font-mono text-[#590D22]/70 flex items-start"
                     >
-                      <span className="mr-2 text-[#590D22]">//</span>
+                      <span className="mr-2">//</span>
                       <span>{topic}</span>
                     </li>
                   ))}
                   {module.topics.length > 3 && (
-                    <li className="text-sm text-gray-500 font-mono italic ml-5">
+                    <li className="text-xs font-mono text-[#590D22]/70 italic ml-5">
                       // and more...
                     </li>
                   )}
