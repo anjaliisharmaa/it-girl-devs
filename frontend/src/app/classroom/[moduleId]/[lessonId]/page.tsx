@@ -96,50 +96,54 @@ export default function ClassroomPage({ params }: PageProps) {
 
         {/* The Loose-Leaf Paper (Main Content) */}
         <main 
-          className="flex-1 bg-white rounded-sm shadow-xl relative overflow-hidden"
+          className="flex-1 bg-white rounded-sm shadow-xl relative"
           style={{
             backgroundImage: 'linear-gradient(transparent 95%, #fce7f3 5%)',
             backgroundSize: '100% 2.5rem'
           }}
         >
           {/* Washi Tape - Top Left */}
-          <div className="absolute -top-2 -left-4 w-24 h-8 bg-pink-400/40 -rotate-12 backdrop-blur-sm" />
+          <div className="absolute -top-4 -left-8 w-28 h-9 bg-pink-400/50 -rotate-12 backdrop-blur-sm shadow-sm z-20" />
           
           {/* Washi Tape - Top Right */}
-          <div className="absolute -top-2 -right-4 w-24 h-8 bg-pink-400/40 rotate-12 backdrop-blur-sm" />
+          <div className="absolute -top-4 -right-8 w-28 h-9 bg-pink-400/50 rotate-12 backdrop-blur-sm shadow-sm z-20" />
 
           {/* The Vertical Margin Line */}
           <div className="border-l-4 border-pink-200 ml-12 lg:ml-16 min-h-full">
             
             {/* Content with Perfect Line Alignment */}
-            <div className="pl-8 pr-12 py-12 leading-10">
+            <div className="pl-8 pr-12 pt-10 pb-12" style={{ lineHeight: '2.5rem' }}>
               
-              {/* Reading Time Badge with Highlighter Effect */}
-              <div className="inline-flex items-center gap-2 bg-[#FFD1DC] px-2 py-1 rounded-sm mix-blend-multiply text-xs font-mono text-[#590D22] mb-10">
-                <Clock size={12} />
-                <span>Reading Time: 10 mins</span>
-              </div>
+              {/* Badge and Title - Strict Column Layout */}
+              <div className="flex flex-col items-start gap-4 mb-8">
+                {/* Reading Time Badge */}
+                <div className="inline-flex items-center gap-2 bg-pink-100 text-pink-600 font-mono text-xs px-3 py-1 rounded-md">
+                  <Clock size={12} />
+                  <span>Reading Time: 10 mins</span>
+                </div>
 
-              {/* Lesson Title */}
-              <h1 className="font-serif text-5xl md:text-6xl text-[#590D22] mb-10 leading-tight bg-white px-2 inline-block">
-                {lesson.title}
-              </h1>
+                {/* Lesson Title */}
+                <h1 className="font-serif text-5xl md:text-6xl text-[#590D22] leading-tight bg-white px-2 inline-block">
+                  {lesson.title}
+                </h1>
+              </div>
 
               {/* Content Area */}
               <article 
-                className="prose prose-pink prose-lg max-w-none leading-10"
+                className="prose prose-pink prose-lg max-w-none"
+                style={{ lineHeight: '2.5rem' }}
                 dangerouslySetInnerHTML={{ __html: lesson.content }}
               />
 
-              {/* Pagination - Hand-drawn Style */}
-              <div className="flex items-center justify-between gap-4 mt-20 pt-10 border-t-2 border-dashed border-pink-200">
+              {/* Pagination - Cute Tags */}
+              <div className="flex items-center justify-between gap-4 border-t-2 border-dashed border-pink-200 mt-12 pt-8">
                 {/* Previous Button */}
                 {lesson.prevLesson ? (
                   <Link
                     href={`/classroom/${moduleId}/${lesson.prevLesson}`}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#590D22] text-[#590D22] rounded-full hover:bg-pink-50 transition-all text-sm font-bold hover:-rotate-1 shadow-sm"
+                    className="inline-flex items-center gap-2 text-[#590D22] font-medium px-6 py-2 rounded-full border border-pink-200 hover:bg-pink-50 transition-colors"
                   >
-                    <span>← Prev</span>
+                    <span>← Previous Page</span>
                   </Link>
                 ) : (
                   <div></div>
@@ -149,9 +153,9 @@ export default function ClassroomPage({ params }: PageProps) {
                 {lesson.nextLesson ? (
                   <Link
                     href={`/classroom/${moduleId}/${lesson.nextLesson}`}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#590D22] text-white rounded-full hover:bg-[#9B2226] transition-all text-sm font-bold hover:rotate-1 shadow-md ml-auto"
+                    className="inline-flex items-center gap-2 text-[#590D22] font-medium px-6 py-2 rounded-full border border-pink-200 hover:bg-pink-50 transition-colors ml-auto"
                   >
-                    <span>Next →</span>
+                    <span>Next Page →</span>
                   </Link>
                 ) : (
                   <div></div>
