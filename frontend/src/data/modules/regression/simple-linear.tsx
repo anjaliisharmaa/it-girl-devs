@@ -1,91 +1,112 @@
-import React from 'react';
-
 export default function SimpleLinearContent() {
   return (
     <>
       {/* 🎀 The Metadata Badges */}
-      <div className="flex flex-wrap gap-3 mb-10">
-        <span className="bg-[#FFD1DC] text-[#590D22] px-4 py-1.5 rounded-full text-xs font-mono font-bold shadow-sm">
+      <div className="flex flex-wrap gap-3 mb-[2.5rem]">
+        <span className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-mono">
           ☕ Sip Time: 8 mins
         </span>
-        <span className="bg-purple-100 text-purple-700 px-4 py-1.5 rounded-full text-xs font-mono font-bold shadow-sm">
-          🎀 Difficulty: First Date Energy
+        <span className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-mono">
+          🎀 Difficulty: First Date Energy (Beginner-Friendly)
         </span>
-        <span className="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-mono font-bold shadow-sm">
-          🎒 Prereqs: Basic Python, Graphs
+        <span className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-mono">
+          🎒 Prerequisites: Basic Python, knowing what a graph is
         </span>
       </div>
 
       {/* 🎬 The Episode Teaser */}
-      <h2>🎬 The Episode Teaser</h2>
-      <p>
-        You're sitting in your favorite coffee shop, scrolling through your ex's new girlfriend's Instagram (we've all been there ✨). You notice something: every time she posts a gym selfie, her engagement rate SPIKES. Like, clockwork. You start thinking... is there a <em>formula</em> to this? Can you predict your own Instagram engagement based on how many times you post workout content?
+      <h2 className="font-serif text-2xl text-pink-600 mt-[2.5rem] mb-[2.5rem]">🎬 The Episode Teaser</h2>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        You&apos;re sitting in your favorite coffee shop, scrolling through your ex&apos;s new girlfriend&apos;s Instagram (we&apos;ve all been there ✨). You notice something: every time she posts a gym selfie, her engagement rate SPIKES. Like, clockwork. You start thinking... is there a <em>formula</em> to this? Can you predict your own Instagram engagement based on how many times you post workout content?
       </p>
-      <p>
-        Welcome to your villain origin story, bestie. You're about to build your first prediction model, and honestly? It's giving main character energy. <strong>Simple Linear Regression</strong> is your new bestie. She finds straight-line relationships in messy data. She is that friend who can spot a toxic pattern from a MILE away. She's about to help you predict outcomes based on ONE single input. No drama, just math. Let's get into it.
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        Welcome to your villain origin story, bestie. You&apos;re about to build your first prediction model, and honestly? It&apos;s giving main character energy. <strong>Simple Linear Regression</strong> is your new bestie. She finds straight-line relationships in messy data. She is that friend who can spot a toxic pattern from a MILE away. She&apos;s about to help you predict outcomes based on ONE single input. No drama, just math. Let&apos;s get into it.
       </p>
 
       {/* 🖼️ The Mood Board */}
-      <h2>🖼️ The Mood Board (Visuals)</h2>
-      {/* NOTE: Download your Notion image and save it in public/images/lessons/linear_regression_graph.png */}
-      <div className="my-8 p-4 bg-pink-50/50 rounded-2xl border-2 border-pink-100 shadow-sm rotate-1">
-        <img 
-          src="/images/lessons/linear_regression_graph.png" 
-          alt="Linear Regression Graph" 
-          className="rounded-xl w-full"
-        />
-        <p className="text-sm text-center text-[#590D22]/60 mt-4 italic font-medium leading-normal">
-          "The line doesn't touch every point because life isn't perfect, but it shows the TREND, and that's what matters 💅"
-        </p>
-      </div>
+      <h2 className="font-serif text-2xl text-pink-600 mt-[2.5rem] mb-[2.5rem]">🖼️ The Mood Board (Visuals)</h2>
+      <img src="/images/placeholder.png" alt="Linear Regression Graph" className="rounded-xl shadow-md border-2 border-pink-200 w-full my-10" />
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem] text-center italic">
+        &quot;The line doesn&apos;t touch every point because life isn&apos;t perfect, but it shows the TREND, and that&apos;s what matters 💅&quot;
+      </p>
 
       {/* 🍵 The Technical Tea */}
-      <h2>🍵 The Technical Tea</h2>
-      <p>
-        Okay, let's break this down like we're explaining it to our group chat. <strong>Simple Linear Regression</strong> is all about finding the relationship between TWO variables: one input (<strong>independent variable</strong>, let's call her X) and one output (<strong>dependent variable</strong>, let's call her Y). The goal? Draw the best-fitting straight line through your data points so you can make predictions.
+      <h2 className="font-serif text-2xl text-pink-600 mt-[2.5rem] mb-[2.5rem]">🍵 The Technical Tea</h2>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        Okay, let&apos;s break this down like we&apos;re explaining it to our group chat.
+      </p>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        <strong>Simple Linear Regression</strong> is all about finding the relationship between TWO variables: one input (<strong>independent variable</strong>, let&apos;s call her X) and one output (<strong>dependent variable</strong>, let&apos;s call her Y). The goal? Draw the best-fitting straight line through your data points so you can make predictions.
+      </p>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        The equation is giving main character:
       </p>
 
-      <p>The equation is giving main character:</p>
-      <div className="bg-pink-50 p-6 rounded-xl border border-pink-200 text-center my-6">
-        <p className="font-mono text-2xl text-[#590D22] font-bold m-0">Y = mX + b</p>
-        <p className="font-mono text-lg text-pink-600 mt-2 m-0">y = β₁x + β₀</p>
+      <div className="bg-pink-50 border-2 border-pink-100 rounded-xl p-6 text-center my-10 font-mono text-xl text-[#590D22] font-bold shadow-sm">
+        Y = mX + b
       </div>
 
-      <p><strong>Translation time:</strong></p>
-      <ul>
-        <li><strong>y</strong> = Your <strong>predicted outcome</strong> (like "expected compliments")</li>
-        <li><strong>x</strong> = Your <strong>input feature</strong> (like "hours on skincare")</li>
-        <li><strong>β₁ (or m)</strong> = The <strong>slope</strong> (how much Y changes when X increases by 1)</li>
-        <li><strong>β₀ (or b)</strong> = The <strong>intercept</strong> (where the line crosses the Y-axis—your baseline vibe even with ZERO effort)</li>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        Or in ML terms:
+      </p>
+
+      <div className="bg-pink-50 border-2 border-pink-100 rounded-xl p-6 text-center my-10 font-mono text-xl text-[#590D22] font-bold shadow-sm">
+        y = β₁x + β₀
+      </div>
+
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        <strong>Translation time:</strong>
+      </p>
+      <ul className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        <li className="leading-[2.5rem]">y = Your <strong>predicted outcome</strong> (like &quot;expected compliments&quot;)</li>
+        <li className="leading-[2.5rem]">x = Your <strong>input feature</strong> (like &quot;hours on skincare&quot;)</li>
+        <li className="leading-[2.5rem]">β₁ (or m) = The <strong>slope</strong> (how much Y changes when X increases by 1)</li>
+        <li className="leading-[2.5rem]">β₀ (or b) = The <strong>intercept</strong> (where the line crosses the Y-axis—your baseline vibe even with ZERO effort)</li>
       </ul>
 
-      <h3>How Does She Find This Line?</h3>
-      <p>
-        Here's where it gets spicy. The algorithm tries MULTIPLE lines and picks the one that minimizes the <strong>Cost Function</strong> (also called <strong>Mean Squared Error</strong> or MSE). Think of the cost function as "total regret"—how far off your predictions are from reality.
+      <h3 className="font-serif text-xl text-pink-500 mt-[2.5rem] mb-[2.5rem]">How Does She Find This Line?</h3>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        Here&apos;s where it gets spicy. The algorithm tries MULTIPLE lines and picks the one that minimizes the <strong>Cost Function</strong> (also called <strong>Mean Squared Error</strong> or MSE). Think of the cost function as &quot;total regret&quot;—how far off your predictions are from reality.
+      </p>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        The formula for MSE is:
       </p>
 
-      <div className="bg-pink-50 p-6 rounded-xl border border-pink-200 text-center my-6">
-        <p className="font-mono text-xl text-[#590D22] m-0">MSE = (1/n) * Σ(y_actual - y_predicted)²</p>
+      <div className="bg-pink-50 border-2 border-pink-100 rounded-xl p-6 text-center my-10 font-mono text-xl text-[#590D22] font-bold shadow-sm">
+        MSE = (1/n) × Σ(yᵢ - ŷᵢ)²
       </div>
 
-      <p>
-        We square the errors because negative differences would cancel out positive ones (and we're not about that toxic behavior). The algorithm uses <strong>Gradient Descent</strong>—basically trial and error on steroids—to adjust the slope and intercept until the MSE is minimized.
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        Where:
+      </p>
+      <ul className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        <li className="leading-[2.5rem]">yᵢ = <strong>Actual value</strong> (real compliments you got)</li>
+        <li className="leading-[2.5rem]">ŷᵢ = <strong>Predicted value</strong> (what the model THOUGHT you&apos;d get)</li>
+        <li className="leading-[2.5rem]">n = Number of data points</li>
+      </ul>
+
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        We square the errors because negative differences would cancel out positive ones (and we&apos;re not about that toxic behavior). The algorithm uses <strong>Gradient Descent</strong>—basically trial and error on steroids—to adjust the slope and intercept until the MSE is minimized.
       </p>
 
-      <h3>The Assumptions (Yes, She Has Standards)</h3>
-      <p>Linear regression has some non-negotiables:</p>
-      <ol>
-        <li><strong>Linearity</strong> – The relationship must be straight-line-ish</li>
-        <li><strong>Independence</strong> – Each data point is its own person (no copying homework)</li>
-        <li><strong>Homoscedasticity</strong> (sorry for the SAT word 😭) – The "scatter" around the line should be consistent, not going wild</li>
-        <li><strong>Normality</strong> – Errors should be normally distributed (bell curve vibes)</li>
+      <h3 className="font-serif text-xl text-pink-500 mt-[2.5rem] mb-[2.5rem]">The Assumptions (Yes, She Has Standards)</h3>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        Linear regression has some non-negotiables:
+      </p>
+      <ol className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        <li className="leading-[2.5rem]"><strong>Linearity</strong> – The relationship must be straight-line-ish</li>
+        <li className="leading-[2.5rem]"><strong>Independence</strong> – Each data point is its own person (no copying homework)</li>
+        <li className="leading-[2.5rem]"><strong>Homoscedasticity</strong> (sorry for the SAT word 😭) – The &quot;scatter&quot; around the line should be consistent, not going wild</li>
+        <li className="leading-[2.5rem]"><strong>Normality</strong> – Errors should be normally distributed (bell curve vibes)</li>
       </ol>
-      <p>If your data violates these? She won't work. It's giving "I can fix him" energy, and we DON'T do that here.</p>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        If your data violates these? She won&apos;t work. It&apos;s giving &quot;I can fix him&quot; energy, and we DON&apos;T do that here.
+      </p>
 
       {/* 💻 The Code */}
-      <h2>💻 The Code</h2>
-      <pre><code className="language-python">
-{`# 🎀 Let's predict how many compliments you get based on skincare time
+      <h2 className="font-serif text-2xl text-pink-600 mt-[2.5rem] mb-[2.5rem]">💻 The Code</h2>
+      <div className="my-10 bg-[#2d2a2e] text-pink-50 p-6 rounded-2xl shadow-xl overflow-x-auto border border-pink-500/20">
+        <pre><code className="font-mono text-sm leading-relaxed">{`# 🎀 Let's predict how many compliments you get based on skincare time
 # Importing our IT girl toolkit
 import numpy as np
 import matplotlib.pyplot as plt
@@ -94,51 +115,84 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
 # 📊 Our messy real-life data
+# Hours spent on skincare routine per day
 skincare_hours = np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]).reshape(-1, 1)
+
+# Compliments received that day (we're tracking EVERYTHING ✨)
 compliments_received = np.array([2, 4, 5, 7, 8, 10, 11, 13, 14, 16])
 
-# 🎯 Splitting our data
+# 🎯 Splitting our data (because we need a test group, duh)
+# 80% for training our bestie_bot, 20% for testing her predictions
 hours_train, hours_test, compliments_train, compliments_test = train_test_split(
-    skincare_hours, compliments_received, test_size=0.2, random_state=42
+    skincare_hours, 
+    compliments_received, 
+    test_size=0.2, 
+    random_state=42  # this number keeps results consistent (it's giving organization icon)
 )
 
 # 🤖 Creating our prediction bestie
 bestie_bot = LinearRegression()
+
+# 📚 Teaching her the pattern (this is where the magic happens)
 bestie_bot.fit(hours_train, compliments_train)
 
-# 🔮 Making predictions
+# 🔮 Making predictions on our test data
 predicted_compliments = bestie_bot.predict(hours_test)
 
-# 📈 Checking her accuracy
+# 📈 Checking her accuracy (is she giving or is she GIVING?)
 mse = mean_squared_error(compliments_test, predicted_compliments)
 r2 = r2_score(compliments_test, predicted_compliments)
 
-print(f"✨ The Slope: {bestie_bot.coef_[0]:.2f}")
-print(f"💅 The Intercept: {bestie_bot.intercept_:.2f}")
-print(f"📉 Mean Squared Error: {mse:.2f}")
-print(f"💯 R² Score: {r2:.2f}")`}
-      </code></pre>
+print(f"✨ The Slope (how much each hour matters): {bestie_bot.coef_[0]:.2f}")
+print(f"💅 The Intercept (your natural baseline glow): {bestie_bot.intercept_:.2f}")
+print(f"📉 Mean Squared Error (total regret): {mse:.2f}")
+print(f"💯 R² Score (accuracy percentage): {r2:.2f}")
 
-      <h3>What's Happening Here?</h3>
-      <p>
-        We're using <strong>sklearn's LinearRegression</strong> class (she's THAT girl). The <code>.fit()</code> method does all the heavy lifting—finding the perfect slope and intercept. Then <code>.predict()</code> uses that formula to guess outcomes.
+# 🎨 Let's visualize this
+plt.figure(figsize=(10, 6))
+plt.scatter(skincare_hours, compliments_received, color='#FF69B4', s=100, alpha=0.6, label='Real Life Data')
+plt.plot(skincare_hours, bestie_bot.predict(skincare_hours), color='#FF1493', linewidth=3, label='Prediction Line')
+plt.xlabel('Hours on Skincare 💆‍♀️', fontsize=12)
+plt.ylabel('Compliments Received 💕', fontsize=12)
+plt.title('The Glow-Up Formula', fontsize=14, fontweight='bold')
+plt.legend()
+plt.grid(alpha=0.3)
+plt.show()
+
+# 🔮 Future prediction: If I do 6 hours tomorrow, what happens?
+future_routine = np.array([[6.0]])
+future_compliments = bestie_bot.predict(future_routine)
+print(f"\\n💫 If you do {future_routine[0][0]} hours tomorrow, expect {future_compliments[0]:.0f} compliments!")`}</code></pre>
+      </div>
+
+      <h3 className="font-serif text-xl text-pink-500 mt-[2.5rem] mb-[2.5rem]">What&apos;s Happening Here?</h3>
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        We&apos;re using <strong>sklearn&apos;s LinearRegression</strong> class (she&apos;s THAT girl). The <code className="bg-pink-100 px-2 py-1 rounded text-sm">.fit()</code> method does all the heavy lifting—finding the perfect slope and intercept. Then <code className="bg-pink-100 px-2 py-1 rounded text-sm">.predict()</code> uses that formula to guess outcomes.
       </p>
-      <p>
-        The <strong>R² Score</strong> (R-squared) tells you how well your line fits. If it's 1.0, you found the EXACT pattern. If it's 0.0, your model is useless (giving "he's just not that into you" energy). Anything above 0.7 is considered solid.
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+        The <strong>R² Score</strong> (R-squared) tells you how well your line fits. If it&apos;s 1.0, you found the EXACT pattern. If it&apos;s 0.0, your model is useless (giving &quot;he&apos;s just not that into you&quot; energy). Anything above 0.7 is considered solid.
       </p>
 
       {/* 💅 Mini-Project */}
-      <div className="bg-gradient-to-br from-pink-50 to-white p-8 rounded-2xl border-2 border-pink-100 shadow-sm mt-12 mb-6">
-        <h2 className="mt-0">💅 Mini-Project: "The Latte Factor"</h2>
-        <p><strong>Your Mission:</strong> Track how much money you spend on coffee each week and predict your monthly spending.</p>
-        <p><strong>Dataset:</strong> <a href="https://www.kaggle.com/datasets/anjaliisharmaa/the-latte-factor" target="_blank" rel="noreferrer" className="text-pink-600 hover:text-pink-800">The Latte Factor on Kaggle</a> (10 weeks of coffee purchases)</p>
-        <p><strong>Goal:</strong> Build a linear regression model and answer:</p>
-        <ol>
-          <li>What's your predicted spending if you buy 15 cups next week?</li>
-          <li>What's the slope? (How much does each cup increase your spending?)</li>
-          <li>Plot it and make it CUTE (pink theme mandatory 💕)</li>
+      <div className="bg-gradient-to-br from-pink-50 to-white p-8 rounded-2xl border-2 border-pink-100 shadow-sm my-10">
+        <h2 className="font-serif text-2xl text-pink-600 mt-0 mb-[2.5rem]">💅 Mini-Project: &quot;The Latte Factor&quot;</h2>
+        <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+          <strong>Your Mission:</strong> Track how much money you spend on coffee each week and predict your monthly spending.
+        </p>
+        <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+          <strong>Dataset:</strong> <a href="https://www.kaggle.com/datasets/anjaliisharmaa/the-latte-factor" target="_blank" rel="noreferrer" className="text-pink-600 hover:text-pink-800 underline">The Latte Factor on Kaggle</a> (10 weeks of coffee purchases)
+        </p>
+        <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+          <strong>Goal:</strong> Build a linear regression model and answer:
+        </p>
+        <ol className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
+          <li className="leading-[2.5rem]">What&apos;s your predicted spending if you buy 15 cups next week?</li>
+          <li className="leading-[2.5rem]">What&apos;s the slope? (How much does each cup increase your spending?)</li>
+          <li className="leading-[2.5rem]">Plot it and make it CUTE (pink theme mandatory 💕)</li>
         </ol>
-        <p className="mb-0"><strong>Deliverable:</strong> A Python script + one aesthetic plot. Bonus points if you realize you need to cut back and make better financial decisions ✨</p>
+        <p className="text-[#590D22] leading-[2.5rem] mb-0">
+          <strong>Deliverable:</strong> A Python script + one aesthetic plot. Bonus points if you realize you need to cut back and make better financial decisions ✨
+        </p>
       </div>
     </>
   );
