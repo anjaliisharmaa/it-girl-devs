@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { courseData } from '@/data/course-content';
+import { courseData } from '@/data/courseData';
 import { Clock } from 'lucide-react';
 
 interface PageProps {
@@ -17,6 +17,7 @@ export default function ClassroomPage({ params }: PageProps) {
   // Fetch the module and lesson data
   const module = courseData[moduleId];
   const lesson = module?.[lessonId];
+  const ContentComponent = lesson?.content;
 
   // 404 state
   if (!module || !lesson) {
@@ -132,8 +133,9 @@ export default function ClassroomPage({ params }: PageProps) {
               <article 
                 className="prose prose-pink prose-lg max-w-none"
                 style={{ lineHeight: '2.5rem' }}
-                dangerouslySetInnerHTML={{ __html: lesson.content }}
-              />
+              >
+                {ContentComponent && <ContentComponent />}
+              </article>
 
               {/* Pagination - Cute Tags */}
               <div className="flex items-center justify-between gap-4 border-t-2 border-dashed border-pink-200 mt-12 pt-8">
