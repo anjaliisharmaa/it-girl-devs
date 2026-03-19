@@ -117,12 +117,6 @@ export default function ClassroomPage({ params }: PageProps) {
               
               {/* Badge and Title - Strict Column Layout */}
               <div className="flex flex-col items-start gap-4 mb-8">
-                {/* Reading Time Badge */}
-                <div className="inline-flex items-center gap-2 bg-pink-100 text-pink-600 font-mono text-xs px-3 py-1 rounded-md">
-                  <Clock size={12} />
-                  <span>Reading Time: 10 mins</span>
-                </div>
-
                 {/* Lesson Title */}
                 <h1 className="font-serif text-5xl md:text-6xl text-[#590D22] leading-tight bg-white px-2 inline-block">
                   {lesson.title}
