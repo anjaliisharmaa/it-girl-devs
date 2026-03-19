@@ -42,16 +42,16 @@ export default function SimpleLinearContent() {
         The equation is giving main character:
       </p>
 
-      <div className="bg-pink-50 border-2 border-pink-100 rounded-xl p-6 text-center my-10 font-mono text-xl text-[#590D22] font-bold shadow-sm">
-        Y = mX + b
+      <div className="bg-white p-6 rounded-lg border-2 border-[#590D22] shadow-[4px_4px_0px_0px_#FFD1DC] text-center my-10 mx-4">
+        <p className="font-mono text-2xl text-[#590D22] font-black tracking-wider m-0">Y = mX + b</p>
       </div>
 
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
         Or in ML terms:
       </p>
 
-      <div className="bg-pink-50 border-2 border-pink-100 rounded-xl p-6 text-center my-10 font-mono text-xl text-[#590D22] font-bold shadow-sm">
-        y = β₁x + β₀
+      <div className="bg-white p-6 rounded-lg border-2 border-[#590D22] shadow-[4px_4px_0px_0px_#FFD1DC] text-center my-10 mx-4">
+        <p className="font-mono text-lg text-[#590D22] font-black tracking-wider m-0">y = β₁x + β₀</p>
       </div>
 
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
@@ -72,8 +72,8 @@ export default function SimpleLinearContent() {
         The formula for MSE is:
       </p>
 
-      <div className="bg-pink-50 border-2 border-pink-100 rounded-xl p-6 text-center my-10 font-mono text-xl text-[#590D22] font-bold shadow-sm">
-        MSE = (1/n) × Σ(yᵢ - ŷᵢ)²
+      <div className="bg-white p-6 rounded-lg border-2 border-[#590D22] shadow-[4px_4px_0px_0px_#FFD1DC] text-center my-10 mx-4">
+        <p className="font-mono text-2xl text-[#590D22] font-black tracking-wider m-0">MSE = (1/n) × Σ(yᵢ - ŷᵢ)²</p>
       </div>
 
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
