@@ -125,7 +125,7 @@ export default function ClassroomPage({ params }: PageProps) {
 
               {/* Content Area - Typewriter Mode: Zero Margins, 2.5rem Line Height, User Controls Spacing */}
               <article 
-                className="prose prose-pink prose-lg max-w-none [&_*]:!leading-[2.5rem] [&_p]:!my-0 [&_h1]:!mt-[5rem] [&_h1]:!mb-0 [&_h1]:!text-5xl [&_h2]:!mt-[2.5rem] [&_h2]:!mb-0 [&_h2]:!text-3xl [&_h3]:!mt-[2.5rem] [&_h3]:!mb-0 [&_h3]:!text-2xl [&_h4]:!mt-[2.5rem] [&_h4]:!mb-0 [&_ul]:!my-0 [&_ol]:!my-0 [&_li]:!my-0 [&_div_h2]:!mt-0"
+                className="prose prose-pink prose-xl max-w-none [&_*]:!leading-[2.5rem] [&_p]:!my-0 [&_p]:!text-lg [&_h1]:!mt-[5rem] [&_h1]:!mb-0 [&_h1]:!text-6xl [&_h2]:!mt-[2.5rem] [&_h2]:!mb-0 [&_h2]:!text-4xl [&_h3]:!mt-[2.5rem] [&_h3]:!mb-0 [&_h3]:!text-3xl [&_h4]:!mt-[2.5rem] [&_h4]:!mb-0 [&_ul]:!my-0 [&_ol]:!my-0 [&_li]:!my-0 [&_div_h2]:!mt-0 [&_div.mb-12]:!leading-normal [&_div.mb-12_span]:!leading-normal"
               >
                 {ContentComponent && <ContentComponent />}
               </article>

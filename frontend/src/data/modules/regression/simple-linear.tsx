@@ -3,7 +3,7 @@ export default function SimpleLinearContent() {
     <>
       {/* 🎀 The Metadata Badges */}
       <div className="flex flex-wrap gap-3 mb-12">
-        <span className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-base font-mono whitespace-nowrap leading-normal inline-flex items-center w-fit shadow-sm border border-pink-200">
+        <span className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-base font-mono whitespace-nowrap leading-normal inline-flex items-center w-fit shadow-sm border border-pink-200 min-w-0">
           ☕ Sip Time: 8 mins
         </span>
         <span className="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-base font-mono whitespace-nowrap leading-normal inline-flex items-center w-fit shadow-sm border border-pink-200">
