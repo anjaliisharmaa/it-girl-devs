@@ -123,9 +123,9 @@ export default function ClassroomPage({ params }: PageProps) {
                 </h1>
               </div>
 
-              {/* Content Area - Strict Grid-Enforced Spacing with High Specificity */}
+              {/* Content Area - Typewriter Mode: Zero Margins, 2.5rem Line Height, User Controls Spacing */}
               <article 
-                className="prose prose-pink prose-lg max-w-none [&_*]:!leading-[2.5rem] [&_p]:!mb-[2.5rem] [&_p]:!mt-0 [&_h1]:!mt-[5rem] [&_h1]:!mb-[2.5rem] [&_h2]:!mt-[2.5rem] [&_h2]:!mb-[2.5rem] [&_h3]:!mt-[2.5rem] [&_h3]:!mb-[2.5rem] [&_h4]:!mt-[2.5rem] [&_h4]:!mb-[2.5rem] [&_h5]:!mt-[5rem] [&_h5]:!mb-[2.5rem] [&_h6]:!mt-[5rem] [&_h6]:!mb-[2.5rem] [&_ul]:!mb-[2.5rem] [&_ol]:!mb-[2.5rem] [&_li]:!mb-0 [&_li]:!mt-0 [&_p:empty]:!h-[2.5rem] [&_p:empty]:!mb-[2.5rem] [&_p:empty]:!block"
+                className="prose prose-pink prose-lg max-w-none [&_*]:!leading-[2.5rem] [&_p]:!my-0 [&_h1]:!mt-[5rem] [&_h1]:!mb-0 [&_h2]:!mt-[2.5rem] [&_h2]:!mb-0 [&_h3]:!mt-[2.5rem] [&_h3]:!mb-0 [&_h4]:!mt-[2.5rem] [&_h4]:!mb-0 [&_ul]:!my-0 [&_ol]:!my-0 [&_li]:!my-0"
               >
                 {ContentComponent && <ContentComponent />}
               </article>
