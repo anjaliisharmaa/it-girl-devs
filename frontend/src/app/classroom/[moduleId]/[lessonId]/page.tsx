@@ -47,7 +47,13 @@ export default function ClassroomPage({ params }: PageProps) {
     .join(' ');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50/50 via-pink-100/30 to-red-50/40 pt-32 pb-20 px-4 md:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50/50 via-pink-100/30 to-red-50/40 pt-32 pb-20 px-4 md:px-8 overflow-x-hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+      <style>{`
+        html::-webkit-scrollbar { width: 8px; }
+        html::-webkit-scrollbar-track { background: transparent; }
+        html::-webkit-scrollbar-thumb { background: #FFD1DC; border-radius: 4px; }
+        html::-webkit-scrollbar-thumb:hover { background: #FF69B4; }
+      `}</style>
       <div className="flex flex-col md:flex-row gap-6 max-w-7xl mx-auto">
         
         {/* The Planner Tabs (Sticky Notes Sidebar) */}
