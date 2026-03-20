@@ -17,7 +17,7 @@ export default function SimpleLinearContent() {
       {/* 🎬 The Episode Teaser */}
       <h2 className="font-serif text-2xl text-pink-600 mt-[2.5rem] mb-[5rem]">🎬 The Episode Teaser</h2>
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
-        You&apos;re sitting in your favorite coffee shop, scrolling through your ex&apos;s new girlfriend&apos;s Instagram (we&apos;ve all been there ✨). You notice something: every time she posts a gym selfie, her engagement rate SPIKES. Like, clockwork. You start thinking... is there a <em>formula</em> to this? Can you predict your own Instagram engagement based on how many times you post workout content?
+        You&apos;re sitting in your favorite coffee shop, scrolling through that influencer&apos;s Instagram (we&apos;ve all been there ✨). You notice something: every time she posts a gym selfie, her engagement rate SPIKES. Like, clockwork. You start thinking... is there a <em>formula</em> to this? Can you predict your own Instagram engagement based on how many times you post workout content?
       </p>
       <p className="text-[#590D22] leading-[2.5rem] mb-[10rem]">
         Welcome to your villain origin story, bestie. You&apos;re about to build your first prediction model, and honestly? It&apos;s giving main character energy. <strong>Simple Linear Regression</strong> is your new bestie. She finds straight-line relationships in messy data. She is that friend who can spot a toxic pattern from a MILE away. She&apos;s about to help you predict outcomes based on ONE single input. No drama, just math. Let&apos;s get into it.
