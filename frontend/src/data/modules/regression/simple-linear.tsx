@@ -174,8 +174,8 @@ print(f"\\n💫 If you do {future_routine[0][0]} hours tomorrow, expect {future_
       </p>
 
       {/* 💅 Mini-Project */}
-      <div className="bg-gradient-to-br from-pink-50 to-white p-8 rounded-2xl border-2 border-pink-100 shadow-sm my-10">
-        <h2 className="font-serif text-2xl text-pink-600 mt-0 mb-[2.5rem]">💅 Mini-Project: &quot;The Latte Factor&quot;</h2>
+      <div className="bg-gradient-to-br from-pink-50 to-white p-8 rounded-2xl border-2 border-pink-100 shadow-sm">
+        <h2 className="font-serif text-2xl text-pink-600 !-mt-[5rem] mb-[2.5rem]">💅 Mini-Project: &quot;The Latte Factor&quot;</h2>
         <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
           <strong>Your Mission:</strong> Track how much money you spend on coffee each week and predict your monthly spending.
         </p>
