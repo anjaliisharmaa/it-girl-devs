@@ -1,3 +1,53 @@
+"use client";
+
+import { useState } from "react";
+
+// Copy Button Component (Client-Side)
+const CopyButton = ({ code }: { code: string }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      // Revert back after 2 seconds
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      style={{
+        background: copied ? 'rgba(236, 72, 153, 0.15)' : 'transparent',
+        border: 'none',
+        color: copied ? '#A8E6CF' : '#F4A6D3',
+        fontSize: '0.75rem',
+        fontFamily: 'monospace',
+        padding: '0.375rem 0.75rem',
+        borderRadius: '0.375rem',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        letterSpacing: '0.05em',
+      }}
+      onMouseEnter={(e) => {
+        if (!copied) {
+          e.currentTarget.style.background = 'rgba(236, 72, 153, 0.08)';
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!copied) {
+          e.currentTarget.style.background = 'transparent';
+        }
+      }}
+    >
+      {copied ? '✨ Copied!' : '📋 Copy'}
+    </button>
+  );
+};
+
 // Syntax Highlighter Component
 const PythonTerminal = ({ code }: { code: string }) => {
   const highlightLine = (line: string): (string | JSX.Element)[] => {
@@ -63,8 +113,9 @@ const PythonTerminal = ({ code }: { code: string }) => {
             <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#F0F0F0', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)' }}></div>
           </div>
           {/* Filename Label */}
-          <span style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#F4A6D3', letterSpacing: '0.05em' }}>bestie_bot.py</span>
-          <div style={{ width: '48px' }}></div>
+          <span style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#F4A6D3', letterSpacing: '0.05em', flex: 1, textAlign: 'center' }}>bestie_bot.py</span>
+          {/* Copy Button */}
+          <CopyButton code={code} />
         </div>
 
         {/* Code Content */}
