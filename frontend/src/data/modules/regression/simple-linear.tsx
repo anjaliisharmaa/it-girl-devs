@@ -1,3 +1,146 @@
+// Syntax Highlighter Component
+const PythonTerminal = ({ code }: { code: string }) => {
+  const highlightLine = (line: string): (string | JSX.Element)[] => {
+    const result: (string | JSX.Element)[] = [];
+    let lastIndex = 0;
+
+    // Regex to match: strings, comments, keywords, numbers
+    const tokenRegex = /('([^'\\]|\\.)*'|"([^"\\]|\\.)*"|#.*?$|\b(import|from|as|def|class|if|else|elif|for|while|return|in|and|or|not|True|False|None|reshape|array|split|fit|predict)\b|\b\d+\.?\d*\b)/gm;
+    
+    let match;
+    while ((match = tokenRegex.exec(line)) !== null) {
+      // Text before match
+      if (match.index > lastIndex) {
+        result.push(
+          <span key={`text-${lastIndex}`} style={{ color: '#F5E6E8' }}>
+            {line.substring(lastIndex, match.index)}
+          </span>
+        );
+      }
+
+      // Determine token type and color
+      let color = '#F5E6E8'; // Default
+      if (match[0].startsWith('#')) {
+        color = '#E8B4E4'; // Comments: Lavender
+      } else if (match[0].startsWith('"') || match[0].startsWith("'")) {
+        color = '#A8E6CF'; // Strings: Mint green
+      } else if (/^\d+\.?\d*$/.test(match[0])) {
+        color = '#FFE082'; // Numbers: Soft yellow
+      } else {
+        color = '#FF4C9A'; // Keywords: Bright pink
+      }
+
+      result.push(
+        <span key={`token-${match.index}`} style={{ color }}>
+          {match[0]}
+        </span>
+      );
+      lastIndex = match.index + match[0].length;
+    }
+
+    // Remaining text
+    if (lastIndex < line.length) {
+      result.push(
+        <span key={`text-end`} style={{ color: '#F5E6E8' }}>
+          {line.substring(lastIndex)}
+        </span>
+      );
+    }
+
+    return result.length ? result : [<span key="empty" style={{ color: '#F5E6E8' }}>{line}</span>];
+  };
+
+  return (
+    <div style={{ margin: '2.5rem 0' }}>
+      {/* Terminal Window */}
+      <div style={{ background: '#1E1E2E', borderRadius: '1rem', overflow: 'hidden', border: '1px solid rgba(236, 72, 153, 0.2)', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3)' }}>
+        {/* Window Header */}
+        <div style={{ background: '#2d2a3e', padding: '0.75rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(236, 72, 153, 0.1)' }}>
+          {/* Traffic Light Buttons */}
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#FFB6C1', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)' }}></div>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#D8BFD8', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)' }}></div>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#F0F0F0', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)' }}></div>
+          </div>
+          {/* Filename Label */}
+          <span style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#F4A6D3', letterSpacing: '0.05em' }}>bestie_bot.py</span>
+          <div style={{ width: '48px' }}></div>
+        </div>
+
+        {/* Code Content */}
+        <div style={{ padding: '1.5rem', overflowX: 'auto', maxHeight: '400px', overflowY: 'auto', backgroundColor: '#1E1E2E' }}>
+          <div style={{ fontFamily: 'monospace', fontSize: '0.875rem', lineHeight: '1.5' }}>
+            {code.split('\n').map((line, idx) => (
+              <div key={idx} style={{ margin: 0, padding: 0, minHeight: '1.5rem' }}>
+                {highlightLine(line)}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Python code content
+const pythonCode = `# 🎀 Let's predict how many compliments you get based on skincare time
+# Importing our IT girl toolkit
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+# 📊 Our messy real-life data
+# Hours spent on skincare routine per day
+skincare_hours = np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]).reshape(-1, 1)
+
+# Compliments received that day (we're tracking EVERYTHING ✨)
+compliments_received = np.array([2, 4, 5, 7, 8, 10, 11, 13, 14, 16])
+
+# 🎯 Splitting our data (because we need a test group, duh)
+# 80% for training our bestie_bot, 20% for testing her predictions
+hours_train, hours_test, compliments_train, compliments_test = train_test_split(
+    skincare_hours, 
+    compliments_received, 
+    test_size=0.2, 
+    random_state=42  # this number keeps results consistent (it's giving organization icon)
+)
+
+# 🤖 Creating our prediction bestie
+bestie_bot = LinearRegression()
+
+# 📚 Teaching her the pattern (this is where the magic happens)
+bestie_bot.fit(hours_train, compliments_train)
+
+# 🔮 Making predictions on our test data
+predicted_compliments = bestie_bot.predict(hours_test)
+
+# 📈 Checking her accuracy (is she giving or is she GIVING?)
+mse = mean_squared_error(compliments_test, predicted_compliments)
+r2 = r2_score(compliments_test, predicted_compliments)
+
+print(f"✨ The Slope (how much each hour matters): {bestie_bot.coef_[0]:.2f}")
+print(f"💅 The Intercept (your natural baseline glow): {bestie_bot.intercept_:.2f}")
+print(f"📉 Mean Squared Error (total regret): {mse:.2f}")
+print(f"💯 R² Score (accuracy percentage): {r2:.2f}")
+
+# 🎨 Let's visualize this
+plt.figure(figsize=(10, 6))
+plt.scatter(skincare_hours, compliments_received, color='#FF69B4', s=100, alpha=0.6, label='Real Life Data')
+plt.plot(skincare_hours, bestie_bot.predict(skincare_hours), color='#FF1493', linewidth=3, label='Prediction Line')
+plt.xlabel('Hours on Skincare 💆‍♀️', fontsize=12)
+plt.ylabel('Compliments Received 💕', fontsize=12)
+plt.title('The Glow-Up Formula', fontsize=14, fontweight='bold')
+plt.legend()
+plt.grid(alpha=0.3)
+plt.show()
+
+# 🔮 Future prediction: If I do 6 hours tomorrow, what happens?
+future_routine = np.array([[6.0]])
+future_compliments = bestie_bot.predict(future_routine)
+print(f"\\n💫 If you do {future_routine[0][0]} hours tomorrow, expect {future_compliments[0]:.0f} compliments!")`;
+
 export default function SimpleLinearContent() {
   return (
     <>
@@ -109,65 +252,8 @@ export default function SimpleLinearContent() {
 
       {/* 💻 The Code */}
       <h2 className="font-serif text-2xl text-pink-600 mt-[2.5rem] mb-[2.5rem]">💻 The Code</h2>
-      <div className="my-10 bg-[#2d2a2e] text-pink-50 p-6 rounded-2xl shadow-xl overflow-x-auto border border-pink-500/20">
-        <pre><code className="font-mono text-sm leading-relaxed">{`# 🎀 Let's predict how many compliments you get based on skincare time
-# Importing our IT girl toolkit
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
+      <PythonTerminal code={pythonCode} />
 
-# 📊 Our messy real-life data
-# Hours spent on skincare routine per day
-skincare_hours = np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]).reshape(-1, 1)
-
-# Compliments received that day (we're tracking EVERYTHING ✨)
-compliments_received = np.array([2, 4, 5, 7, 8, 10, 11, 13, 14, 16])
-
-# 🎯 Splitting our data (because we need a test group, duh)
-# 80% for training our bestie_bot, 20% for testing her predictions
-hours_train, hours_test, compliments_train, compliments_test = train_test_split(
-    skincare_hours, 
-    compliments_received, 
-    test_size=0.2, 
-    random_state=42  # this number keeps results consistent (it's giving organization icon)
-)
-
-# 🤖 Creating our prediction bestie
-bestie_bot = LinearRegression()
-
-# 📚 Teaching her the pattern (this is where the magic happens)
-bestie_bot.fit(hours_train, compliments_train)
-
-# 🔮 Making predictions on our test data
-predicted_compliments = bestie_bot.predict(hours_test)
-
-# 📈 Checking her accuracy (is she giving or is she GIVING?)
-mse = mean_squared_error(compliments_test, predicted_compliments)
-r2 = r2_score(compliments_test, predicted_compliments)
-
-print(f"✨ The Slope (how much each hour matters): {bestie_bot.coef_[0]:.2f}")
-print(f"💅 The Intercept (your natural baseline glow): {bestie_bot.intercept_:.2f}")
-print(f"📉 Mean Squared Error (total regret): {mse:.2f}")
-print(f"💯 R² Score (accuracy percentage): {r2:.2f}")
-
-# 🎨 Let's visualize this
-plt.figure(figsize=(10, 6))
-plt.scatter(skincare_hours, compliments_received, color='#FF69B4', s=100, alpha=0.6, label='Real Life Data')
-plt.plot(skincare_hours, bestie_bot.predict(skincare_hours), color='#FF1493', linewidth=3, label='Prediction Line')
-plt.xlabel('Hours on Skincare 💆‍♀️', fontsize=12)
-plt.ylabel('Compliments Received 💕', fontsize=12)
-plt.title('The Glow-Up Formula', fontsize=14, fontweight='bold')
-plt.legend()
-plt.grid(alpha=0.3)
-plt.show()
-
-# 🔮 Future prediction: If I do 6 hours tomorrow, what happens?
-future_routine = np.array([[6.0]])
-future_compliments = bestie_bot.predict(future_routine)
-print(f"\\n💫 If you do {future_routine[0][0]} hours tomorrow, expect {future_compliments[0]:.0f} compliments!")`}</code></pre>
-      </div>
 
       <h3 className="font-serif text-xl text-pink-500 mt-[2.5rem] mb-[2.5rem]">What&apos;s Happening Here?</h3>
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
