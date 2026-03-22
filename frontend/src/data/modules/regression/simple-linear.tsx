@@ -113,7 +113,7 @@ const PythonTerminal = ({ code }: { code: string }) => {
             <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#F0F0F0', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)' }}></div>
           </div>
           {/* Filename Label */}
-          <span style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#F4A6D3', letterSpacing: '0.05em', flex: 1, textAlign: 'center' }}>bestie_bot.py</span>
+          <span style={{ fontSize: '0.75rem', fontFamily: 'monospace', color: '#F4A6D3', letterSpacing: '0.05em', flex: 1, textAlign: 'center' }}>slay_stats.py</span>
           {/* Copy Button */}
           <CopyButton code={code} />
         </div>
@@ -221,7 +221,7 @@ export default function SimpleLinearContent() {
       <h2 className="font-serif text-2xl text-pink-600 mt-[2.5rem] mb-[5rem]">🖼️ The Mood Board (Visuals)</h2>
       <img 
         src="/images/modules/regression/slr/linear_regression_graph.png" 
-        alt="Linear Regression Graph" 
+        alt="Simple Linear Regression Graph" 
         className="rounded-2xl shadow-sm border-2 border-pink-100 w-full my-[2.5rem]" 
       />
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem] text-center italic">
@@ -312,6 +312,14 @@ export default function SimpleLinearContent() {
       </p>
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
         The <strong>R² Score</strong> (R-squared) tells you how well your line fits. If it&apos;s 1.0, you found the EXACT pattern. If it&apos;s 0.0, your model is useless (giving &quot;he&apos;s just not that into you&quot; energy). Anything above 0.7 is considered solid.
+      </p>
+      <img 
+        src="/images/modules/regression/slr/colab_output.png" 
+        alt="Simple Linear Regression Output" 
+        className="rounded-2xl shadow-sm border-2 border-pink-100 w-full my-[2.5rem]" 
+      />
+      <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem] text-center italic">
+        Testing the hypothesis that skincare is directly proportional to confidence. (Spoiler: It is.)
       </p>
 
       {/* 💅 Mini-Project */}
