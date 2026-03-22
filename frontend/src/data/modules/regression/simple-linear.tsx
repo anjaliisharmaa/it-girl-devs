@@ -322,6 +322,9 @@ export default function SimpleLinearContent() {
         Testing the hypothesis that skincare is directly proportional to confidence. (Spoiler: It is.)
       </p>
 
+      {/* Ghost spacer line - leverages global leading-[2.5rem] grid to create un-collapsable space */}
+      <p aria-hidden="true" className="!my-0 !p-0 select-none">&nbsp;</p>
+
       {/* 💅 Mini-Project */}
       <div className="bg-gradient-to-br from-pink-50 to-white p-8 rounded-2xl border-2 border-pink-100 shadow-sm">
         <h2 className="font-serif text-2xl text-pink-600 !-mt-[5rem] mb-[2.5rem]">💅 Mini-Project: &quot;The Latte Factor&quot;</h2>
