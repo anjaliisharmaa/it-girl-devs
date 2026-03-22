@@ -51,7 +51,7 @@ const PythonTerminal = ({ code }: { code: string }) => {
   };
 
   return (
-    <div style={{ margin: '2.5rem 0' }}>
+    <div style={{ margin: '2.5rem 0' }} className="[&_*]:!leading-[1.5] [&_*]:!m-0 [&_*]:!p-0">
       {/* Terminal Window */}
       <div style={{ background: '#1E1E2E', borderRadius: '1rem', overflow: 'hidden', border: '1px solid rgba(236, 72, 153, 0.2)', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3)' }}>
         {/* Window Header */}
@@ -68,10 +68,10 @@ const PythonTerminal = ({ code }: { code: string }) => {
         </div>
 
         {/* Code Content */}
-        <div style={{ padding: '1.5rem', overflowX: 'auto', maxHeight: '400px', overflowY: 'auto', backgroundColor: '#1E1E2E' }}>
+        <div style={{ padding: '1.5rem', overflowX: 'auto', height: 'auto', backgroundColor: '#1E1E2E' }}>
           <div style={{ fontFamily: 'monospace', fontSize: '0.875rem', lineHeight: '1.5' }}>
             {code.split('\n').map((line, idx) => (
-              <div key={idx} style={{ margin: 0, padding: 0, minHeight: '1.5rem' }}>
+              <div key={idx} style={{ margin: 0, padding: 0, lineHeight: '1.5' }}>
                 {highlightLine(line)}
               </div>
             ))}
