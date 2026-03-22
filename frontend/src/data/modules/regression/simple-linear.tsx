@@ -25,7 +25,11 @@ export default function SimpleLinearContent() {
 
       {/* 🖼️ The Mood Board */}
       <h2 className="font-serif text-2xl text-pink-600 mt-[2.5rem] mb-[5rem]">🖼️ The Mood Board (Visuals)</h2>
-      <img src="/images/modules/regression/slr/linear_regression_graph.png" alt="Linear Regression Graph" className="rounded-xl shadow-md border-2 border-pink-200 w-full my-10" />
+      <img 
+        src="/images/modules/regression/slr/linear_regression_graph.png" 
+        alt="Linear Regression Graph" 
+        className="rounded-2xl shadow-sm border-2 border-pink-100 w-full my-[2.5rem]" 
+      />
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem] text-center italic">
         &quot;The line doesn&apos;t touch every point because life isn&apos;t perfect, but it shows the TREND, and that&apos;s what matters 💅&quot;
       </p>
@@ -39,7 +43,7 @@ export default function SimpleLinearContent() {
         <strong>Simple Linear Regression</strong> is all about finding the relationship between TWO variables: one input (<strong>independent variable</strong>, let&apos;s call her X) and one output (<strong>dependent variable</strong>, let&apos;s call her Y). The goal? Draw the best-fitting straight line through your data points so you can make predictions.
       </p>
       <p className="text-[#590D22] leading-[2.5rem] mb-[2.5rem]">
-        The equation is giving main character:
+        She’s iconic, she’s a legend, she’s... the equation:
       </p>
 
       <div className="bg-white p-6 rounded-lg border-2 border-[#590D22] shadow-[4px_4px_0px_0px_#FFD1DC] text-center my-10 mx-4">
