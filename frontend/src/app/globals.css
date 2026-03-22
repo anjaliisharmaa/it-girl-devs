@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +9,25 @@
   --font-outfit: 'Outfit', sans-serif;
 }
 
+/* Global emoji rendering - ensures beautiful, consistent emojis across all devices */
+html {
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
 body {
-  font-family: var(--font-outfit);
+  font-family: var(--font-outfit), system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* Emoji font stack - prioritizes Apple Color Emoji, then Noto Color Emoji for consistent rendering */
+* {
+  font-family:
+    /* Default fonts come first for text rendering */
+    var(--font-outfit), system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue',
+    /* Apple devices get the native beautiful emojis */
+    'Apple Color Emoji',
+    /* Noto Color Emoji is clean and works great on all other platforms */
+    'Noto Color Emoji',
+    /* Fallbacks for systems without emoji fonts */
+    'Segoe UI Symbol',
+    sans-serif;
 }
