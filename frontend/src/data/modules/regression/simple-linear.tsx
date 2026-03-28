@@ -119,14 +119,12 @@ const PythonTerminal = ({ code }: { code: string }) => {
         </div>
 
         {/* Code Content */}
-        <div style={{ padding: '1.5rem', overflowX: 'auto', height: 'auto', backgroundColor: '#1E1E2E' }}>
-          <div style={{ fontFamily: 'monospace', fontSize: '0.875rem', lineHeight: '1.5' }}>
-            {code.split('\n').map((line, idx) => (
-              <div key={idx} style={{ margin: 0, padding: 0, lineHeight: '1.5' }}>
-                {highlightLine(line)}
-              </div>
-            ))}
-          </div>
+        <div style={{ padding: '1.5rem', overflowX: 'auto', height: 'auto', backgroundColor: '#1E1E2E', whiteSpace: 'pre', fontFamily: 'monospace', fontSize: '0.875rem', lineHeight: '1.5' }}>
+          {code.split('\n').map((line, idx) => (
+            <div key={idx} style={{ margin: '0 !important', padding: '0 !important', lineHeight: '1.5 !important', whiteSpace: 'pre', fontFamily: 'inherit', fontSize: 'inherit' }}>
+              {highlightLine(line)}
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -134,7 +132,7 @@ const PythonTerminal = ({ code }: { code: string }) => {
 };
 
 // Python code content
-const pythonCode = `# 🎀 Let's predict how many compliments you get based on skincare time
+const pythonCode = `Let's predict how many compliments you get based on skincare time
 # Importing our IT girl toolkit
 import numpy as np
 import matplotlib.pyplot as plt
