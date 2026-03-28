@@ -195,19 +195,25 @@ future_routine = np.array([[6.0]])
 future_compliments = bestie_bot.predict(future_routine)
 print(f"\\n💫 If you do {future_routine[0][0]} hours tomorrow, expect {future_compliments[0]:.0f} compliments!")`;
 
+const LESSON_METADATA = {
+  sipTime: '8 mins',
+  difficulty: 'First Date Energy (Beginner-Friendly)',
+  prerequisites: 'Basic Python, knowing what a graph is',
+};
+
 export default function SimpleLinearContent() {
   return (
     <>
       {/* 🎀 The Metadata Badges */}
       <div className="flex flex-wrap gap-3 mb-12">
         <span className="bg-pink-100 text-pink-600 px-4 py-1.5 rounded-2xl text-base font-mono text-wrap leading-normal inline-flex items-center w-fit max-w-full shadow-sm border border-pink-200">
-          ☕ Sip Time: 8 mins
+          ☕ Sip Time: {LESSON_METADATA.sipTime}
         </span>
         <span className="bg-pink-100 text-pink-600 px-4 py-1.5 rounded-2xl text-base font-mono text-wrap leading-normal inline-flex items-center w-fit max-w-full shadow-sm border border-pink-200">
-          🎀 Difficulty: First Date Energy (Beginner-Friendly)
+          🎀 Difficulty: {LESSON_METADATA.difficulty}
         </span>
         <span className="bg-pink-100 text-pink-600 px-4 py-1.5 rounded-2xl text-base font-mono text-wrap leading-normal inline-flex items-center w-fit max-w-full shadow-sm border border-pink-200">
-          🎒 Prerequisites: Basic Python, knowing what a graph is
+          🎒 Prerequisites: {LESSON_METADATA.prerequisites}
         </span>
       </div>
 
