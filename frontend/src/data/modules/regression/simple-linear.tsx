@@ -97,7 +97,12 @@ const PythonTerminal = ({ code }: { code: string }) => {
       );
     }
 
-    return result.length ? result : [<span key="empty" style={{ color: '#F5E6E8' }}>{line}</span>];
+    // For empty lines, render a non-breaking space to maintain line height
+    if (result.length === 0) {
+      return [<span key="empty" style={{ color: '#F5E6E8', display: 'inline-block', minHeight: '1.5em' }}>&nbsp;</span>];
+    }
+
+    return result;
   };
 
   return (
@@ -121,7 +126,7 @@ const PythonTerminal = ({ code }: { code: string }) => {
         {/* Code Content */}
         <div style={{ padding: '1.5rem', overflowX: 'auto', height: 'auto', backgroundColor: '#1E1E2E', whiteSpace: 'pre', fontFamily: 'monospace', fontSize: '0.875rem', lineHeight: '1.5' }}>
           {code.split('\n').map((line, idx) => (
-            <div key={idx} style={{ margin: '0 !important', padding: '0 !important', lineHeight: '1.5 !important', whiteSpace: 'pre', fontFamily: 'inherit', fontSize: 'inherit' }}>
+            <div key={idx} style={{ margin: '0 !important', padding: '0 !important', lineHeight: '1.5 !important', whiteSpace: 'pre', fontFamily: 'inherit', fontSize: 'inherit', minHeight: '1.5em', display: 'block' }}>
               {highlightLine(line)}
             </div>
           ))}
