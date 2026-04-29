@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { courseData } from '@/data/courseData';
 import { Clock } from 'lucide-react';
+import EvaluatorTest from '@/components/EvaluatorTest';
 
 interface PageProps {
   params: {
@@ -162,6 +163,12 @@ export default function ClassroomPage({ params }: PageProps) {
                   <div></div>
                 )}
               </div>
+
+              {/* 🧪 OUR TEMPORARY PYODIDE LAB TEST */}
+              <div className="mt-12">
+                <EvaluatorTest />
+              </div>
+              
             </div>
           </div>
         </main>
