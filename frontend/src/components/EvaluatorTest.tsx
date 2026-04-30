@@ -114,8 +114,8 @@ export default function EvaluatorTest() {
       {/* Sleek Header */}
       <div className="flex justify-between items-end mb-6 px-2">
         <div>
-          <h2 className="text-3xl font-serif text-[#590D22] mb-1 tracking-tight">The Code Diary 📓✨</h2>
-          <p className="text-pink-400 text-sm font-medium">Your personal, in-browser execution lab.</p>
+          <h2 className="text-3xl font-serif text-[#590D22] mb-1 tracking-tight">Pyxie</h2>
+          <p className="text-pink-400 text-sm font-medium">Build your mini-project right here. Instant notes when you submit.</p>
         </div>
         {!isReady && <span className="text-xs font-mono bg-pink-100 text-pink-600 px-3 py-1 rounded-full animate-pulse">{loadingStatus}</span>}
       </div>

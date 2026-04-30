@@ -137,8 +137,13 @@ export default function ClassroomPage({ params }: PageProps) {
                 {ContentComponent && <ContentComponent />}
               </article>
 
+              {/* 🧪 PYXIE LAB TEST (Moved above pagination!) */}
+              <div className="mt-12 mb-12">
+                <EvaluatorTest />
+              </div>
+
               {/* Pagination - Cute Tags */}
-              <div className="flex items-center justify-between gap-4 border-t-2 border-dashed border-pink-200 mt-12 pt-8">
+              <div className="flex items-center justify-between gap-4 border-t-2 border-dashed border-pink-200 pt-8">
                 {/* Previous Button */}
                 {lesson.prevLesson ? (
                   <Link
@@ -162,11 +167,6 @@ export default function ClassroomPage({ params }: PageProps) {
                 ) : (
                   <div></div>
                 )}
-              </div>
-
-              {/* 🧪 OUR TEMPORARY PYODIDE LAB TEST */}
-              <div className="mt-12">
-                <EvaluatorTest />
               </div>
               
             </div>
