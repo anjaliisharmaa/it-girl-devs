@@ -38,14 +38,7 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
       // @ts-ignore
       const pyodide = await window.loadPyodide();
       setLoadingStatus('Downloading ML Libraries (pandas, scikit-learn)...');
-      await pyodide.loadPackage([
-          'numpy', 
-          'pandas', 
-          'scipy', 
-          'scikit-learn', 
-          'matplotlib', 
-          'seaborn'
-        ]);
+      await pyodide.loadPackage(['numpy', 'pandas', 'scipy', 'scikit-learn']);
       
       // Load custom dataset if provided
       if (datasetFile) {
@@ -62,12 +55,14 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
       }
       
       // Configure pandas display settings to prevent column truncation
-      await pyodide.runPythonAsync(`
-        import pandas as pd
-        pd.set_option('display.max_columns', None)
-        pd.set_option('display.width', 1000)
-        pd.set_option('display.expand_frame_repr', False)
-              `);
+      try {
+        await pyodide.runPythonAsync(`import pandas as pd
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1000)
+pd.set_option('display.expand_frame_repr', False)`);
+      } catch (configErr) {
+        console.warn('Pandas config warning:', configErr);
+      }
       
       pyodideRef.current = pyodide;
       setIsReady(true);
