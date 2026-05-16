@@ -23,12 +23,12 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
   const [cells, setCells] = useState<Cell[]>([
     { 
       id: 1, 
-      code: "# 🎀 Let's import our toolkit\nimport numpy as np\nimport pandas as pd\nprint('Libraries loaded! ✨')", 
+      code: "# Let's import our toolkit\nimport numpy as np\nimport pandas as pd\nprint('Libraries loaded! ✨')", 
       output: "" 
     },
     { 
       id: 2, 
-      code: "# 🤖 Training our first browser-based ML model!\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# 📊 Our messy real-life data\nskincare_hours = np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]).reshape(-1, 1)\ncompliments = np.array([2, 4, 5, 7, 8, 10, 11, 13, 14, 16])\n\n# 🎯 Fit the line\nbestie_bot = LinearRegression()\nbestie_bot.fit(skincare_hours, compliments)\n\n# 🔮 Test accuracy\npredictions = bestie_bot.predict(skincare_hours)\nr2 = r2_score(compliments, predictions)\n\nprint(f\"💯 R² Score: {r2:.2f}\")", 
+      code: "# Training our first browser-based ML model!\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# 📊 Our messy real-life data\nskincare_hours = np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]).reshape(-1, 1)\ncompliments = np.array([2, 4, 5, 7, 8, 10, 11, 13, 14, 16])\n\n# 🎯 Fit the line\nbestie_bot = LinearRegression()\nbestie_bot.fit(skincare_hours, compliments)\n\n# 🔮 Test accuracy\npredictions = bestie_bot.predict(skincare_hours)\nr2 = r2_score(compliments, predictions)\n\nprint(f\"💯 R² Score: {r2:.2f}\")", 
       output: "" 
     }
   ]);
@@ -38,7 +38,14 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
       // @ts-ignore
       const pyodide = await window.loadPyodide();
       setLoadingStatus('Downloading ML Libraries (pandas, scikit-learn)... 📦');
-      await pyodide.loadPackage(['numpy', 'pandas', 'scikit-learn']);
+      await pyodide.loadPackage([
+          'numpy', 
+          'pandas', 
+          'scipy', 
+          'scikit-learn', 
+          'matplotlib', 
+          'seaborn'
+        ]);
       
       // Load custom dataset if provided
       if (datasetFile) {
@@ -56,11 +63,11 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
       
       // Configure pandas display settings to prevent column truncation
       await pyodide.runPythonAsync(`
-import pandas as pd
-pd.set_option('display.max_columns', None)
-pd.set_option('display.width', 1000)
-pd.set_option('display.expand_frame_repr', False)
-      `);
+        import pandas as pd
+        pd.set_option('display.max_columns', None)
+        pd.set_option('display.width', 1000)
+        pd.set_option('display.expand_frame_repr', False)
+              `);
       
       pyodideRef.current = pyodide;
       setIsReady(true);
