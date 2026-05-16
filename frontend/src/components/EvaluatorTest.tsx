@@ -16,19 +16,19 @@ interface PyxieProps {
 
 export default function EvaluatorTest({ datasetFile }: PyxieProps) {
   const [isReady, setIsReady] = useState(false);
-  const [loadingStatus, setLoadingStatus] = useState('Booting up Python... ⏳');
+  const [loadingStatus, setLoadingStatus] = useState('Booting up Python...');
   
   const pyodideRef = useRef<any>(null);
 
   const [cells, setCells] = useState<Cell[]>([
     { 
       id: 1, 
-      code: "# Let's import our toolkit\nimport numpy as np\nimport pandas as pd\nprint('Libraries loaded! ✨')", 
+      code: "# Let's import our toolkit\nimport numpy as np\nimport pandas as pd\nprint('Libraries loaded!')", 
       output: "" 
     },
     { 
       id: 2, 
-      code: "# Training our first browser-based ML model!\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# 📊 Our messy real-life data\nskincare_hours = np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]).reshape(-1, 1)\ncompliments = np.array([2, 4, 5, 7, 8, 10, 11, 13, 14, 16])\n\n# 🎯 Fit the line\nbestie_bot = LinearRegression()\nbestie_bot.fit(skincare_hours, compliments)\n\n# 🔮 Test accuracy\npredictions = bestie_bot.predict(skincare_hours)\nr2 = r2_score(compliments, predictions)\n\nprint(f\"💯 R² Score: {r2:.2f}\")", 
+      code: "# Training our first browser-based ML model!\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# Our messy real-life data\nskincare_hours = np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]).reshape(-1, 1)\ncompliments = np.array([2, 4, 5, 7, 8, 10, 11, 13, 14, 16])\n\n# Fit the line\nbestie_bot = LinearRegression()\nbestie_bot.fit(skincare_hours, compliments)\n\n# Test accuracy\npredictions = bestie_bot.predict(skincare_hours)\nr2 = r2_score(compliments, predictions)\n\nprint(f\"R² Score: {r2:.2f}\")", 
       output: "" 
     }
   ]);
@@ -37,7 +37,7 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
     try {
       // @ts-ignore
       const pyodide = await window.loadPyodide();
-      setLoadingStatus('Downloading ML Libraries (pandas, scikit-learn)... 📦');
+      setLoadingStatus('Downloading ML Libraries (pandas, scikit-learn)...');
       await pyodide.loadPackage([
           'numpy', 
           'pandas', 
@@ -49,14 +49,14 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
       
       // Load custom dataset if provided
       if (datasetFile) {
-        setLoadingStatus(`Loading your custom dataset (${datasetFile})... 🗂️`);
+        setLoadingStatus(`Loading your custom dataset (${datasetFile})...`);
         try {
           const response = await fetch(`/datasets/${datasetFile}`);
           const csvText = await response.text();
           pyodide.FS.writeFile(datasetFile, csvText);
         } catch (dataErr) {
           console.error(`Failed to load dataset ${datasetFile}:`, dataErr);
-          setLoadingStatus(`Failed to load dataset 🛑`);
+          setLoadingStatus(`Failed to load dataset`);
           return;
         }
       }
@@ -73,7 +73,7 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
       setIsReady(true);
     } catch (err) {
       console.error(err);
-      setLoadingStatus('Failed to load engine 🛑');
+      setLoadingStatus('Failed to load engine');
     }
   };
 
@@ -82,7 +82,7 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
     const targetCell = cells.find(c => c.id === cellId);
     if (!targetCell) return;
 
-    updateCellOutput(cellId, 'Running... ⏳');
+    updateCellOutput(cellId, 'Running...');
 
     try {
       let printedOutput = "";
@@ -96,12 +96,12 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
       }
       
       if (finalDisplay.trim() === "") {
-        finalDisplay = "✅ Executed successfully";
+        finalDisplay = "Executed successfully";
       }
       
       updateCellOutput(cellId, finalDisplay.trim());
     } catch (error: any) {
-      updateCellOutput(cellId, `Oops! 🛑:\n${error.message}`);
+      updateCellOutput(cellId, `Oops!:\n${error.message}`);
     }
   };
 
@@ -114,7 +114,7 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
     setCells([...cells, newCell]);
   };
 
-  // 🎀 DOM Magic: Auto-resize textarea to fit content without scrollbars
+  // DOM Magic: Auto-resize textarea to fit content without scrollbars
   const handleCodeChange = (id: number, e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.target.style.height = 'auto'; // Reset height briefly
     e.target.style.height = `${e.target.scrollHeight}px`; // Expand to fit exact text height
@@ -127,7 +127,7 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
     setCells(cells.map(cell => cell.id === id ? { ...cell, output: newOutput } : cell));
   };
 
-  // 🎀 DOM Magic Part 2: Auto-resize on initial load!
+  // DOM Magic Part 2: Auto-resize on initial load!
   useEffect(() => {
     // Find all our custom textareas
     const textareas = document.querySelectorAll('.it-girl-textarea');
