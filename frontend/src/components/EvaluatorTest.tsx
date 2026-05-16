@@ -54,6 +54,14 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
         }
       }
       
+      // Configure pandas display settings to prevent column truncation
+      await pyodide.runPythonAsync(`
+import pandas as pd
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1000)
+pd.set_option('display.expand_frame_repr', False)
+      `);
+      
       pyodideRef.current = pyodide;
       setIsReady(true);
     } catch (err) {
@@ -179,7 +187,7 @@ export default function EvaluatorTest({ datasetFile }: PyxieProps) {
             {cell.output && (
               <div className="mt-2 ml-4 relative">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-pink-200 rounded-full"></div>
-                <div className="pl-4 py-2 text-[13px] font-mono text-[#590D22]/80 whitespace-pre-wrap leading-relaxed">
+                <div className="pl-4 py-2 text-[13px] font-mono text-[#590D22]/80 whitespace-pre overflow-x-auto tracking-normal leading-normal [&_*]:!leading-normal [&_*]:!my-0">
                   {cell.output}
                 </div>
               </div>
