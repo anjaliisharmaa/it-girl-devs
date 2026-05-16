@@ -24,6 +24,7 @@ export const regressionModule: Module = {
     },
     prevLesson: 'intro-to-regression',
     nextLesson: 'multiple-linear-regression',
+    datasetFile: 'latte.csv',
   },
   'multiple-linear-regression': {
     title: 'Multiple Linear Regression',

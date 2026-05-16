@@ -139,7 +139,7 @@ export default function ClassroomPage({ params }: PageProps) {
 
               {/* 🧪 PYXIE LAB TEST (Moved above pagination!) */}
               <div className="mt-12 mb-12">
-                <EvaluatorTest />
+                <EvaluatorTest datasetFile={lesson.datasetFile} />
               </div>
 
               {/* Pagination - Cute Tags */}

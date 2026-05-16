@@ -12,6 +12,7 @@ export interface Lesson {
   metadata?: LessonMetadata;
   prevLesson?: string;
   nextLesson?: string;
+  datasetFile?: string; // Optional dataset file name
 }
 
 export interface Module {

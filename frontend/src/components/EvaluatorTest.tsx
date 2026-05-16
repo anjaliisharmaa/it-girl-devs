@@ -10,7 +10,11 @@ type Cell = {
   output: string;
 };
 
-export default function EvaluatorTest() {
+interface PyxieProps {
+  datasetFile?: string;
+}
+
+export default function EvaluatorTest({ datasetFile }: PyxieProps) {
   const [isReady, setIsReady] = useState(false);
   const [loadingStatus, setLoadingStatus] = useState('Booting up Python... ⏳');
   
@@ -35,6 +39,21 @@ export default function EvaluatorTest() {
       const pyodide = await window.loadPyodide();
       setLoadingStatus('Downloading ML Libraries (pandas, scikit-learn)... 📦');
       await pyodide.loadPackage(['numpy', 'pandas', 'scikit-learn']);
+      
+      // Load custom dataset if provided
+      if (datasetFile) {
+        setLoadingStatus(`Loading your custom dataset (${datasetFile})... 🗂️`);
+        try {
+          const response = await fetch(`/datasets/${datasetFile}`);
+          const csvText = await response.text();
+          pyodide.FS.writeFile(datasetFile, csvText);
+        } catch (dataErr) {
+          console.error(`Failed to load dataset ${datasetFile}:`, dataErr);
+          setLoadingStatus(`Failed to load dataset 🛑`);
+          return;
+        }
+      }
+      
       pyodideRef.current = pyodide;
       setIsReady(true);
     } catch (err) {
