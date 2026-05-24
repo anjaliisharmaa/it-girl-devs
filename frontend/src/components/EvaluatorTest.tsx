@@ -10,6 +10,13 @@ type Cell = {
   output: string;
 };
 
+type VibeCheckResult = {
+  status: 'PASS' | 'TRY_AGAIN';
+  score: number;
+  review: string;
+  metricsCheck: string;
+} | null;
+
 interface PyxieProps {
   datasetFile?: string;
 }
@@ -17,6 +24,8 @@ interface PyxieProps {
 export default function EvaluatorTest({ datasetFile }: PyxieProps) {
   const [isReady, setIsReady] = useState(false);
   const [loadingStatus, setLoadingStatus] = useState('Booting up Python...');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [vibeCheckResult, setVibeCheckResult] = useState<VibeCheckResult>(null);
   
   const pyodideRef = useRef<any>(null);
 
@@ -133,6 +142,55 @@ pd.set_option('display.expand_frame_repr', False)`);
     });
   }, [cells.length]); // Re-runs anytime the number of cells changes
 
+  const submitProjectForReview = async () => {
+    try {
+      setIsSubmitting(true);
+      
+      // Stitch all cell code into a single string
+      const fullCode = cells.map(cell => cell.code).join('\n\n');
+      
+      // Stitch all cell outputs into a single string
+      const executionOutput = cells
+        .filter(cell => cell.output)
+        .map(cell => `[Cell Output]\n${cell.output}`)
+        .join('\n\n');
+      
+      // Prepare the payload
+      const payload = {
+        moduleId: 'regression',
+        lessonId: 'simple-linear-regression',
+        fullCode,
+        executionOutput
+      };
+      
+      // Send to backend
+      const response = await fetch('http://localhost:8000/evaluate/vibe-check', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Backend returned ${response.status}: ${response.statusText}`);
+      }
+      
+      const result = await response.json();
+      setVibeCheckResult(result);
+    } catch (error: any) {
+      console.error('Vibe check failed:', error.message);
+      setVibeCheckResult({
+        status: 'TRY_AGAIN',
+        score: 0,
+        review: `Error: ${error.message}. Please check your backend connection.`,
+        metricsCheck: 'Backend connection failed'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="max-w-3xl mx-auto mt-12 mb-20 font-sans">
       <Script 
@@ -207,6 +265,96 @@ pd.set_option('display.expand_frame_repr', False)`);
         <span className="text-lg group-hover:scale-125 transition-transform duration-300">✨</span> 
         Add Code Block
       </button>
+
+      {/* Premium Submit Button */}
+      <button
+        onClick={submitProjectForReview}
+        disabled={!isReady || isSubmitting}
+        className="mt-6 w-full py-3.5 px-6 bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 disabled:from-gray-400 disabled:to-gray-300 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 backdrop-blur-sm border border-pink-300/50 hover:border-pink-400"
+      >
+        {isSubmitting ? '✨ Consulting Pyxie...' : '🎯 Submit project for feedback'}
+      </button>
+
+      {/* Aesthetic Feedback Card */}
+      {vibeCheckResult && (
+        <div className={`mt-8 p-6 rounded-2xl border-2 shadow-lg transition-all duration-500 ${
+          vibeCheckResult.status === 'PASS'
+            ? 'bg-gradient-to-br from-emerald-50/60 to-white border-emerald-200'
+            : 'bg-gradient-to-br from-amber-50/60 to-white border-amber-200'
+        }`}>
+          {/* Header with Status */}
+          <div className="mb-6 flex items-center justify-between">
+            <h3 className={`text-lg font-serif tracking-tight ${
+              vibeCheckResult.status === 'PASS'
+                ? 'text-emerald-900'
+                : 'text-amber-900'
+            }`}>
+              {vibeCheckResult.status === 'PASS' ? '✨ Amazing Work!' : '💡 Keep Iterating'}
+            </h3>
+            {vibeCheckResult.status === 'PASS' && (
+              <span className="text-2xl">🎉</span>
+            )}
+          </div>
+
+          {/* Score Display */}
+          <div className="mb-6 flex items-baseline gap-2">
+            <span className={`text-5xl font-bold ${
+              vibeCheckResult.status === 'PASS'
+                ? 'text-emerald-600'
+                : 'text-amber-600'
+            }`}>
+              {vibeCheckResult.score}
+            </span>
+            <span className={`text-lg font-medium ${
+              vibeCheckResult.status === 'PASS'
+                ? 'text-emerald-700/70'
+                : 'text-amber-700/70'
+            }`}>
+              / 100 Points
+            </span>
+          </div>
+
+          {/* Metrics Check Box */}
+          {vibeCheckResult.metricsCheck && (
+            <div className={`mb-5 p-4 rounded-xl bg-white/50 backdrop-blur-sm border ${
+              vibeCheckResult.status === 'PASS'
+                ? 'border-emerald-100/50'
+                : 'border-amber-100/50'
+            }`}>
+              <p className={`text-sm font-mono ${
+                vibeCheckResult.status === 'PASS'
+                  ? 'text-emerald-800'
+                  : 'text-amber-800'
+              }`}>
+                {vibeCheckResult.metricsCheck}
+              </p>
+            </div>
+          )}
+
+          {/* Review Text */}
+          {vibeCheckResult.review && (
+            <div className={`text-sm leading-relaxed whitespace-pre-wrap ${
+              vibeCheckResult.status === 'PASS'
+                ? 'text-emerald-950/80'
+                : 'text-amber-950/80'
+            }`}>
+              {vibeCheckResult.review}
+            </div>
+          )}
+
+          {/* Close Button */}
+          <button
+            onClick={() => setVibeCheckResult(null)}
+            className={`mt-5 text-xs font-medium px-3 py-1.5 rounded-lg transition-all ${
+              vibeCheckResult.status === 'PASS'
+                ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200'
+                : 'bg-amber-100 text-amber-700 hover:bg-amber-200'
+            }`}
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
 
     </div>
   );
