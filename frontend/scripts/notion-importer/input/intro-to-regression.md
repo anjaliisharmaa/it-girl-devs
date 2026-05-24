@@ -14,7 +14,7 @@ Regression is that exact vibe. It predicts a number (like glow level, sales, sal
 
 ## The mood board
 
-![simple linear regression graph.png](simple_linear_regression_graph.png)
+![Simple Linear Regression Graph](/images/modules/regression/0-introduction-to-regression/simple_linear_regression_graph.png)
 
 The line doesn't touch every point because life isn't perfect, but it shows the TREND, and that's what matters
 
