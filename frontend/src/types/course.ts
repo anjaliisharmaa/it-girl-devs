@@ -13,6 +13,7 @@ export interface Lesson {
   prevLesson?: string;
   nextLesson?: string;
   datasetFile?: string; // Optional dataset file name
+  projectRubric?: string; // Optional AI evaluator rubric for coding projects
 }
 
 export interface Module {
