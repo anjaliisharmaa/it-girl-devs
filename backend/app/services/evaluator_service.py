@@ -5,9 +5,102 @@ Evaluator service - Integrates with Google Gemini API for code evaluation.
 import json
 import os
 from typing import Dict, Any
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from app.models.evaluation_request import EvaluationRequest
 from app.models.evaluation_response import EvaluationResponse
+
+
+def get_best_model(client: genai.Client) -> str:
+    """
+    Dynamically resolve the best available Gemini model using the new SDK.
+    
+    Queries the API for available models and returns the best candidate based on:
+    1. Models with 'flash' in the name (preferred for speed/cost)
+    2. Models with 'pro' in the name (fallback for capability)
+    3. First model that supports generateContent (last resort)
+    
+    Args:
+        client: The initialized genai.Client instance
+        
+    Returns:
+        str: The name of the best available model that supports generateContent
+        
+    Raises:
+        ValueError: If no models supporting generateContent are available
+    """
+    # List of models to try in order of preference
+    # Use model names that are commonly available across API versions
+    models_to_try = [
+        "gemini-2.0-flash-latest",
+        "gemini-1.5-flash-latest", 
+        "gemini-1.5-pro-latest",
+        "gemini-2.0-flash",
+        "gemini-1.5-flash",
+        "gemini-1.5-pro",
+        "gemini-pro-vision",
+        "gemini-pro",
+    ]
+    
+    try:
+        # Try to list available models
+        models = client.models.list()
+        
+        # Extract model names and filter for generateContent support
+        available_models = []
+        for model in models:
+            try:
+                model_name = None
+                if hasattr(model, 'name'):
+                    model_name = model.name
+                elif hasattr(model, 'id'):
+                    model_name = model.id
+                else:
+                    model_name = str(model)
+                
+                # Check if model supports generateContent
+                if hasattr(model, 'supported_generation_methods'):
+                    if 'generateContent' in model.supported_generation_methods:
+                        available_models.append(model_name)
+                else:
+                    # If we can't check, assume it's available if it has a name
+                    if model_name and 'gemini' in model_name.lower():
+                        available_models.append(model_name)
+            except Exception:
+                continue
+        
+        if available_models:
+            # Log what we found
+            print(f"Available models: {available_models}")
+            
+            # Clean up model names (remove 'models/' prefix if present)
+            available_models = [m.replace('models/', '') for m in available_models]
+            
+            # Priority 1: Look for flash models
+            for model in available_models:
+                if 'flash' in model.lower():
+                    print(f"Selected flash model: {model}")
+                    return model
+            
+            # Priority 2: Look for pro models
+            for model in available_models:
+                if 'pro' in model.lower():
+                    print(f"Selected pro model: {model}")
+                    return model
+            
+            # Priority 3: Return the first available model
+            print(f"Selected first available model: {available_models[0]}")
+            return available_models[0]
+        else:
+            print("Warning: No generateContent-compatible models found via list")
+            
+    except Exception as e:
+        # If there's an error during listing, log it
+        print(f"Warning: Failed to list models ({type(e).__name__}: {str(e)[:100]})")
+    
+    # If listing failed or returned nothing, try hardcoded models in order
+    print(f"Using hardcoded model fallback, trying: {', '.join(models_to_try)}")
+    return models_to_try[0]
 
 
 class EvaluatorService:
@@ -19,8 +112,12 @@ class EvaluatorService:
         if not api_key:
             raise ValueError("GEMINI_API_KEY environment variable is not set")
         
-        genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel("gemini-1.5-flash")
+        # Initialize the new google-genai Client (uses latest stable API by default)
+        self.client = genai.Client(api_key=api_key)
+        
+        # Dynamically select the best available model
+        self.model_name = get_best_model(self.client)
+        print(f"Using model: {self.model_name}")
     
     def _create_system_prompt(self) -> str:
         """
@@ -66,6 +163,8 @@ Guidelines:
             ValueError: If the API response cannot be parsed as valid JSON
             Exception: If there's an error calling the Gemini API
         """
+        system_prompt = self._create_system_prompt()
+        
         # Construct the evaluation prompt
         user_prompt = f"""Please evaluate the following Python code submission:
 
@@ -85,8 +184,21 @@ Execution Output:
 Provide your evaluation as a JSON object following the schema specified."""
         
         try:
-            # Call Gemini API
-            response = self.model.generate_content(user_prompt)
+            # Create the config using types.GenerateContentConfig
+            # Note: v1 API has stricter field validation
+            config = types.GenerateContentConfig(
+                temperature=0.2,
+            )
+            
+            # Combine system prompt with user prompt
+            full_prompt = f"{system_prompt}\n\n{user_prompt}"
+            
+            # Call Gemini API using the new client SDK with v1 API payload format
+            response = self.client.models.generate_content(
+                model=self.model_name,
+                contents=full_prompt,
+                config=config
+            )
             response_text = response.text
             
             # Parse JSON response from the model
