@@ -4,14 +4,14 @@ Evaluator service - Integrates with Google Gemini API for code evaluation.
 
 import json
 import os
+import sys
 from typing import Dict, Any
-from google import genai
-from google.genai import types
+from google.genai import Client
 from app.models.evaluation_request import EvaluationRequest
 from app.models.evaluation_response import EvaluationResponse
 
 
-def get_best_model(client: genai.Client) -> str:
+def get_best_model(client: Client) -> str:
     """
     Dynamically resolve the best available Gemini model using the new SDK.
     
@@ -21,7 +21,7 @@ def get_best_model(client: genai.Client) -> str:
     3. First model that supports generateContent (last resort)
     
     Args:
-        client: The initialized genai.Client instance
+        client: The initialized Client instance
         
     Returns:
         str: The name of the best available model that supports generateContent
@@ -110,14 +110,18 @@ class EvaluatorService:
         """Initialize the Gemini client with API key from environment."""
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
-            raise ValueError("GEMINI_API_KEY environment variable is not set")
+            error_msg = "GEMINI_API_KEY environment variable is not set"
+            print(f"[ERROR] {error_msg}", file=sys.stderr)
+            raise ValueError(error_msg)
         
-        # Initialize the new google-genai Client (uses latest stable API by default)
-        self.client = genai.Client(api_key=api_key)
+        print(f"[DEBUG] Initializing Gemini client...", file=sys.stderr)
+        # Initialize the Client with API key
+        self.client = Client(api_key=api_key)
         
         # Dynamically select the best available model
+        print(f"[DEBUG] Detecting best available model...", file=sys.stderr)
         self.model_name = get_best_model(self.client)
-        print(f"Using model: {self.model_name}")
+        print(f"[DEBUG] EvaluatorService initialized successfully with model: {self.model_name}", file=sys.stderr)
     
     def _create_system_prompt(self) -> str:
         """
@@ -184,22 +188,25 @@ Execution Output:
 Provide your evaluation as a JSON object following the schema specified."""
         
         try:
-            # Create the config using types.GenerateContentConfig
-            # Note: v1 API has stricter field validation
-            config = types.GenerateContentConfig(
-                temperature=0.2,
-            )
+            print(f"[DEBUG] Starting evaluation for {request.moduleId}/{request.lessonId}", file=sys.stderr)
+            print(f"[DEBUG] Model: {self.model_name}", file=sys.stderr)
             
-            # Combine system prompt with user prompt
-            full_prompt = f"{system_prompt}\n\n{user_prompt}"
+            # Combine system prompt with user prompt into a single message
+            combined_prompt = f"{system_prompt}\n\n{user_prompt}"
             
-            # Call Gemini API using the new client SDK with v1 API payload format
+            print(f"[DEBUG] Calling Gemini API with combined text prompt...", file=sys.stderr)
+            
+            # Call Gemini API with simplest possible approach - direct text generation
+            # Don't use any config objects - just pass the text and model
             response = self.client.models.generate_content(
                 model=self.model_name,
-                contents=full_prompt,
-                config=config
+                contents=combined_prompt,
+                config=None  # Explicitly disable config to prevent SDK from adding unsupported fields
             )
+            
+            print(f"[DEBUG] API response received", file=sys.stderr)
             response_text = response.text
+            print(f"[DEBUG] Response text length: {len(response_text)} chars", file=sys.stderr)
             
             # Parse JSON response from the model
             # Handle potential markdown formatting (```json ... ```)
@@ -210,18 +217,28 @@ Provide your evaluation as a JSON object following the schema specified."""
             else:
                 json_str = response_text.strip()
             
+            print(f"[DEBUG] Extracted JSON successfully", file=sys.stderr)
+            
             # Parse the JSON
             evaluation_data: Dict[str, Any] = json.loads(json_str)
+            print(f"[DEBUG] JSON parsed: status={evaluation_data.get('status')}, score={evaluation_data.get('score')}", file=sys.stderr)
             
             # Validate and create response model
-            return EvaluationResponse(
+            result = EvaluationResponse(
                 status=evaluation_data.get("status", "TRY_AGAIN"),
                 score=int(evaluation_data.get("score", 0)),
                 review=evaluation_data.get("review", ""),
                 metricsCheck=evaluation_data.get("metricsCheck", "")
             )
+            print(f"[DEBUG] Response model created successfully", file=sys.stderr)
+            return result
             
         except json.JSONDecodeError as e:
+            print(f"[ERROR] JSON parse error: {e}", file=sys.stderr)
+            print(f"[ERROR] Could not parse response text", file=sys.stderr)
             raise ValueError(f"Failed to parse Gemini response as JSON: {e}")
         except Exception as e:
+            print(f"[ERROR] Evaluation error: {type(e).__name__}: {str(e)}", file=sys.stderr)
+            import traceback
+            traceback.print_exc(file=sys.stderr)
             raise Exception(f"Error during code evaluation: {str(e)}")

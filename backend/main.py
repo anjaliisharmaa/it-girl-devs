@@ -3,6 +3,7 @@ Main FastAPI application - Entry point for the It-Girl Devs backend.
 """
 
 import os
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -19,8 +20,25 @@ app = FastAPI(
     version="0.1.0"
 )
 
-# CORS configuration
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+# CORS configuration - Allow localhost on all ports for development
+allowed_origins = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3003",
+    "http://localhost:8000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
+    "http://127.0.0.1:3002",
+    "http://127.0.0.1:3003",
+]
+# Also allow custom origins from environment variable if provided
+custom_origins = os.getenv("ALLOWED_ORIGINS")
+if custom_origins:
+    allowed_origins.extend(custom_origins.split(","))
+
+print(f"[DEBUG] Allowed origins: {allowed_origins}", file=sys.stderr)
+print(f"[DEBUG] GEMINI_API_KEY set: {bool(os.getenv('GEMINI_API_KEY'))}", file=sys.stderr)
 
 app.add_middleware(
     CORSMiddleware,
@@ -69,5 +87,5 @@ if __name__ == "__main__":
         "main:app",
         host="0.0.0.0",
         port=8000,
-        reload=True
+        reload=False
     )
