@@ -1,6 +1,6 @@
-# 🚀 Notion Importer Guide
+# Notion Importer Guide
 
-Automated pipeline to convert Notion course content into your Next.js curriculum with **zero manual coding**.
+Automated pipeline to convert Notion course content into Next.js curriculum with **zero manual coding**.
 
 ---
 
@@ -18,10 +18,10 @@ This tool automates the entire workflow:
 
 ## What Gets Generated
 
-✅ **`generated-regression-module.ts`** — Complete TypeScript module with all 9 lessons
-✅ **CSV files** — Placeholder datasets in `public/datasets/` (6 files for project lessons)
-✅ **Project Rubrics** — AI evaluator instructions auto-injected for coding lessons
-✅ **Navigation Links** — Prev/Next lesson connections auto-calculated
+**`generated-regression-module.ts`** — Complete TypeScript module with all 9 lessons
+**CSV files** — Placeholder datasets in `public/datasets/` (6 files for project lessons)
+**Project Rubrics** — AI evaluator instructions auto-injected for coding lessons
+**Navigation Links** — Prev/Next lesson connections auto-calculated
 
 ---
 
@@ -50,7 +50,7 @@ Content for section...
 More content...
 ```
 
-> **📌 YAML Frontmatter Required:**
+> **YAML Frontmatter Required:**
 > - `title`: Exact lesson name
 > - `sipTime`: Estimated reading/coding time
 > - `difficulty`: Your custom difficulty level
@@ -140,37 +140,37 @@ npm run import-notion
 
 **You should see output like:**
 ```
-🚀 Starting Notion Importer...
+Starting Notion Importer...
 
-📋 Loaded config for "Regression" module
+Loaded config for "Regression" module
 
-📂 Reading from: .../scripts/notion-importer/input
-📖 Found 9 Markdown files to parse...
-✅ Successfully parsed 9 lessons
+Reading from: .../scripts/notion-importer/input
+Found 9 Markdown files to parse...
+Successfully parsed 9 lessons
 
 ✓ Validating inputs...
 
-📝 Generating TypeScript module...
-✅ Generated module file: .../scripts/notion-importer/output/generated-regression-module.ts
+Generating TypeScript module...
+Generated module file: .../scripts/notion-importer/output/generated-regression-module.ts
 
-📊 Generating CSV stubs for 6 project lessons...
-✅ Created CSV stub: simple-linear-regression.csv
-✅ Created CSV stub: multiple-linear-regression.csv
-✅ Created CSV stub: polynomial-regression.csv
-✅ Created CSV stub: support-vector-regression.csv
-✅ Created CSV stub: decision-tree-regression.csv
-✅ Created CSV stub: random-forest-regression.csv
+Generating CSV stubs for 6 project lessons...
+Created CSV stub: simple-linear-regression.csv
+Created CSV stub: multiple-linear-regression.csv
+Created CSV stub: polynomial-regression.csv
+Created CSV stub: support-vector-regression.csv
+Created CSV stub: decision-tree-regression.csv
+Created CSV stub: random-forest-regression.csv
 
 ======================================================================
-✨ IMPORT COMPLETE! ✨
+IMPORT COMPLETE!
 ======================================================================
 
-📊 Summary:
+Summary:
   • Lessons imported: 9
   • Project lessons: 6
   • CSV files created: 6
 
-📁 Generated files:
+Generated files:
   • TypeScript module: output/generated-regression-module.ts
   • CSV datasets: public/datasets/
     - simple-linear-regression.csv
@@ -193,10 +193,10 @@ frontend/scripts/notion-importer/output/generated-regression-module.ts
 ```
 
 This file contains all 9 lessons as TypeScript objects. Verify:
-- ✅ All lesson titles are correct
-- ✅ Metadata (sipTime, difficulty, prerequisites) looks right
-- ✅ 6 lessons have `projectRubric` fields (the project lessons)
-- ✅ Navigation links (prevLesson/nextLesson) are correct
+- All lesson titles are correct
+- Metadata (sipTime, difficulty, prerequisites) looks right
+- 6 lessons have `projectRubric` fields (the project lessons)
+- Navigation links (prevLesson/nextLesson) are correct
 
 #### 4.2 Customize project rubrics (optional)
 Each project lesson has a placeholder:
@@ -263,17 +263,17 @@ Or modify `config.json` to support multiple modules at once!
 
 ## Troubleshooting
 
-### ❌ "No Markdown files found"
+### "No Markdown files found"
 - Verify all 9 `.md` files are in `frontend/scripts/notion-importer/input/`
 - Check file names match exactly (kebab-case with `.md` extension)
 - Files are case-sensitive on Linux/Mac
 
-### ❌ "Missing lesson: [lesson-id]"
+### "Missing lesson: [lesson-id]"
 - A file is missing or misnamed
 - Check the exact file name in `config.json` → `fileName` field
 - Rename your exported file to match
 
-### ❌ "YAML frontmatter not found"
+### "YAML frontmatter not found"
 - Your Notion export didn't include the metadata section
 - Re-export from Notion and ensure the top section has the `---` delimiters
 - Manually add if missing:
@@ -286,7 +286,7 @@ Or modify `config.json` to support multiple modules at once!
   ---
   ```
 
-### ❌ TypeScript compilation error after import
+### TypeScript compilation error after import
 - Generated file might have syntax issues
 - Open `scripts/notion-importer/output/generated-regression-module.ts`
 - Look for unclosed quotes or braces
@@ -335,15 +335,15 @@ scripts/notion-importer/input/ (place files here)
     ↓
 npm run import-notion
     ↓
-TypeScript module + CSV files generated ✨
+TypeScript module + CSV files generated
     ↓
 Update import in courseData.ts
     ↓
 npm run dev
     ↓
-Lessons live in your app! 🎉
+Lessons live in your app!
 ```
 
 ---
 
-Happy importing! 🚀
+Happy importing!
