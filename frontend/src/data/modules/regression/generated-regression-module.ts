@@ -824,7 +824,7 @@ Support Vector Regression is all about prioritizing her peace. She basically has
 This balancing act actually has a mathematical formula. It is her personal blueprint for staying entirely unbothered while still getting everything done perfectly.
 
 $$
-\text{Minimize: } \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} (\\xi_i + \\xi_i^*)
+\\text{Minimize: } \\frac{1}{2} \\|w\\|^2 + C \\sum_{i=1}^{n} (\\xi_i + \\xi_i^*)
 $$
 
 Let us translate the math into English. That first part with the $w$ is all about keeping things sleek and minimalistic. It is about achieving the maximum aesthetic impact with zero complication.
