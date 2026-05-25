@@ -141,6 +141,16 @@ export default function ClassroomPage({ params }: PageProps) {
   const lesson = module?.[lessonId];
   const ContentComponent = lesson?.content;
 
+  // Split lesson content into main and mini-project sections
+  let mainContent = lesson?.markdownContent || '';
+  let projectContent = '';
+  
+  if (lesson?.markdownContent?.includes('## Mini-Project')) {
+    const [main, ...projectParts] = lesson.markdownContent.split('## Mini-Project');
+    mainContent = main.trim();
+    projectContent = '## Mini-Project' + projectParts.join('## Mini-Project');
+  }
+
   // 404 state
   if (!module || !lesson) {
     return (
@@ -280,8 +290,17 @@ export default function ClassroomPage({ params }: PageProps) {
                 className="prose prose-pink prose-xl max-w-none text-[#590D22]"
                 style={{ lineHeight: '2.5rem' }}
               >
-                {lesson.markdownContent ? (
-                  // Render markdown content with custom components
+                {mainContent ? (
+                  // Render main markdown content with custom components
+                  <ReactMarkdown 
+                    components={markdownComponents}
+                    remarkPlugins={[remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                  >
+                    {mainContent}
+                  </ReactMarkdown>
+                ) : lesson?.markdownContent ? (
+                  // Fallback if no split occurred
                   <ReactMarkdown 
                     components={markdownComponents}
                     remarkPlugins={[remarkMath]}
@@ -294,6 +313,24 @@ export default function ClassroomPage({ params }: PageProps) {
                   ContentComponent && <ContentComponent />
                 )}
               </article>
+
+              {/* Mini-Project Callout Box - Cute Highlighted Section */}
+              {projectContent && (
+                <div className="bg-pink-50/50 border-2 border-dashed border-pink-300 rounded-3xl p-8 my-10 shadow-sm">
+                  <article 
+                    className="prose prose-pink prose-xl max-w-none text-[#590D22]"
+                    style={{ lineHeight: '2.5rem' }}
+                  >
+                    <ReactMarkdown 
+                      components={markdownComponents}
+                      remarkPlugins={[remarkMath]}
+                      rehypePlugins={[rehypeKatex]}
+                    >
+                      {projectContent}
+                    </ReactMarkdown>
+                  </article>
+                </div>
+              )}
 
               {/* 🧪 PYXIE LAB TEST (Moved above pagination!) */}
               <div className="mt-12 mb-12">
