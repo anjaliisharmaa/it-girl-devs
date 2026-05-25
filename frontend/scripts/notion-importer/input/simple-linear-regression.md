@@ -13,7 +13,7 @@ Welcome to your newest obsession. You are about to build your first prediction m
 
 ## The mood board
 
-![linear regression graph.png](linear_regression_graph.png)
+![linear regression graph.png](../../../public/images/modules/regression/1-simple-linear-regression/linear_regression_graph.png)
 
 The line doesn't touch every point because life isn't perfect, but it shows the TREND, and that's what matters.
 
