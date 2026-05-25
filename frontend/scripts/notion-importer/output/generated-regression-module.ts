@@ -1045,7 +1045,7 @@ Grab the 200-row salary dataset: [**The Salary Negotiation Outlier Handler**](ht
     prevLesson: 'polynomial-regression',
     nextLesson: 'decision-tree-regression',
     datasetFile: 'support-vector-regression.csv',
-    projectRubric: 'AI Evaluator Rubric: [TODO - Add detailed instructions for evaluating Support Vector Regression. Include acceptance criteria, code quality expectations, and test coverage requirements.]',
+    projectRubric: "AI Evaluator Rubric for 'The Salary Negotiation Outlier Handler': 1. DATA: Must load 'salary.csv'. X must strictly be 'Experience' (as a 2D array, e.g., df[['Experience']]) and y must be 'Salary'. They must ignore the 'Type' text column. 2. MODELS: Must import and fit both LinearRegression and SVR (specifically using kernel='rbf'). 3. HYPERPARAMETER TUNING: This is critical. They MUST train the SVR model testing at least 3 different combinations of the 'C' and 'epsilon' parameters. If they just use a default SVR(), sassily call them out for being basic and not tuning their model! 4. METRICS: Must calculate and print MSE (Mean Squared Error) and R-squared for the Linear model and their SVR models. 5. VERDICT: They must `print()` a 2 or 3-sentence conclusion declaring which model handles the wild outliers better (SVR should win if tuned right). HARD FAIL if they skip the hyperparameter tuning or forget the final verdict. If their math breaks, set status to TRY_AGAIN and give them precise, bestie-level debugging advice.",
   },
   'decision-tree-regression': {
     title: 'Decision Tree Regression',
