@@ -518,7 +518,7 @@ Our R² score was 0.983 which means our formula is incredibly accurate. When the
     prevLesson: 'simple-linear-regression',
     nextLesson: 'polynomial-regression',
     datasetFile: 'multiple-linear-regression.csv',
-    projectRubric: 'AI Evaluator Rubric: [TODO - Add detailed instructions for evaluating Multiple Linear Regression. Include acceptance criteria, code quality expectations, and test coverage requirements.]',
+    projectRubric: "AI Evaluator Rubric for 'The Salary Prediction System': 1. DATA: Must load 'salary.csv' using pandas. 2. COLUMNS & CLEANING: y must strictly be 'Salary_LPA'. X must be a 2D subset of the numeric features (e.g., Experience_Years, Languages_Known, Education_Level, Company_Size, Location_Index). If their execution output shows a ValueError because they forgot to drop the 'Notes' or 'Candidate' strings from X, sassily remind them that machine learning models do not speak English and they need to filter out text columns! 3. MODEL: Must import and fit sklearn's LinearRegression. 4. OUTPUTS - BIGGEST IMPACT: They must access the model's coefficients (using `.coef_`) and print which feature has the highest weight/impact. 5. OUTPUTS - PREDICTION: They must pass a custom 2D array of their own hypothetical stats into `model.predict()` and print their expected salary. HARD FAIL if they just `print()` a fake salary or guess the biggest factor without actually writing the code to prove it. BONUS: If they mention checking for correlation/overlapping variables, give them massive extra credit hype. If any core step is missing or hardcoded, set status to TRY_AGAIN with precise, actionable feedback.",
   },
   'polynomial-regression': {
     title: 'Polynomial Regression',
