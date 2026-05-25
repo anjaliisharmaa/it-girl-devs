@@ -98,9 +98,9 @@ export default function ModuleOverviewPage({ params }: PageProps) {
           </div>
 
           {/* Progress Bar */}
-          <div className="w-full h-1.5 bg-pink-100 rounded-full overflow-hidden">
+          <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-pink-400 to-pink-600 transition-all duration-500 ease-out"
+              className="h-full bg-pink-500 transition-all duration-500 ease-out"
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
@@ -108,7 +108,7 @@ export default function ModuleOverviewPage({ params }: PageProps) {
           <p className="text-sm text-[#590D22]/60 mt-3">
             {progressPercentage === 0 && "Let's get started! Click a lesson to begin."}
             {progressPercentage > 0 && progressPercentage < 100 && `Keep going! You're ${Math.round(progressPercentage)}% through this module.`}
-            {progressPercentage === 100 && "🎉 You've mastered this module! Incredible work!"}
+            {progressPercentage === 100 && "You've mastered this module! Incredible work!"}
           </p>
         </div>
 
@@ -122,21 +122,28 @@ export default function ModuleOverviewPage({ params }: PageProps) {
             const lessonNumber = String(index + 1).padStart(2, '0');
 
             // Determine styling based on status
-            let borderColor = 'border-pink-200';
+            let borderColor = 'border-gray-200';
             let bgColor = 'bg-white';
-            let statusIcon = '🔒';
-            let statusText = 'Locked';
+            let cardBorder = 'border';
+            let statusIcon = '○';
+            let statusText = 'Not Started';
+            let textColor = 'text-gray-500';
+            let statusBgColor = 'bg-gray-50 border-gray-200';
 
             if (status === 'mastered') {
-              borderColor = 'border-pink-400';
-              bgColor = 'bg-pink-50/30';
-              statusIcon = '✨';
+              borderColor = 'border-transparent';
+              bgColor = 'bg-pink-50/50';
+              cardBorder = 'border';
               statusText = 'Mastered';
+              textColor = 'text-gray-600';
+              statusBgColor = 'bg-pink-100/50 border-pink-200';
             } else if (status === 'in-progress') {
-              borderColor = 'border-pink-500';
+              borderColor = 'border-pink-400';
               bgColor = 'bg-white';
-              statusIcon = '🤖';
-              statusText = 'Continue Learning';
+              cardBorder = 'border-2';
+              statusText = 'Continue';
+              textColor = 'text-[#590D22]';
+              statusBgColor = 'bg-pink-100 border-pink-300';
             }
 
             return (
@@ -144,9 +151,10 @@ export default function ModuleOverviewPage({ params }: PageProps) {
                 key={lessonId}
                 href={`/classroom/${moduleId}/${lessonId}`}
                 className={`
-                  group block p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg
+                  group block py-4 px-6 rounded-2xl ${cardBorder} transition-all duration-300
+                  ${status === 'in-progress' ? 'shadow-lg shadow-pink-100/50 hover:shadow-xl' : 'hover:shadow-md'}
                   ${borderColor} ${bgColor}
-                  hover:border-pink-500 cursor-pointer
+                  cursor-pointer
                 `}
               >
                 <div className="flex items-center justify-between gap-4">
@@ -156,14 +164,14 @@ export default function ModuleOverviewPage({ params }: PageProps) {
                       <span className="text-xs font-mono font-bold text-[#590D22]/60 tracking-widest">
                         LESSON {lessonNumber}
                       </span>
-                      <span className="text-sm text-[#590D22]/50">{lesson.metadata?.sipTime}</span>
+                      <span className={`text-sm ${textColor}`}>{lesson.metadata?.sipTime}</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-[#590D22] group-hover:text-pink-600 transition-colors">
+                    <h3 className={`text-lg font-semibold transition-colors ${status === 'mastered' ? 'text-gray-600' : 'text-[#590D22] group-hover:text-pink-600'}`}>
                       {lesson.title}
                     </h3>
 
                     {/* Metadata Pills */}
-                    <div className="flex flex-wrap gap-2 mt-3">
+                    <div className="flex flex-wrap gap-2 mt-2">
                       {lesson.metadata?.difficulty && (
                         <span className="text-xs px-3 py-1 bg-pink-100 text-pink-700 rounded-full font-medium">
                           {lesson.metadata.difficulty}
@@ -173,18 +181,18 @@ export default function ModuleOverviewPage({ params }: PageProps) {
                   </div>
 
                   {/* Right Status */}
-                  <div className="flex flex-col items-end gap-3 flex-shrink-0">
+                  <div className="flex flex-col items-end gap-2 flex-shrink-0">
                     {/* Status Badge */}
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-pink-50 border border-pink-200">
-                      <span className="text-lg">{statusIcon}</span>
-                      <span className="text-sm font-semibold text-[#590D22]">{statusText}</span>
+                    <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border ${statusBgColor}`}>
+                      <span className="text-base">{statusIcon}</span>
+                      <span className={`text-xs font-semibold ${status === 'mastered' ? 'text-gray-600' : 'text-[#590D22]'}`}>{statusText}</span>
                     </div>
 
                     {/* Arrow Icon */}
                     {(status === 'in-progress' || status === 'mastered') && (
                       <ChevronRight
-                        size={24}
-                        className="text-pink-400 group-hover:text-pink-600 transition-colors"
+                        size={20}
+                        className={`${status === 'in-progress' ? 'text-pink-500' : 'text-gray-400'} group-hover:text-pink-600 transition-colors`}
                       />
                     )}
                   </div>
