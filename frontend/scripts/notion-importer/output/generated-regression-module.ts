@@ -246,9 +246,8 @@ Then we asked her to predict the future. We told the algorithm you are going to 
 
 1. What's your predicted spending if you buy 15 cups next week?
 2. What's the slope? (How much does each cup increase your spending?)
-3. Plot it and make it CUTE (pink theme mandatory)
 
-**Deliverable:** You will create one clean Python script and one beautiful plot. Bonus points if analyzing your own data inspires you to start romanticizing making your dark roast at home.` } }),
+**Deliverable:** You will create one clean Python script. Bonus points if analyzing your own data inspires you to start romanticizing making your dark roast at home.` } }),
     metadata: {
       sipTime: '23 mins',
       difficulty: 'Soft Launch Era (Completely Beginner Friendly)',
