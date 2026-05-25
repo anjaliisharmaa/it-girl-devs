@@ -158,7 +158,7 @@ If your data completely ignores these rules, she simply will not work. Trying to
 
 Time to actually write the code and make this real. We are taking the exact logic we just talked about and putting it straight into Python. It is incredibly satisfying to watch the algorithm learn your specific creative patterns.
 
-\\\`\\\`\\\`python
+${'```'}python
 # Let us predict how many saves your aesthetic reel gets based on creation time
 # Importing our it girl toolkit
 import numpy as np
@@ -217,7 +217,7 @@ plt.show()
 future_routine = np.array([[6.0]])
 future_saves = bestie_bot.predict(future_routine)
 print(f"\nIf you do {future_routine[0][0]} hours tomorrow expect {future_saves[0]:.0f} saves!")
-\\\`\\\`\\\`
+${'```'}
 
 ### What's happening here?
 
@@ -347,7 +347,7 @@ This code is how we figure out exactly which steps in our routine are giving us 
 
 We are tracking our hydration levels, our gua sha massage minutes, the number of active serums we use, and our daily sunscreen layers. Balance is everything.
 
-\\\`\\\`\\\`python
+${'```'}python
 # Predicting our flawless base with multiple factors
 # Because a one product routine just does not work for our complex skin
 
@@ -457,7 +457,7 @@ plt.legend()
 plt.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
-\\\`\\\`\\\`
+${'```'}
 
 ### What’s happening here?
 
@@ -633,7 +633,7 @@ Let us actually write the code for your perfect aesthetic arc. We are calling it
 
 We are going to predict your Main Character Energy based on the years you have spent curating your life and building those beautiful habits. The code is just taking your daily routines and turning them into mathematical art.
 
-\\\`\\\`\\\`python
+${'```'}python
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
@@ -725,7 +725,7 @@ print("Degree Three Drama Check:")
 print(f"   MSE deg two vs deg three: {mse:.2f} vs {mse_extra:.2f}")
 print(f"   R Squared  deg two vs deg three: {r2:.3f} vs {r2_extra:.3f}")
 print("   If degree three hurts the test score it is giving overfit drama.\n")
-\\\`\\\`\\\`
+${'```'}
 
 ### What's happening here?
 
@@ -867,7 +867,7 @@ Let us put this entire philosophy into practice. We are building a model that pr
 
 Here is the exact blueprint for building your own boundary setting model.
 
-\\\`\\\`\\\`python
+${'```'}python
 # building the boundary queen
 # predicting your unbothered energy based on minor annoyances and dramatic outliers
 
@@ -1005,7 +1005,7 @@ future_energy_actual = scaler_y.inverse_transform(future_energy_svr.reshape(1, 1
 print(f"\nPREDICTION If minor annoyances hit level 90")
 print(f"Your unbothered energy dips to {future_energy_actual[0][0]:.1f} out of 100")
 print("Time to put your phone on Do Not Disturb do your skincare and protect your peace bestie")
-\\\`\\\`\\\`
+${'```'}
 
 ### What's happening here?
 
@@ -1176,7 +1176,7 @@ The golden rule is simple. Shallow trees give you a flexible plan that always gu
 
 It is time to make this official. We are going to train our own Decision Tree to predict our exact mood score and secure the perfect plans. We are creating a dataset of past Friday nights. We are tracking our energy levels, checking our budget for matcha and aesthetic dinners, seeing if the girls are free, and checking if the weather is cute enough for taking digicam pictures. Then we split our data to test if our tree actually knows our aesthetic or if she is just memorizing past events. We keep the depth shallow so she does not start overthinking every tiny detail
 
-\\\`\\\`\\\`python
+${'```'}python
 # Friday night mood forecaster decision tree regression edition
 
 import numpy as np
@@ -1322,7 +1322,7 @@ for depth in [2, 3, 5, 10]:
     print(f"  Depth {depth} gives Train R squared {train_r2:.3f} and Test R squared {test_r2:.3f}")
     
 print("\nIf Train R squared is way higher than Test R squared, your tree is overthinking.")
-\\\`\\\`\\\`
+${'```'}
 
 ### What's happening here?
 
@@ -1465,7 +1465,7 @@ Just like every supportive chat needs some unspoken rules, your random forest ne
 
 Let us put all this theory into action. We are building the ultimate Friday planning algorithm. We are officially swapping out that one overthinking friend for a fully supportive group chat of decision trees.
 
-\\\`\\\`\\\`python
+${'```'}python
 # The friday night oracle forest
 # because one single opinion is chaos but a hundred trees bring pure wisdom
 
@@ -1644,7 +1644,7 @@ for n_trees in tree_counts:
 
 print("\nAfter a hundred to two hundred trees adding more does not help much")
 print("We love setting healthy boundaries")
-\\\`\\\`\\\`
+${'```'}
 
 ### What's happening here?
 

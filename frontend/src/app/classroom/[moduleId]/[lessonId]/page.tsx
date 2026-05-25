@@ -7,6 +7,8 @@ import EvaluatorTest from '@/components/EvaluatorTest';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import 'katex/dist/katex.min.css';
 
 interface PageProps {
@@ -58,7 +60,7 @@ const markdownComponents = {
       {children}
     </li>
   ),
-  code: ({ inline, children }: any) => {
+  code: ({ inline, children, className }: any) => {
     if (inline) {
       return (
         <code className="bg-pink-50 text-pink-600 px-1.5 py-0.5 rounded text-base font-mono">
@@ -66,14 +68,23 @@ const markdownComponents = {
         </code>
       );
     }
-    // Block code - handled in pre
-    return <code className="font-mono">{children}</code>;
+    // Extract language from className (e.g., "language-python" -> "python")
+    const language = className?.replace('language-', '') || 'text';
+    return (
+      <div className="my-8 shadow-lg rounded-xl overflow-hidden">
+        <SyntaxHighlighter 
+          language={language} 
+          style={vscDarkPlus}
+          customStyle={{
+            margin: 0,
+            borderRadius: '0.75rem',
+          }}
+        >
+          {String(children).replace(/\n$/, '')}
+        </SyntaxHighlighter>
+      </div>
+    );
   },
-  pre: ({ children }: any) => (
-    <pre className="bg-[#1a1a2e] text-white p-4 rounded-xl overflow-x-auto my-6 font-mono text-sm leading-relaxed">
-      {children}
-    </pre>
-  ),
   a: ({ href, children }: any) => (
     <a
       href={href}
