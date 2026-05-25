@@ -148,7 +148,7 @@ print(f"\nIf you do {future_routine[0][0]} hours tomorrow expect {future_saves[0
 
 Let us look at those numbers our algorithm just dropped. The slope is 31.03 which means for every extra hour you spend perfecting your clay details, you are expected to get around 31 more saves. 
 
-![slr_colab_output_1.png](slr_colab_output_1.png)
+![slr_colab_output_1.png](../../../public/images/modules/regression/1-simple-linear-regression/slr_colab_output_1.png)
 
 Your intercept is 4.66, which is your baseline. Even if you spend practically zero time planning, you still get those supportive saves from your regular mutuals. Your total regret or Mean Squared Error is only 18.58, which is super low. That tells us the model is making really smart guesses.
 
@@ -156,11 +156,11 @@ Now look at that R Squared score of 0.99. This is basically your model telling y
 
 Now, the plot itself is literal visual perfection. Those light pink dots are your actual past posts. That bright pink line running straight through them is your algorithm predicting the future. Notice how closely the dots hug the line. That means your aesthetic is super reliable and your engagement grows steadily the more effort you pour into your art.
 
-![slr_colab_output_2.png](slr_colab_output_2.png)
+![slr_colab_output_2.png](../../../public/images/modules/regression/1-simple-linear-regression/slr_colab_output_2.png)
 
 Then we asked her to predict the future. We told the algorithm you are going to spend 6.0 hours tomorrow sculpting something amazing. She calculated the math and told us to expect exactly 191 saves. You literally just predicted your own Pinterest virality before even touching the clay.
 
-![slr_colab_output_3.png](slr_colab_output_3.png)
+![slr_colab_output_3.png](../../../public/images/modules/regression/1-simple-linear-regression/slr_colab_output_3.png)
 
 ## Mini-Project: "The Latte Factor"
 
