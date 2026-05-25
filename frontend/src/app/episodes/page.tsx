@@ -29,6 +29,7 @@ export default function EpisodesPage() {
       ],
       status: "unlocked",
       progress: 15,
+      moduleId: "data-preprocessing",
     },
     {
       id: 1,
