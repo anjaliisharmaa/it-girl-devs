@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { courseData } from '@/data/courseData';
 import { Clock } from 'lucide-react';
 import EvaluatorTest from '@/components/EvaluatorTest';
+import TheoryVibeCheck from '@/components/TheoryVibeCheck';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -360,11 +361,18 @@ export default function ClassroomPage({ params }: PageProps) {
                 </div>
               )}
 
-              {/* 🧪 PYXIE LAB TEST (Only shows if lesson has a project rubric) */}
-              {lesson.projectRubric && (
+              {/* 🧪 PYXIE LAB TEST or THEORY VIBECHECK */}
+              {lesson.projectRubric ? (
                 <div className="mt-12 mb-12">
                   <EvaluatorTest datasetFile={lesson.datasetFile} />
                 </div>
+              ) : (
+                <TheoryVibeCheck
+                  lessonId={lessonId}
+                  nextLessonId={lesson.nextLesson}
+                  moduleId={moduleId}
+                  sipTime={lesson.metadata?.sipTime}
+                />
               )}
 
               {/* Pagination - Cute Tags */}
