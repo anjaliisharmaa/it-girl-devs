@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import { courseData } from '@/data/courseData';
 import { Clock } from 'lucide-react';
 import EvaluatorTest from '@/components/EvaluatorTest';
@@ -17,6 +18,46 @@ interface PageProps {
     lessonId: string;
   };
 }
+
+// Interactive Code Block Component with Copy Functionality
+const InteractiveCodeBlock = ({ language, children }: { language: string; children: string }) => {
+  const [isCopied, setIsCopied] = useState(false);
+  const codeString = String(children).replace(/\n$/, '');
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(codeString);
+      setIsCopied(true);
+      // Revert back to "Copy" after 2 seconds
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy code:', err);
+    }
+  };
+
+  return (
+    <div className="my-8 shadow-lg rounded-xl overflow-hidden relative">
+      <button
+        onClick={handleCopy}
+        className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white text-xs font-medium py-1.5 px-3 rounded-lg backdrop-blur-sm transition-all z-10"
+      >
+        {isCopied ? '✨ Copied!' : '📋 Copy'}
+      </button>
+      <SyntaxHighlighter 
+        language={language} 
+        style={vscDarkPlus}
+        customStyle={{
+          margin: 0,
+          borderRadius: '0.75rem',
+          fontSize: '1rem',
+          lineHeight: '1.5',
+        }}
+      >
+        {codeString}
+      </SyntaxHighlighter>
+    </div>
+  );
+};
 
 // Custom Markdown Components for Brand Styling
 const markdownComponents = {
@@ -70,20 +111,7 @@ const markdownComponents = {
     }
     // Extract language from className (e.g., "language-python" -> "python")
     const language = className?.replace('language-', '') || 'text';
-    return (
-      <div className="my-8 shadow-lg rounded-xl overflow-hidden">
-        <SyntaxHighlighter 
-          language={language} 
-          style={vscDarkPlus}
-          customStyle={{
-            margin: 0,
-            borderRadius: '0.75rem',
-          }}
-        >
-          {String(children).replace(/\n$/, '')}
-        </SyntaxHighlighter>
-      </div>
-    );
+    return <InteractiveCodeBlock language={language} children={children} />;
   },
   a: ({ href, children }: any) => (
     <a
