@@ -130,6 +130,9 @@ function main() {
       process.exit(1);
     }
 
+    console.log(`\n📖 Parsed lessons (in parse order):`);
+    lessons.forEach((l, i) => console.log(`   ${i+1}. ${l.id}`));
+
     // 3. Validate inputs
     console.log('\n✓ Validating inputs...');
     validateInputs(lessons, config);

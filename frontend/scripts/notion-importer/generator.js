@@ -77,11 +77,18 @@ import { Module } from '@/types/course';
 export const ${moduleId}Module: Module = {
 `;
 
-  // Add each lesson
-  const configLessonIds = config.lessons.map((l) => l.id);
-  lessons.forEach((lesson, index) => {
-    const configIndex = configLessonIds.indexOf(lesson.id);
-    output += generateLessonObject(lesson, config, configIndex);
+  // Sort lessons to match config order
+  const lessonMap = new Map(lessons.map((l) => [l.id, l]));
+  const sortedLessons = config.lessons
+    .map((configLesson) => lessonMap.get(configLesson.id))
+    .filter((lesson) => lesson !== undefined);
+
+  console.log(`📝 Generated ${sortedLessons.length} lessons in order:`);
+  sortedLessons.forEach((lesson) => console.log(`   - ${lesson.id}`));
+
+  // Add each lesson in correct order
+  sortedLessons.forEach((lesson, index) => {
+    output += generateLessonObject(lesson, config, index);
     output += '\n';
   });
 
