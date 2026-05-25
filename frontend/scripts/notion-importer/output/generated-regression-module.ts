@@ -1710,7 +1710,7 @@ You will generate 200 rows of data based on your life.
     prevLesson: 'decision-tree-regression',
     nextLesson: 'evaluating-regression-models',
     datasetFile: 'random-forest-regression.csv',
-    projectRubric: 'AI Evaluator Rubric: [TODO - Add detailed instructions for evaluating Random Forest Regression. Include acceptance criteria, code quality expectations, and test coverage requirements.]',
+    projectRubric: "AI Evaluator Rubric for 'The Campus Life Optimizer': 1. DATA PREP & CLEANING: They must generate a 200-row synthetic dataset with features ['Hours of Sleep', 'Outfit Coordination', 'Caffeine Intake', 'Study Session Quality'] and target 'Daily Success Score'. Crucially, they MUST intentionally introduce missing values (NaNs) and handle them using pandas `.fillna()` or `.dropna()`. If they skip the cleaning step, give them a TRY_AGAIN and remind them that It-Girls clean their data! 2. MODEL COMPARISON: They must train both a basic DecisionTreeRegressor AND a RandomForestRegressor (specifically checking that they set `n_estimators=100`). They need to compare the train/test scores to prove the single tree overfits. 3. FEATURE IMPORTANCE: They must access `model.feature_importances_` and print which factor actually runs their day. 4. THE TOMORROW PREDICTION: They must pass a custom 2D array into the forest's predict() method for their plans tomorrow. Watch for the 1D array shape error again! 5. VERDICT: They must `print()` a short paragraph with their biggest realization. HARD FAIL if they skip the comparison, the feature importance, or the printed realization. Give precise, sassy debugging advice if they miss any step.",
   },
   'evaluating-regression-models': {
     title: 'Evaluating Regression Models Performance',
