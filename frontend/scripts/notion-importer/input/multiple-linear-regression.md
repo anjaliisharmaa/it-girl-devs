@@ -1,14 +1,3 @@
-# Multiple Linear Regression
-
-Lesson: lesson2
-Status: ✅ Ready to Export
-
-**Sip Time:** 20 mins
-
-**Difficulty:** Balancing your skin barrier (Intermediate)
-
-**Prerequisites:** Module 1 (Simple Linear Regression), Matrix basics
-
 ---
 title: Multiple Linear Regression
 sipTime: 20 mins
