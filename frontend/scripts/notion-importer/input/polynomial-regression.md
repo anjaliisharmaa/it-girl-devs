@@ -19,7 +19,7 @@ Picture the time you spend doing your daily gua sha routine versus how sculpted 
 
 ## The mood board
 
-![polynomial regression graph.png](../../../public/images/modules/regression/3-polynomial-linear-regression/polynomial_regression_graph.png)
+![polynomial regression graph.png](../../../public/images/modules/regression/3-polynomial-regression/polynomial_regression_graph.png)
 
 Not everything in life is linear, especially your glow-up arc!
 
@@ -211,21 +211,21 @@ print("   If degree three hurts the test score it is giving overfit drama.\n")
 
 Let us see exactly what your results are telling you. Look at that degree two formula output. Your base energy at year zero was a solid 14. That is your starting point before you even curated your first vision board or started romanticizing your coding sessions.
 
-![colab_output_1.png](../../../public/images/modules/regression/3-polynomial-linear-regression/colab_output_1.png)
+![colab_output_1.png](../../../public/images/modules/regression/3-polynomial-regression/colab_output_1.png)
 
 The coefficients show exactly what is working. Your daily habits give you a steady little boost but that squared term is where the real magic happens. That is the compounding effect of your everything showers and healthy boundaries finally paying off. And that R squared score of almost one basically means your model perfectly understands your aesthetic.
 
 Then we have the gorgeous plot. Look at how perfectly that smooth curve swoops up and catches almost every single point of your timeline. A basic flat line would have totally missed those high energy peaks later in your journey. This visual is the ultimate proof that putting time into yourself creates a beautiful compounding arc.
 
-![colab_output_2.png](../../../public/images/modules/regression/3-polynomial-linear-regression/colab_output_2.png)
+![colab_output_2.png](../../../public/images/modules/regression/3-polynomial-regression/colab_output_2.png)
 
 The best part is looking at your future predictions. The model looked at your current trajectory and saw massive potential. By year 10, your energy hits over 150. By year 12, you are pushing past 200. This proves that sticking to your routines and keeping that unbothered mindset just keeps multiplying your success. You are quite literally mathematically projected to keep thriving.
 
-![colab_output_3.png](../../../public/images/modules/regression/3-polynomial-linear-regression/colab_output_3.png)
+![colab_output_3.png](../../../public/images/modules/regression/3-polynomial-regression/colab_output_3.png)
 
 Finally we have the degree three drama check. You already know from building your own smart AI projects that more math is not always better. We added an extra layer of complexity to see if it would understand your vibe more accurately. The results are super clear. The error score barely dropped and the accuracy score stayed exactly the same.
 
-![colab_output_4.png](../../../public/images/modules/regression/3-polynomial-linear-regression/colab_output_4.png)
+![colab_output_4.png](../../../public/images/modules/regression/3-polynomial-regression/colab_output_4.png)
 
 Adding that third degree of drama did absolutely nothing to improve your model. It is the perfect reminder that sometimes a simple solid routine is all you need and overcomplicating things just invites unnecessary chaos.
 
