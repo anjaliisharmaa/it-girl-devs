@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 
 interface Module {
@@ -10,6 +11,7 @@ interface Module {
   topics: string[];
   status: "locked" | "unlocked";
   progress: number;
+  moduleId?: string; // Route ID for the module
 }
 
 export default function EpisodesPage() {
@@ -42,6 +44,7 @@ export default function EpisodesPage() {
       ],
       status: "locked",
       progress: 0,
+      moduleId: "regression",
     },
     {
       id: 2,
@@ -217,16 +220,25 @@ export default function EpisodesPage() {
                 </ul>
 
                 {/* Action Button */}
-                <button
-                  disabled={module.status === "locked"}
-                  className={`w-full py-3 px-4 rounded-lg font-mono font-semibold transition-all duration-200 ${
-                    module.status === "unlocked"
-                      ? "bg-[#590D22] text-white hover:bg-[#7a1129] shadow-md hover:shadow-lg"
-                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  }`}
-                >
-                  {module.status === "unlocked" ? "Run Module ▶" : "Access Denied 🔒"}
-                </button>
+                {module.status === "unlocked" && module.moduleId ? (
+                  <Link
+                    href={`/classroom/${module.moduleId}`}
+                    className="block w-full py-3 px-4 rounded-lg font-mono font-semibold transition-all duration-200 bg-[#590D22] text-white hover:bg-[#7a1129] shadow-md hover:shadow-lg text-center"
+                  >
+                    Run Module ▶
+                  </Link>
+                ) : (
+                  <button
+                    disabled={module.status === "locked"}
+                    className={`w-full py-3 px-4 rounded-lg font-mono font-semibold transition-all duration-200 ${
+                      module.status === "unlocked"
+                        ? "bg-[#590D22] text-white hover:bg-[#7a1129] shadow-md hover:shadow-lg"
+                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    }`}
+                  >
+                    {module.status === "unlocked" ? "Run Module ▶" : "Access Denied 🔒"}
+                  </button>
+                )}
               </div>
 
               {/* Progress Bar */}
