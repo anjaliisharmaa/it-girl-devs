@@ -332,10 +332,12 @@ export default function ClassroomPage({ params }: PageProps) {
                 </div>
               )}
 
-              {/* 🧪 PYXIE LAB TEST (Moved above pagination!) */}
-              <div className="mt-12 mb-12">
-                <EvaluatorTest datasetFile={lesson.datasetFile} />
-              </div>
+              {/* 🧪 PYXIE LAB TEST (Only shows if lesson has a project rubric) */}
+              {lesson.projectRubric && (
+                <div className="mt-12 mb-12">
+                  <EvaluatorTest datasetFile={lesson.datasetFile} />
+                </div>
+              )}
 
               {/* Pagination - Cute Tags */}
               <div className="flex items-center justify-between gap-4 border-t-2 border-dashed border-pink-200 pt-8">
