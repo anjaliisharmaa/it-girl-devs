@@ -5,6 +5,9 @@ import { courseData } from '@/data/courseData';
 import { Clock } from 'lucide-react';
 import EvaluatorTest from '@/components/EvaluatorTest';
 import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 interface PageProps {
   params: {
@@ -268,7 +271,11 @@ export default function ClassroomPage({ params }: PageProps) {
               >
                 {lesson.markdownContent ? (
                   // Render markdown content with custom components
-                  <ReactMarkdown components={markdownComponents}>
+                  <ReactMarkdown 
+                    components={markdownComponents}
+                    remarkPlugins={[remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                  >
                     {lesson.markdownContent}
                   </ReactMarkdown>
                 ) : (
