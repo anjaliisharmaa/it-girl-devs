@@ -1410,7 +1410,7 @@ Then we let them Grow Deep Trees. We let every friend go as deep into her though
 Finally we Aggregate Predictions. When you need to make a final choice you ask the whole chat. Every girl gives her final score. Since we are doing regression which means predicting a number, we just find the average of all their scores.
 
 $$
-\displaystyle \hat{y}_{\text{forest}} = \frac{1}{B} \sum_{b=1}^{B} \hat{y}_b
+\\displaystyle \\hat{y}_{\\text{forest}} = \\frac{1}{B} \\sum_{b=1}^{B} \\hat{y}_b
 $$
 
 Here B is the total number of girls in the chat and the y variable is the score from each friend. If we were trying to just say yes or no to buying the product, we would take a majority vote instead. But for a specific rating we stick to the beautiful average.
