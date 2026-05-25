@@ -237,6 +237,30 @@ export default function ClassroomPage({ params }: PageProps) {
                 </h1>
               </div>
 
+              {/* Metadata Capsules - Cute Pill-Shaped Badges */}
+              {(lesson.metadata?.sipTime || lesson.metadata?.difficulty || lesson.metadata?.prerequisites) && (
+                <div className="flex flex-wrap gap-4 mb-8">
+                  {lesson.metadata?.sipTime && (
+                    <div className="flex items-center gap-2 bg-pink-50 text-pink-800 text-sm font-medium px-4 py-2 rounded-full border border-pink-100 shadow-sm">
+                      <span>☕</span>
+                      <span>Sip Time: {lesson.metadata.sipTime}</span>
+                    </div>
+                  )}
+                  {lesson.metadata?.difficulty && (
+                    <div className="flex items-center gap-2 bg-pink-50 text-pink-800 text-sm font-medium px-4 py-2 rounded-full border border-pink-100 shadow-sm">
+                      <span>🎀</span>
+                      <span>Difficulty: {lesson.metadata.difficulty}</span>
+                    </div>
+                  )}
+                  {lesson.metadata?.prerequisites && (
+                    <div className="flex items-center gap-2 bg-pink-50 text-pink-800 text-sm font-medium px-4 py-2 rounded-full border border-pink-100 shadow-sm">
+                      <span>🧠</span>
+                      <span>Prerequisites: {lesson.metadata.prerequisites}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Content Area - Markdown Renderer with Custom Styling */}
               <article 
                 className="prose prose-pink prose-xl max-w-none text-[#590D22]"
