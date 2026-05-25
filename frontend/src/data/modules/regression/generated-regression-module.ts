@@ -586,8 +586,8 @@ Step two is where we create the extra features. We take those years and square t
 Step three is feeding all of these upgraded features into your model as separate items. We arrange everything into a gorgeous layout called a design matrix. 
 
 $X = \\begin{bmatrix}
-1 & x_1 & x_1^2 & x_1^3 \\
-1 & x_2 & x_2^2 & x_2^3 \\
+1 & x_1 & x_1^2 & x_1^3 \\\\
+1 & x_2 & x_2^2 & x_2^3 \\\\
 \\vdots & \\vdots & \\vdots & \\vdots
 \\end{bmatrix}$
 
