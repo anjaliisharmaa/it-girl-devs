@@ -257,7 +257,7 @@ Then we asked her to predict the future. We told the algorithm you are going to 
     prevLesson: 'intro-to-regression',
     nextLesson: 'multiple-linear-regression',
     datasetFile: 'simple-linear-regression.csv',
-    projectRubric: 'AI Evaluator Rubric: [TODO - Add detailed instructions for evaluating Simple Linear Regression. Include acceptance criteria, code quality expectations, and test coverage requirements.]',
+    projectRubric: "AI Evaluator Rubric for 'The Latte Factor': 1. DATA: Must load 'latte.csv' using pandas. 2. COLUMNS: X must strictly be 'Cups Purchased (X)' (remember it expects a 2D array, e.g., df[['Cups Purchased (X)']]) and y must strictly be 'Total Spent in ₹ (Y)'. Look at their execution output—if they got a KeyError, explicitly point out the typo in their column names. 3. MODEL: Must import and fit sklearn's LinearRegression. 4. OUTPUTS: Must dynamically calculate and print the slope (expected approx 245.33) and the predicted spending for 15 cups (expected approx 3681.33). HARD FAIL if they just print the hardcoded numbers without calculating them via the model. If any step is missing, mathematically wrong, or hardcoded, set status to TRY_AGAIN and give specific, sassy, but helpful hints about exactly which step they messed up.",
   },
   'multiple-linear-regression': {
     title: 'Multiple Linear Regression',
