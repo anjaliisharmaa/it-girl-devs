@@ -1357,7 +1357,7 @@ Total Shower Minutes. This is your continuous prediction. The base time is 20 mi
     prevLesson: 'support-vector-regression',
     nextLesson: 'random-forest-regression',
     datasetFile: 'decision-tree-regression.csv',
-    projectRubric: 'AI Evaluator Rubric: [TODO - Add detailed instructions for evaluating Decision Tree Regression. Include acceptance criteria, code quality expectations, and test coverage requirements.]',
+    projectRubric: "AI Evaluator Rubric for 'The Everything Shower Time Predictor': 1. DATA GENERATION: No CSVs this time! They MUST write Python code (using numpy/pandas) to generate a synthetic dataset of at least 500 rows. If they try to load a file or generate a tiny dataset, give them a TRY_AGAIN and tell them a Decision Tree needs way more data to learn! 2. COLUMNS: The dataframe must include features: 'Stress Level', 'Hair Wash Day', 'Shaving Required', 'New Products Waiting', and the target 'Total Shower Minutes'. 3. LOGIC CHECK: Read their data generation math. Ensure the base time is around 20 minutes and that 'Hair Wash Day' logically adds at least 15 minutes. 4. MODEL: Must import and fit `DecisionTreeRegressor` from sklearn.tree. 5. THE ULTIMATE PREDICTION: They must use `model.predict()` to calculate and print the total time for the ultimate self-care night (Stress=10, Hair Wash=1, Shave=1, New Products=1). Watch out for the 1D array trap—remind them predict() needs a 2D array like `[[10, 1, 1, 1]]` if they get a shape error. HARD FAIL if they just hardcode the final answer without training the tree. Set status to TRY_AGAIN with sassy, supportive debugging advice if any step is missed.",
   },
   'random-forest-regression': {
     title: 'Random Forest Regression',
