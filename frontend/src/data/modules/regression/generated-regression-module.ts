@@ -813,9 +813,9 @@ $$
 
 Where:
 
-- $*w*$ is the weight vector.
-- $*b*$ is the intercept. This is your baseline starting point.
-- $*x*$ represents your input features. These are the raw materials and details you are working with to create the final look.
+- $w$ is the weight vector.
+- $b$ is the intercept. This is your baseline starting point.
+- $x$ represents your input features. These are the raw materials and details you are working with to create the final look.
 
 ### The clean girl balance
 
