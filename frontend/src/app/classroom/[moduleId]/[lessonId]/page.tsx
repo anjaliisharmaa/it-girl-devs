@@ -44,17 +44,17 @@ const markdownComponents = {
     </p>
   ),
   ul: ({ children }: any) => (
-    <ul className="list-disc list-inside text-[#590D22] text-lg my-0 leading-[2.5rem] space-y-0">
+    <ul className="list-disc ml-8 my-6 text-[#590D22] marker:text-pink-500">
       {children}
     </ul>
   ),
   ol: ({ children }: any) => (
-    <ol className="list-decimal list-inside text-[#590D22] text-lg my-0 leading-[2.5rem] space-y-0">
+    <ol className="list-decimal ml-8 my-6 text-[#590D22] marker:text-pink-500 font-medium">
       {children}
     </ol>
   ),
   li: ({ children }: any) => (
-    <li className="text-[#590D22] my-0 leading-[2.5rem]">
+    <li className="pl-2 mb-3 leading-[32px]">
       {children}
     </li>
   ),

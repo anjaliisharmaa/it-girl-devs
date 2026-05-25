@@ -136,7 +136,7 @@ $$
 Let us translate the variables.
 
 - $y_i$  is your actual value. This is the real amount of saves your aesthetic reel actually got.
-- $\hat{y}_i$ is the predicted value. This is what your model thought you were going to get.
+- $\\hat{y}_i$ is the predicted value. This is what your model thought you were going to get.
 - *n* is the total number of data points or the total number of posts you made.
 
 You might be wondering why we square the errors. If we did not do that, the negative differences would just cancel out the positive ones. We are completely skipping that toxic behavior because every single error matters whether it was too high or too low.
@@ -1158,16 +1158,16 @@ The Immediate Focus. The algorithm can get a bit distracted by instant gratifica
 
 To protect the peace and keep our tree from memorizing random noise we have to set some boundaries. We call these hyperparameters. You can adjust them right inside your Pyxie workspace to keep your model completely grounded.
 
-**max_depth**
+- **max_depth**
 This controls how deep your overthinking goes. Are we just deciding between a rooftop bar and a cozy night in. Or are we stressing about the exact minute we apply our dewy sunscreen. Keeping the depth shallow gives you a simple and relaxed plan that works for everyone.
 
-**min_samples_split**
+- **min_samples_split**
 This is how much data we need before we complicate things. How many past weekends do we need to look at before we decide to split our logic into a brand new path. It stops the group chat from getting chaotic over just one or two random nights.
 
-**min_samples_leaf**
+- **min_samples_leaf**
 This is the ultimate vibe check for your final plan. It sets the minimum number of past experiences required for a final decision to be valid. If a specific routine only happened once, we are not making it an official aesthetic yet.
 
-**max_features**
+- **max_features**
 This limits how many details we obsess over at once. Instead of stressing about the budget and the weather and the outfits and the coffee all at the exact same time, we just pick a few key details to focus on for each choice.
 
 The golden rule is simple. Shallow trees give you a flexible plan that always guarantees a good time for the girls. Deep trees just overcomplicate the night and ruin the vibe.
@@ -1399,15 +1399,15 @@ By averaging everyone's input, the algorithm gives you a really solid prediction
 
 The secret behind the group chat success is mixing things up so nobody is copying each other.
 
-First we do something called Bootstrap Sampling. For every friend in the chat we give them a slightly different set of test days. We pick random days from your month. Sometimes the same everything shower day gets picked twice and some chill reading days get skipped entirely. This makes sure every single girl has her own unique experience to base her review on.
+1. First we do something called Bootstrap Sampling. For every friend in the chat we give them a slightly different set of test days. We pick random days from your month. Sometimes the same everything shower day gets picked twice and some chill reading days get skipped entirely. This makes sure every single girl has her own unique experience to base her review on.
 
-Next is Random Feature Selection which is the real magic. When each friend is deciding her rating she is not allowed to look at every single detail. We give her a random smaller list of things to care about.
+2. Next is Random Feature Selection which is the real magic. When each friend is deciding her rating she is not allowed to look at every single detail. We give her a random smaller list of things to care about.
 
-If there are twenty things to judge like price or texture or how it looks with your minimalistic jewellery, she only gets to look at maybe five of them. This stops everyone from just obsessing over one obvious thing like a viral brand name. If a girl does not even know the brand, she is forced to pay attention to how the formula actually feels.
+3. If there are twenty things to judge like price or texture or how it looks with your minimalistic jewellery, she only gets to look at maybe five of them. This stops everyone from just obsessing over one obvious thing like a viral brand name. If a girl does not even know the brand, she is forced to pay attention to how the formula actually feels.
 
-Then we let them Grow Deep Trees. We let every friend go as deep into her thoughts as she wants. She can completely overthink her specific list of features just like that one friend who overanalyzes every single text message. On her own she might be overcomplicating things but that is completely fine because the group always balances her out.
+4. Then we let them Grow Deep Trees. We let every friend go as deep into her thoughts as she wants. She can completely overthink her specific list of features just like that one friend who overanalyzes every single text message. On her own she might be overcomplicating things but that is completely fine because the group always balances her out.
 
-Finally we Aggregate Predictions. When you need to make a final choice you ask the whole chat. Every girl gives her final score. Since we are doing regression which means predicting a number, we just find the average of all their scores.
+5. Finally we Aggregate Predictions. When you need to make a final choice you ask the whole chat. Every girl gives her final score. Since we are doing regression which means predicting a number, we just find the average of all their scores.
 
 $$
 \\displaystyle \\hat{y}_{\\text{forest}} = \\frac{1}{B} \\sum_{b=1}^{B} \\hat{y}_b
@@ -1429,27 +1429,27 @@ The random forest can actually tell you which specific detail is doing the heavy
 
 **When your bestie squad thrives**
 
-The absolute best part of having a massive group chat is how she handles the drama. Even if one friend is spiraling and overthinking a single text, the entire squad keeps things perfectly grounded.
+- The absolute best part of having a massive group chat is how she handles the drama. Even if one friend is spiraling and overthinking a single text, the entire squad keeps things perfectly grounded.
 
-She is completely unbothered by random weird moments. If one girl had a wild allergic reaction to a perfectly good lip gloss, the rest of the chat will not let that ruin the product for you.
+- She is completely unbothered by random weird moments. If one girl had a wild allergic reaction to a perfectly good lip gloss, the rest of the chat will not let that ruin the product for you.
 
-You do not even need to organize your thoughts before asking for advice. There is no need to prep or perfectly aestheticize your data. If you drop a messy paragraph with missing details about your campus life, she still understands exactly what you mean.
+- You do not even need to organize your thoughts before asking for advice. There is no need to prep or perfectly aestheticize your data. If you drop a messy paragraph with missing details about your campus life, she still understands exactly what you mean.
 
-She can process so much information at once. You can throw hundreds of details at her from your digicam photos to your reading list and she will not get confused.
+- She can process so much information at once. You can throw hundreds of details at her from your digicam photos to your reading list and she will not get confused.
 
-She tells you exactly what actually matters so you stop worrying about the wrong things. Plus she is incredibly versatile. She can help you rate a new routine out of ten or just give you a simple yes or no answer.
+- She tells you exactly what actually matters so you stop worrying about the wrong things. Plus she is incredibly versatile. She can help you rate a new routine out of ten or just give you a simple yes or no answer.
 
 **When she gets overwhelmed**
 
-Of course relying on a huge group chat has some downsides. Waiting for a hundred girls to reply takes a lot more time and energy than just texting your one solo friend.
+- Of course relying on a huge group chat has some downsides. Waiting for a hundred girls to reply takes a lot more time and energy than just texting your one solo friend.
 
-It is also way harder to explain how you reached your final choice. You cannot just draw a simple chart or point to one single text message. The answer is scattered across hundreds of different voice notes.
+- It is also way harder to explain how you reached your final choice. You cannot just draw a simple chart or point to one single text message. The answer is scattered across hundreds of different voice notes.
 
-She can still get carried away if you give her too little information. If you only show her a few days of your life and let her overanalyze them, the advice will still miss the mark.
+- She can still get carried away if you give her too little information. If you only show her a few days of your life and let her overanalyze them, the advice will still miss the mark.
 
-Asking for a fresh opinion is always extra work because you have to run your new situation past every single person in the chat all over again.
+- Asking for a fresh opinion is always extra work because you have to run your new situation past every single person in the chat all over again.
 
-Finally she really struggles to imagine things outside her own reality. If you ask for advice on a completely new aesthetic that nobody in the chat has ever tried before, she will just average out her past experiences instead of giving you a truly new perspective.
+- Finally she really struggles to imagine things outside her own reality. If you ask for advice on a completely new aesthetic that nobody in the chat has ever tried before, she will just average out her past experiences instead of giving you a truly new perspective.
 
 **Setting the boundaries for your squad**
 
@@ -1746,33 +1746,33 @@ When we want to see if our model is actually working we look for four specific t
 
 **Mean Absolute Error MAE**
 
-What it tells us: The average amount the model misses the mark in totally normal terms. If the MAE is 2 minutes, it means our guess for the skincare routine is off by about two minutes on average.
+- What it tells us: The average amount the model misses the mark in totally normal terms. If the MAE is 2 minutes, it means our guess for the skincare routine is off by about two minutes on average.
 
-Why we care: It is super straightforward and does not make a huge deal out of one bad guess. You being a few minutes late to meet the girls because you were deciding between claw clips? We totally get it and nobody is mad.
+- Why we care: It is super straightforward and does not make a huge deal out of one bad guess. You being a few minutes late to meet the girls because you were deciding between claw clips? We totally get it and nobody is mad.
 
 **Mean Squared Error MSE**
 
-What it tells us: The squared average of the misses. This one is way more strict about huge mistakes.
+- What it tells us: The squared average of the misses. This one is way more strict about huge mistakes.
 
-Why we care: We use this when we absolutely need to avoid a total disaster. Picture someone bringing a totally wrong foundation shade to the shoot that makes everyone look orange. We want to catch those major slip ups before they ruin the photos.
+- Why we care: We use this when we absolutely need to avoid a total disaster. Picture someone bringing a totally wrong foundation shade to the shoot that makes everyone look orange. We want to catch those major slip ups before they ruin the photos.
 
 **Root Mean Squared Error RMSE**
 
-What it tells us: The square root of MSE. This brings the numbers back to the exact same units we started with so it is way easier to read.
+- What it tells us: The square root of MSE. This brings the numbers back to the exact same units we started with so it is way easier to read.
 
-Why we care: This is the standard beauty check for our models. It gives us a really realistic view of how well the prep routine worked without doing too much math in our heads while we are just trying to get ready.
+- Why we care: This is the standard beauty check for our models. It gives us a really realistic view of how well the prep routine worked without doing too much math in our heads while we are just trying to get ready.
 
 **R squared**
 
-What it tells us: The percentage of the final look that the model actually explains. If your R squared is 0.7, then the model explains 70% of the whole pattern.
+- What it tells us: The percentage of the final look that the model actually explains. If your R squared is 0.7, then the model explains 70% of the whole pattern.
 
-Why we care: It gives us a super quick read on how helpful the routine actually is. We can immediately see if our lip gloss and blush combo is doing the heavy lifting for the final pictures or if we need to try something else.
+- Why we care: It gives us a super quick read on how helpful the routine actually is. We can immediately see if our lip gloss and blush combo is doing the heavy lifting for the final pictures or if we need to try something else.
 
 **Adjusted R squared**
 
-What it tells us: A more honest version of R squared. It makes sure a model does not get extra credit just for adding totally random steps that do nothing.
+- What it tells us: A more honest version of R squared. It makes sure a model does not get extra credit just for adding totally random steps that do nothing.
 
-Why we care: It helps us decide between a clean minimalist aesthetic and total maximalism. You do not need 20 different serums if three actually do the work. This metric tells us exactly which products to keep so our routine stays perfect and unbothered.
+- Why we care: It helps us decide between a clean minimalist aesthetic and total maximalism. You do not need 20 different serums if three actually do the work. This metric tells us exactly which products to keep so our routine stays perfect and unbothered.
 
 ## Evaluating each model
 
