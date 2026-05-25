@@ -130,7 +130,7 @@ The cost function is your total regret level. It measures exactly how far off yo
 The formula for MSE looks like this:
 
 $$
-MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+MSE = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2
 $$
 
 Let us translate the variables.
@@ -309,19 +309,19 @@ Let us break down the ingredients list.
 We are still trying to minimize our Mean Squared Error. This error is the difference between the flawless base we actually want and what we end up with if our routine is unbalanced. Since we are layering multiple active ingredients now, the math has to juggle it all. Here is what that cost function looks like:
 
 $$
-MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+MSE = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2
 $$
 
 Where your predicted glow is calculated like this:
 
 $$
-\hat{y}_i = β_0 + β_1x_i1 + β_2x_i2 + ... + β_nx_in
+\\hat{y}_i = \\beta_0 + \\beta_1x_{i1} + \\beta_2x_{i2} + ... + \\beta_nx_{in}
 $$
 
 To find the exact right amount of each product to use, the algorithm uses something called the Normal Equation. It gives us the direct answer in matrix form:
 
 $$
-β=(X^TX)^{-1}X^Ty
+\\beta=(X^T X)^{-1}X^T y
 $$
 
 Do not let the matrix math stress you out at all. Python libraries like *sklearn* completely handle this part for us behind the scenes. We love a tool that does the heavy lifting for us. Basically, it is just the algorithm figuring out the exact perfect combination of your serums and creams that minimizes any chance of a bad skin day. It is finding the ultimate routine with zero regrets.
@@ -585,22 +585,22 @@ Step two is where we create the extra features. We take those years and square t
 
 Step three is feeding all of these upgraded features into your model as separate items. We arrange everything into a gorgeous layout called a design matrix. 
 
-$X = \begin{bmatrix}
+$X = \\begin{bmatrix}
 1 & x_1 & x_1^2 & x_1^3 \\
 1 & x_2 & x_2^2 & x_2^3 \\
-\vdots & \vdots & \vdots & \vdots
-\end{bmatrix}$
+\\vdots & \\vdots & \\vdots & \\vdots
+\\end{bmatrix}$
 
 Then we just solve it using our classic formula.
 
 $$
-y=Xβ+ϵ
+y=X\\beta+\\epsilon
 $$
 
 The cost function stays exactly the same as before. We still use Mean Squared Error to measure our progress.
 
 $$
-MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+MSE = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2
 $$
 
 The only real change is that our predicted value now includes all those beautiful powers of x. We are basically measuring the difference between your expected energy and your actual daily vibe so we can minimize any off days and keep you glowing perfectly.
