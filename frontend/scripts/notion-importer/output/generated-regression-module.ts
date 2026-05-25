@@ -820,12 +820,12 @@ Support Vector Regression is all about prioritizing her peace. She basically has
 This balancing act actually has a mathematical formula. It is her personal blueprint for staying entirely unbothered while still getting everything done perfectly.
 
 $$
-\text{Minimize: } \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} (\xi_i + \xi_i^*)
+\text{Minimize: } \frac{1}{2} \|w\|^2 + C \sum_{i=1}^{n} (\\xi_i + \\xi_i^*)
 $$
 
 Let us translate the math into English. That first part with the $w$ is all about keeping things sleek and minimalistic. It is about achieving the maximum aesthetic impact with zero complication.
 
-Those little greek letters $\xi_i$ and $\xi_i^*$ are called the slack variables. In our world these represent exactly how far a data point stepped over your line. It is the literal mathematical measurement of the audacity.
+Those little greek letters $\\xi_i$ and $\\xi_i^*$ are called the slack variables. In our world these represent exactly how far a data point stepped over your line. It is the literal mathematical measurement of the audacity.
 
 Then we have $C$ which is basically your personal tolerance level for the drama. If your $C$ is high, you are taking absolutely zero disrespect and heavily penalizing every single violation. If your $C$ is low you are letting a few minor things slide. You know that protecting your overall peace is way more important than fighting every single little battle.
 
