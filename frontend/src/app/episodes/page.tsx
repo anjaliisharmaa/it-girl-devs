@@ -42,7 +42,7 @@ export default function EpisodesPage() {
         "Random Forest",
         "Model Selection",
       ],
-      status: "locked",
+      status: "unlocked",
       progress: 0,
       moduleId: "regression",
     },
