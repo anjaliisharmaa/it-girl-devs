@@ -767,7 +767,7 @@ Let us figure out exactly how much studying is genuinely too much.”
     prevLesson: 'multiple-linear-regression',
     nextLesson: 'support-vector-regression',
     datasetFile: 'polynomial-regression.csv',
-    projectRubric: 'AI Evaluator Rubric: [TODO - Add detailed instructions for evaluating Polynomial Regression. Include acceptance criteria, code quality expectations, and test coverage requirements.]',
+    projectRubric: "AI Evaluator Rubric for 'The Study-Overload Curve': 1. DATA & CLEANING: Must load 'study.csv'. X must be 'Hours Studied (X)' and y must be 'Exam Score (Y)'. They MUST ignore the 'Vibe Check' text column. If they get a ValueError, sassily remind them that sklearn cannot read their Instagram notes. 2. SPLITTING: Must use `train_test_split` to create train and test sets. 3. TRANSFORMATION: They must use `PolynomialFeatures` for degrees 1, 2, and 3. Watch closely: they must `fit_transform` the training data, but ONLY `transform` the testing data. If they fit the test data, gently call them out for data leakage! 4. MODELING & OUTPUT: They must train a LinearRegression model on the polynomial features for each degree and dynamically calculate/print the R-squared scores for the test set. 5. CONCLUSION: They must print a conclusion identifying that Degree 2 (the quadratic curve) is the sweet spot that captures the burnout drop-off without wildly overfitting like Degree 3. HARD FAIL if they hardcode the R-squared numbers. If the pipeline is broken or steps are missing, set status to TRY_AGAIN with precise, step-by-step debugging advice.",
   },
   'support-vector-regression': {
     title: 'Support Vector Regression',
