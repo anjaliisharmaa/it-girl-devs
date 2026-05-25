@@ -1093,7 +1093,7 @@ It checks how much the vibe fluctuates after making a decision. It calculates th
 Here is the exact formula for Standard Deviation Reduction.
 
 $$
-\text{SDR} = \text{SD}(\text{parent}) - \sum \frac{N_{\text{child}}}{N_{\text{parent}}} \times \text{SD}(\text{child})
+\\text{SDR} = \\text{SD}(\\text{parent}) - \\sum \\frac{N_{\\text{child}}}{N_{\\text{parent}}} \\times \\text{SD}(\\text{child})
 $$
 
 Let us look at what these letters actually mean for us.
