@@ -15,7 +15,7 @@ import { Module } from '@/types/course';
 export const regressionModule: Module = {
   'intro-to-regression': {
     title: 'Introduction to Regression',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## Regression glow-up
+    markdownContent: `## Regression glow-up
 
 Picture your skincare routine. You layer gua sha, ice roller, dewy sunscreen, and that perfect pimple patch. Each step builds on the last to get you that glass-skin glow. Now imagine predicting how glowy your skin will look based on how many steps you do. One step? Meh. Full routine? Chef’s kiss perfection. Zero steps? Back to square one.
 
@@ -23,7 +23,7 @@ Regression is that exact vibe. It predicts a number (like glow level, sales, sal
 
 ## The mood board
 
-![Simple Linear Regression Graph](../../../public/images/modules/regression/0-introduction-to-regression/simple_linear_regression_graph.png)
+![Simple Linear Regression Graph](/images/modules/regression/0-introduction-to-regression/simple_linear_regression_graph.png)
 
 The line doesn't touch every point because life isn't perfect, but it shows the TREND, and that's what matters
 
@@ -68,7 +68,8 @@ Quick rundown (full glam details in later modules):
 - Needs all key inputs or it flops.
 - Complex versions might overfit without checks.
 
-Regression is your first skincare glow-up in ML. Master this, and you’re set to slay the fancier models next. You got this, bestie!` } }),
+Regression is your first skincare glow-up in ML. Master this, and you’re set to slay the fancier models next. You got this, bestie!`,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '6 mins',
       difficulty: 'Beginner (your first glow-up)',
@@ -79,7 +80,7 @@ Regression is your first skincare glow-up in ML. Master this, and you’re set t
   },
   'simple-linear-regression': {
     title: 'Simple Linear Regression',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## The episode teaser
+    markdownContent: `## The episode teaser
 
 You are romanticizing your Sunday afternoon, working with some clay to make those cute Pinterest trinket dishes, fueled by a ridiculously strong dark roast espresso. You notice a pattern. Every single time you post a video of your sketching or clay process, the saves and reposts completely skyrocket. You start wondering if there is an actual formula to this. Can you predict exactly how much love your art will get based on the hours you spend creating it?
 
@@ -87,7 +88,7 @@ Welcome to your newest obsession. You are about to build your first prediction m
 
 ## The mood board
 
-![linear regression graph.png](../../../public/images/modules/regression/1-simple-linear-regression/linear_regression_graph.png)
+![linear regression graph.png](/images/modules/regression/1-simple-linear-regression/linear_regression_graph.png)
 
 The line doesn't touch every point because life isn't perfect, but it shows the TREND, and that's what matters.
 
@@ -222,7 +223,7 @@ print(f"\nIf you do {future_routine[0][0]} hours tomorrow expect {future_saves[0
 
 Let us look at those numbers our algorithm just dropped. The slope is 31.03 which means for every extra hour you spend perfecting your clay details, you are expected to get around 31 more saves. 
 
-![slr_colab_output_1.png](../../../public/images/modules/regression/1-simple-linear-regression/slr_colab_output_1.png)
+![slr_colab_output_1.png](/images/modules/regression/1-simple-linear-regression/slr_colab_output_1.png)
 
 Your intercept is 4.66, which is your baseline. Even if you spend practically zero time planning, you still get those supportive saves from your regular mutuals. Your total regret or Mean Squared Error is only 18.58, which is super low. That tells us the model is making really smart guesses.
 
@@ -230,11 +231,11 @@ Now look at that R Squared score of 0.99. This is basically your model telling y
 
 Now, the plot itself is literal visual perfection. Those light pink dots are your actual past posts. That bright pink line running straight through them is your algorithm predicting the future. Notice how closely the dots hug the line. That means your aesthetic is super reliable and your engagement grows steadily the more effort you pour into your art.
 
-![slr_colab_output_2.png](../../../public/images/modules/regression/1-simple-linear-regression/slr_colab_output_2.png)
+![slr_colab_output_2.png](/images/modules/regression/1-simple-linear-regression/slr_colab_output_2.png)
 
 Then we asked her to predict the future. We told the algorithm you are going to spend 6.0 hours tomorrow sculpting something amazing. She calculated the math and told us to expect exactly 191 saves. You literally just predicted your own Pinterest virality before even touching the clay.
 
-![slr_colab_output_3.png](../../../public/images/modules/regression/1-simple-linear-regression/slr_colab_output_3.png)
+![slr_colab_output_3.png](/images/modules/regression/1-simple-linear-regression/slr_colab_output_3.png)
 
 ## Mini-Project: "The Latte Factor"
 
@@ -247,7 +248,8 @@ Then we asked her to predict the future. We told the algorithm you are going to 
 1. What's your predicted spending if you buy 15 cups next week?
 2. What's the slope? (How much does each cup increase your spending?)
 
-**Deliverable:** You will create one clean Python script. Bonus points if analyzing your own data inspires you to start romanticizing making your dark roast at home.` } }),
+**Deliverable:** You will create one clean Python script. Bonus points if analyzing your own data inspires you to start romanticizing making your dark roast at home.`  ,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '23 mins',
       difficulty: 'Soft Launch Era (Completely Beginner Friendly)',
@@ -260,7 +262,7 @@ Then we asked her to predict the future. We told the algorithm you are going to 
   },
   'multiple-linear-regression': {
     title: 'Multiple Linear Regression',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## The episode teaser
+    markdownContent: `## The episode teaser
 
 Plot twist: getting that perfect dewy glass skin does not just happen from drinking water. We all know the drill. That flawless base actually depends on so many different steps. It is about using a gentle cleanser. It is applying hydrating serums on damp skin. It is whether you used your ice roller this morning and locked it all in with the right dewy sunscreen. Your glow is a combination of all those things working together perfectly. Welcome to Multiple Linear Regression. It is the upgraded version of our basic math girl. She finally gets that you have a whole routine and your final result depends on multiple different variables.
 
@@ -268,7 +270,7 @@ We are officially moving past asking if just variable $X$ gives you a glow. Now 
 
 ## The mood board
 
-![multiple_linear_regression_graph.png](../../../public/images/modules/regression/2-multiple-linear-regression/multiple_linear_regression_graph.png)
+![multiple_linear_regression_graph.png](/images/modules/regression/2-multiple-linear-regression/multiple_linear_regression_graph.png)
 
 We went from 2D to 3D because you're too complex for just one variable.
 
@@ -465,11 +467,11 @@ We just ran the numbers on our morning routine and the results are officially in
 
 Look at the printout and the bar chart. Your baseline glow is sitting at a gorgeous 460 points. That is you waking up and doing absolutely nothing. You are already winning.
 
-![mlr_colab_output_1.png](../../../public/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_1.png)
+![mlr_colab_output_1.png](/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_1.png)
 
 But look at the product impact. Your gua sha massage is carrying the entire routine. With a massive score of 227 it is the absolute main character of your morning. Your hydration level and active serums are giving a cute little boost of about 29 points each.
 
-![mlr_colab_output_2.png](../../../public/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_2.png)
+![mlr_colab_output_2.png](/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_2.png)
 
 The plot twist? The sunscreen layers have a negative score of 22. We are absolutely never skipping SPF but the math says layering it too thick is ruining your immediate dewy finish. It is probably pilling or giving a white cast. Quality over quantity always.
 
@@ -477,7 +479,7 @@ The plot twist? The sunscreen layers have a negative score of 22. We are absolut
 
 We tested a totally new scenario. We asked the model what happens with level 15 hydration and 10 minutes of facial massage. It predicted a solid 366 glow score. 
 
-![mlr_colab_output_3.png](../../../public/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_3.png)
+![mlr_colab_output_3.png](/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_3.png)
 
 There is a little warning message there too but do not stress. That is just Python being a protective bestie reminding us that we passed raw numbers without the official column names. The math still works perfectly.
 
@@ -485,13 +487,13 @@ There is a little warning message there too but do not stress. That is just Pyth
 
 Now look at the purple squares here. This is where we catch the routine overlap. See those super high numbers like 0.93 between your active serums and your gua sha minutes?
 
-![mlr_colab_output_4.png](../../../public/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_4.png)
+![mlr_colab_output_4.png](/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_4.png)
 
 That means whenever you do your facial massage, you are almost always using your active serums at the exact same time. Because they always happen together the math gets a little confused about which one is doing the real work. Your routine needs better boundaries so each step can get the credit it deserves.
 
 Finally check the scatter plot. Those pink dots are hugging that dotted line like their life depends on it.
 
-![mlr_colab_output_5.png](../../../public/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_5.png)
+![mlr_colab_output_5.png](/images/modules/regression/2-multiple-linear-regression/mlr_colab_output_5.png)
 
 Our R² score was 0.983 which means our formula is incredibly accurate. When the model predicts a certain level of glass skin you are guaranteed to walk out the door looking exactly that flawless.
 
@@ -509,7 +511,8 @@ Our R² score was 0.983 which means our formula is incredibly accurate. When the
 
 **Deliverable:** A clean Python script with your model metrics..
 
-**Bonus Challenge:** Check for overlapping variables and drop the redundant ones so your model stays perfectly balanced. If you get stuck just check the discussion tab in the dataset for a little help.` } }),
+**Bonus Challenge:** Check for overlapping variables and drop the redundant ones so your model stays perfectly balanced. If you get stuck just check the discussion tab in the dataset for a little help.`  ,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '20 mins',
       difficulty: 'Balancing your skin barrier (Intermediate)',
@@ -522,7 +525,7 @@ Our R² score was 0.983 which means our formula is incredibly accurate. When the
   },
   'polynomial-regression': {
     title: 'Polynomial Regression',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## The episode teaser
+    markdownContent: `## The episode teaser
 
 Your life graph is definitely not a straight line anymore.
 
@@ -536,7 +539,7 @@ Picture the time you spend doing your daily gua sha routine versus how sculpted 
 
 ## The mood board
 
-![polynomial regression graph.png](../../../public/images/modules/regression/3-polynomial-regression/polynomial_regression_graph.png)
+![polynomial regression graph.png](/images/modules/regression/3-polynomial-regression/polynomial_regression_graph.png)
 
 Not everything in life is linear, especially your glow-up arc!
 
@@ -728,21 +731,21 @@ print("   If degree three hurts the test score it is giving overfit drama.\n")
 
 Let us see exactly what your results are telling you. Look at that degree two formula output. Your base energy at year zero was a solid 14. That is your starting point before you even curated your first vision board or started romanticizing your coding sessions.
 
-![colab_output_1.png](../../../public/images/modules/regression/3-polynomial-regression/colab_output_1.png)
+![colab_output_1.png](/images/modules/regression/3-polynomial-regression/colab_output_1.png)
 
 The coefficients show exactly what is working. Your daily habits give you a steady little boost but that squared term is where the real magic happens. That is the compounding effect of your everything showers and healthy boundaries finally paying off. And that R squared score of almost one basically means your model perfectly understands your aesthetic.
 
 Then we have the gorgeous plot. Look at how perfectly that smooth curve swoops up and catches almost every single point of your timeline. A basic flat line would have totally missed those high energy peaks later in your journey. This visual is the ultimate proof that putting time into yourself creates a beautiful compounding arc.
 
-![colab_output_2.png](../../../public/images/modules/regression/3-polynomial-regression/colab_output_2.png)
+![colab_output_2.png](/images/modules/regression/3-polynomial-regression/colab_output_2.png)
 
 The best part is looking at your future predictions. The model looked at your current trajectory and saw massive potential. By year 10, your energy hits over 150. By year 12, you are pushing past 200. This proves that sticking to your routines and keeping that unbothered mindset just keeps multiplying your success. You are quite literally mathematically projected to keep thriving.
 
-![colab_output_3.png](../../../public/images/modules/regression/3-polynomial-regression/colab_output_3.png)
+![colab_output_3.png](/images/modules/regression/3-polynomial-regression/colab_output_3.png)
 
 Finally we have the degree three drama check. You already know from building your own smart AI projects that more math is not always better. We added an extra layer of complexity to see if it would understand your vibe more accurately. The results are super clear. The error score barely dropped and the accuracy score stayed exactly the same.
 
-![colab_output_4.png](../../../public/images/modules/regression/3-polynomial-regression/colab_output_4.png)
+![colab_output_4.png](/images/modules/regression/3-polynomial-regression/colab_output_4.png)
 
 Adding that third degree of drama did absolutely nothing to improve your model. It is the perfect reminder that sometimes a simple solid routine is all you need and overcomplicating things just invites unnecessary chaos.
 
@@ -758,7 +761,8 @@ Let us figure out exactly how much studying is genuinely too much.”
 
 - Train your models using polynomial degrees one two and three.
 - Compare their R squared scores on your test set to see which model is actually telling the truth.
-- Figure out which degree perfectly captures that delicate balance of focused effort versus total burnout without being dramatic and overfitting your data.` } }),
+- Figure out which degree perfectly captures that delicate balance of focused effort versus total burnout without being dramatic and overfitting your data.`  ,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '27 mins',
       difficulty: 'Intermediate but you are totally ready for this',
@@ -771,7 +775,7 @@ Let us figure out exactly how much studying is genuinely too much.”
   },
   'support-vector-regression': {
     title: 'Support Vector Regression',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## The episode teaser
+    markdownContent: `## The episode teaser
 
 You know that one friend who refuses to let every little piece of drama ruin her peace. She only reacts when things cross a very specific boundary. Otherwise, she is just thriving, moisturized, and staying completely in her own lane. That is Support Vector Regression for you.
 
@@ -783,7 +787,7 @@ SVR is perfect for messy datasets with crazy outliers, nonlinear relationships, 
 
 ## The mood board
 
-![support vector regression graph.png](../../../public/images/modules/regression/4-support-vector-regression/support_vector_regression_graph.png)
+![support vector regression graph.png](/images/modules/regression/4-support-vector-regression/support_vector_regression_graph.png)
 
 She only cares about the points that cross her boundaries. Icon behavior!
 
@@ -1009,7 +1013,7 @@ print("Time to put your phone on Do Not Disturb do your skincare and protect you
 
 The numbers are speaking for themselves. Linear regression is really struggling out here with low accuracy and high error rates. She let those two massive dramatic moments completely ruin her entire calculation. We all have that one anxious bestie who overthinks the drama and lets it drain her energy. We love her but that approach is totally exhausting.
 
-![colab_output_1.png](../../../public/images/modules/regression/4-support-vector-regression/colab_output_1.png)
+![colab_output_1.png](/images/modules/regression/4-support-vector-regression/colab_output_1.png)
 
 But look at our SVR models. Both the linear and RBF versions absolutely crushed the assignment with incredibly high accuracy. They saw the massive drama spikes and completely ignored them to protect their peace. They proved mathematically that having strict boundaries actually works.
 
@@ -1017,7 +1021,7 @@ But look at our SVR models. Both the linear and RBF versions absolutely crushed 
 
 This graph is absolute perfection. Take a look at those giant star points. Those represent your massive boundary setting moments where you really had to stand your ground.
 
-![colab_output_2.png](../../../public/images/modules/regression/4-support-vector-regression/colab_output_2.png)
+![colab_output_2.png](/images/modules/regression/4-support-vector-regression/colab_output_2.png)
 
 Notice how the line for linear regression gets completely dragged upwards toward the chaos. She totally lost the plot. She let a couple of dramatic moments pull her entirely off track.
 
@@ -1027,7 +1031,7 @@ Now look at the hot pink line for SVR RBF. She stayed perfectly grounded. She gr
 
 We asked our winning model to predict the future. What actually happens if those daily minor annoyances pile up to level 90.
 
-![colab_output_3.png](../../../public/images/modules/regression/4-support-vector-regression/colab_output_3.png)
+![colab_output_3.png](/images/modules/regression/4-support-vector-regression/colab_output_3.png)
 
 The model mathematically proves that your peace will drop to critically low levels. The algorithm has spoken: it is time to put your phone on DND, do a face mask, and protect your energy.
 
@@ -1036,7 +1040,8 @@ The model mathematically proves that your peace will drop to critically low leve
 **Your mission**
 
 You are a tech career coach analyzing salary data. Most people follow a normal trend, but some data points are totally wild. We are talking about early founders with massive stock options or people who got a huge lottery win level signing bonus. These are called **Outliers**. If you use a basic model, these wild points will ruin your data. Your goal is to build an SVR model that handles these outliers like a pro.
-Grab the 200-row salary dataset: [**The Salary Negotiation Outlier Handler**](https://www.kaggle.com/datasets/anjaliisharmaa/the-salary-negotiation-outlier-handler) (Or you can just use **pd.read_csv('salary.csv')** and let Pyxie load it for you right here!) and let the model battle begin! Your mission is to build both Linear Regression and SVR (RBF) models to see who handles wild salary outliers better. Compare their MSE and R² scores across 3 different C and epsilon combos, then write a 3-sentence verdict on which model you’d trust for a real-world salary negotiation.` } }),
+Grab the 200-row salary dataset: [**The Salary Negotiation Outlier Handler**](https://www.kaggle.com/datasets/anjaliisharmaa/the-salary-negotiation-outlier-handler) (Or you can just use **pd.read_csv('salary.csv')** and let Pyxie load it for you right here!) and let the model battle begin! Your mission is to build both Linear Regression and SVR (RBF) models to see who handles wild salary outliers better. Compare their MSE and R² scores across 3 different C and epsilon combos, then write a 3-sentence verdict on which model you’d trust for a real-world salary negotiation.`  ,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '40 mins',
       difficulty: 'Standing On Business (Advanced)',
@@ -1049,7 +1054,7 @@ Grab the 200-row salary dataset: [**The Salary Negotiation Outlier Handler**](ht
   },
   'decision-tree-regression': {
     title: 'Decision Tree Regression',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## The episode teaser
+    markdownContent: `## The episode teaser
 
 Planning the perfect Friday night is literally an art form. You are basically building your own Dream Life OS to figure out exactly what the vibe should be. You have to consider how drained you are after classes, the state of your bank account, if your girls are free, and whether your hair is giving slicked back perfection or needs an everything shower.
 
@@ -1059,7 +1064,7 @@ But if you have high energy and the girls are ready to dress up in matching fits
 
 ## The mood board
 
-![decision tree regression graph.png](../../../public/images/modules/regression/5-decision-tree-regression/decision_tree_regression_graph.png)
+![decision tree regression graph.png](/images/modules/regression/5-decision-tree-regression/decision_tree_regression_graph.png)
 
 Each split is just a new poll in the group chat and the leaf is the final plan we all agree on.
 
@@ -1323,15 +1328,15 @@ print("\nIf Train R squared is way higher than Test R squared, your tree is over
 
 Let us look at what is actually running your life. The code spits out the feature importance and it is honestly so validating. Your energy level and your budget are taking up roughly 80% of the decision making power. Having your bestie available definitely saves the mood but whether the weather is cute or not barely even registers. The algorithm knows that if you are completely drained a sunny day is simply not going to fix the vibe.
 
-![colab_output_1.png](../../../public/images/modules/regression/5-decision-tree-regression/colab_output_1.png)
+![colab_output_1.png](/images/modules/regression/5-decision-tree-regression/colab_output_1.png)
 
 Then we get the visual representation of how well the model knows you. Look at the dotted black line in the scatter plot as absolute perfection. If every single pink dot landed exactly on that line it would mean your algorithm can read your mind flawlessly. Our dots are clustering really nicely around the line which means the tree genuinely understands your aesthetic and predicts a solid night out. There is a little bit of spread because life is naturally unpredictable. Sometimes a fresh set of nails or an impromptu matcha run shifts the mood and you just have to account for that natural chaos.
 
-![colab_output_2.png](../../../public/images/modules/regression/5-decision-tree-regression/colab_output_2.png)
+![colab_output_2.png](/images/modules/regression/5-decision-tree-regression/colab_output_2.png)
 
 Finally we have the overthinking check. Look at what happens when we set the depth to ten. The training score is practically perfect at 99%. The tree literally memorized every single tiny detail of your past weekends. But when we test it on brand new plans, the score completely drops. That is pure overfitting. It is overcomplicating things for absolutely no reason. It is stressing over a complicated slicked back hair routine when a simple claw clip would have given you the exact same clean girl aesthetic. Keeping the depth around five gives you a solid and reliable plan without completely ruining the peace of the group chat.
 
-![colab_output_3.png](../../../public/images/modules/regression/5-decision-tree-regression/colab_output_3.png)
+![colab_output_3.png](/images/modules/regression/5-decision-tree-regression/colab_output_3.png)
 
 ## Mini-Project: "The Everything Shower Time Predictor"
 
@@ -1348,7 +1353,8 @@ You will create a custom dataset with at least five hundred rows. Here are the e
 Generate your dataset using random numbers just like we did for the Friday night code. Make sure the logic is realistic. A hair wash day should add at least fifteen minutes.
 
 **The target**
-Total Shower Minutes. This is your continuous prediction. The base time is 20 minutes but it increases drastically when the other inputs are involved.` } }),
+Total Shower Minutes. This is your continuous prediction. The base time is 20 minutes but it increases drastically when the other inputs are involved.`  ,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '48 mins',
       difficulty: 'Plot Twist Era (Intermediate)',
@@ -1361,7 +1367,7 @@ Total Shower Minutes. This is your continuous prediction. The base time is 20 mi
   },
   'random-forest-regression': {
     title: 'Random Forest Regression',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## The episode teaser
+    markdownContent: `## The episode teaser
 
 You know when you ask just one person for a dewy sunscreen recommendation and they swear by a product that leaves a terrible chalky layer. It happens to the best of us. Trusting a single source can sometimes lead you astray.
 
@@ -1375,7 +1381,7 @@ That is Random Forest Regression. It is not just one decision tree making predic
 
 ## The mood board
 
-![random forest regression graph.png](../../../public/images/modules/regression/6-random-forest-regression/random_forest_regression_graph.png)
+![random forest regression graph.png](/images/modules/regression/6-random-forest-regression/random_forest_regression_graph.png)
 
 She's not just one opinion, she's the collective wisdom of the entire forest
 
@@ -1646,7 +1652,7 @@ print("We love setting healthy boundaries")
 
 Look at the first set of graphs. The Solo Tree Energy side is exactly what happens when you trust one person who overthinks everything. The blue dots are literally all over the place. She is projecting her own past experiences onto a completely new Friday night and missing the mark completely.
 
-![colab_output_1.png](../../../public/images/modules/regression/6-random-forest-regression/colab_output_1.png)
+![colab_output_1.png](/images/modules/regression/6-random-forest-regression/colab_output_1.png)
 
 But then look at the Group Chat Wisdom graph. The pink dots hug that perfect prediction line so beautifully. When a hundred girls average out their thoughts you get a wonderfully clear and reliable answer. The chaos completely disappears.
 
@@ -1654,7 +1660,7 @@ But then look at the Group Chat Wisdom graph. The pink dots hug that perfect pre
 
 Check the numbers showing the solo friend versus the group chat. That solo decision tree scored an almost perfect 99% on her training data. She basically memorized her own past experiences perfectly.
 
-![colab_output_4.png](../../../public/images/modules/regression/6-random-forest-regression/colab_output_4.png)
+![colab_output_4.png](/images/modules/regression/6-random-forest-regression/colab_output_4.png)
 
 But when tested on completely new situations her score dropped drastically down to 64%. That is textbook overfitting. She panicked when things changed. The random forest stayed completely grounded. Her scores between training and testing are super close together which means her advice actually works in the real world.
 
@@ -1662,7 +1668,7 @@ But when tested on completely new situations her score dropped drastically down 
 
 Now let us look at the pink bar chart telling us what actually matters. We love a good data reveal. It turns out that having cute weather or an unlimited shopping budget is not even the most important thing.
 
-![colab_output_2.png](../../../public/images/modules/regression/6-random-forest-regression/colab_output_2.png)
+![colab_output_2.png](/images/modules/regression/6-random-forest-regression/colab_output_2.png)
 
 Your energy level straight out of an everything shower and whether your best friend is free completely dominate the results. The math literally proved that protecting your peace and keeping your girls close is the ultimate secret to a perfect night.
 
@@ -1670,7 +1676,7 @@ Your energy level straight out of an everything shower and whether your best fri
 
 Finally look at the forest size experiment numbers. You might think adding more and more friends to the chat would just keep making the advice better forever. But the data shows something completely different.
 
-![colab_output_3.png](../../../public/images/modules/regression/6-random-forest-regression/colab_output_3.png)
+![colab_output_3.png](/images/modules/regression/6-random-forest-regression/colab_output_3.png)
 
 Going from 10 friends to 50 friends gives a nice little boost to the score. But once you hit a 100 friends, the score basically stops improving. Adding 200 or 300 girls just drains your phone battery for no reason. We love setting a strict boundary and knowing exactly when to close the chat.
 
@@ -1701,7 +1707,8 @@ You will generate 200 rows of data based on your life.
 **Deliverables**
 
 - A clean Python script.
-- Print a short paragraph sharing your biggest realization.` } }),
+- Print a short paragraph sharing your biggest realization.`  ,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '50 mins',
       difficulty: 'Group Project Energy (Intermediate-Advanced)',
@@ -1714,7 +1721,7 @@ You will generate 200 rows of data based on your life.
   },
   'evaluating-regression-models': {
     title: 'Evaluating Regression Models Performance',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## The episode teaser
+    markdownContent: `## The episode teaser
 
 You and the girls are planning a cute digicam photoshoot. Everyone brings their holy grail lip oils and dewy sunscreens to share. Each product promises to give that perfect glass skin finish. But before stepping outside, you all gather by the window for a quick front camera check. You help each other see which gloss actually catches the natural light best and if the blush blends flawlessly. That final mirror check to see if the makeup truly holds up or just looks good in the bathroom lighting is exactly what evaluating a regression model means. We need the model that predicts actual results and performs in real life. We are not just making things look pretty in theory.
 
@@ -1837,7 +1844,8 @@ We use our validation tests to catch when we are trying way too hard. We always 
 
 ## Final note
 
-Getting your regression model right is exactly like prepping for picture day with the girls. You always have to check your final look in real natural lighting before anyone pulls out their digicam. Trust your quick makeup checks and pick the routine that actually works perfectly for everyone in the group chat. We are making sure we all look our absolute best. We just want models that give us that flawless finish and actually hold up all day long.` } }),
+Getting your regression model right is exactly like prepping for picture day with the girls. You always have to check your final look in real natural lighting before anyone pulls out their digicam. Trust your quick makeup checks and pick the routine that actually works perfectly for everyone in the group chat. We are making sure we all look our absolute best. We just want models that give us that flawless finish and actually hold up all day long.`  ,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '20 mins',
       difficulty: 'Advanced',
@@ -1848,7 +1856,7 @@ Getting your regression model right is exactly like prepping for picture day wit
   },
   'regression-model-selection': {
     title: 'Regression Model Selection',
-    content: () => React.createElement('div', { dangerouslySetInnerHTML: { __html: `## The episode teaser
+    markdownContent: `## The episode teaser
 
 You and your girls are planning outfits for exam week and it is basically a micro runway on campus. Some days you just need that fuss free dewy sunscreen and a slicked back bun to survive a long study session. Other days you are pulling up in a cute matching set and minimalistic jewellery to completely own a big presentation. Choosing a regression model is just picking your outfit for the day. We are looking for what feels right and actually works for the exact situation you are in. We are helping each other find the absolute best fit that gets the job done perfectly instead of just looking good in a textbook.
 
@@ -1916,7 +1924,8 @@ Sometimes you actually have to stand up and present your whole project to your s
 
 ## Closing pep talk
 
-You are selecting your models exactly like curating your dream Pinterest wardrobe.  Always start simple with your cute basics and then slowly add more pieces only if you actually need them. Trust your validation scores the exact same way you trust your girls when they tell you a fit looks absolutely gorgeous on you. Just keep your explanations ready so you can gracefully help your teammates understand exactly what you built. We completely support making choices that are actually useful and crystal clear rather than just picking something flashy that totally breaks under pressure. You are going to do so incredibly well with this and your whole community is right here cheering you on every single step of the way.` } }),
+You are selecting your models exactly like curating your dream Pinterest wardrobe.  Always start simple with your cute basics and then slowly add more pieces only if you actually need them. Trust your validation scores the exact same way you trust your girls when they tell you a fit looks absolutely gorgeous on you. Just keep your explanations ready so you can gracefully help your teammates understand exactly what you built. We completely support making choices that are actually useful and crystal clear rather than just picking something flashy that totally breaks under pressure. You are going to do so incredibly well with this and your whole community is right here cheering you on every single step of the way.`  ,
+    content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '20 mins',
       difficulty: 'The Archive Collection (Advanced)',

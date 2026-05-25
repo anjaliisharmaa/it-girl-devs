@@ -4,8 +4,115 @@ import Link from 'next/link';
 import { courseData } from '@/data/courseData';
 import { Clock } from 'lucide-react';
 import EvaluatorTest from '@/components/EvaluatorTest';
+import ReactMarkdown from 'react-markdown';
 
 interface PageProps {
+  params: {
+    moduleId: string;
+    lessonId: string;
+  };
+}
+
+// Custom Markdown Components for Brand Styling
+const markdownComponents = {
+  h1: ({ children }: any) => (
+    <h1 className="text-[#590D22] font-bold text-6xl mt-[5rem] mb-0 leading-[2.5rem]">
+      {children}
+    </h1>
+  ),
+  h2: ({ children }: any) => (
+    <h2 className="text-[#590D22] font-bold text-4xl mt-[2.5rem] mb-0 leading-[2.5rem]">
+      {children}
+    </h2>
+  ),
+  h3: ({ children }: any) => (
+    <h3 className="text-[#590D22] font-bold text-3xl mt-[2.5rem] mb-0 leading-[2.5rem]">
+      {children}
+    </h3>
+  ),
+  h4: ({ children }: any) => (
+    <h4 className="text-[#590D22] font-bold text-2xl mt-[2.5rem] mb-0 leading-[2.5rem]">
+      {children}
+    </h4>
+  ),
+  p: ({ children }: any) => (
+    <p className="text-[#590D22] text-lg my-0 leading-[2.5rem]">
+      {children}
+    </p>
+  ),
+  ul: ({ children }: any) => (
+    <ul className="list-disc list-inside text-[#590D22] text-lg my-0 leading-[2.5rem] space-y-0">
+      {children}
+    </ul>
+  ),
+  ol: ({ children }: any) => (
+    <ol className="list-decimal list-inside text-[#590D22] text-lg my-0 leading-[2.5rem] space-y-0">
+      {children}
+    </ol>
+  ),
+  li: ({ children }: any) => (
+    <li className="text-[#590D22] my-0 leading-[2.5rem]">
+      {children}
+    </li>
+  ),
+  code: ({ inline, children }: any) => {
+    if (inline) {
+      return (
+        <code className="bg-pink-50 text-pink-600 px-1.5 py-0.5 rounded text-base font-mono">
+          {children}
+        </code>
+      );
+    }
+    // Block code - handled in pre
+    return <code className="font-mono">{children}</code>;
+  },
+  pre: ({ children }: any) => (
+    <pre className="bg-[#1a1a2e] text-white p-4 rounded-xl overflow-x-auto my-6 font-mono text-sm leading-relaxed">
+      {children}
+    </pre>
+  ),
+  a: ({ href, children }: any) => (
+    <a
+      href={href}
+      className="text-pink-600 underline hover:text-pink-700 transition-colors"
+      target={href?.startsWith('http') ? '_blank' : undefined}
+      rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+    >
+      {children}
+    </a>
+  ),
+  img: ({ src, alt }: any) => (
+    <img
+      src={src}
+      alt={alt}
+      className="rounded-2xl shadow-sm border-2 border-pink-100 w-full my-[2.5rem]"
+    />
+  ),
+  blockquote: ({ children }: any) => (
+    <blockquote className="border-l-4 border-pink-200 pl-4 italic text-[#590D22] my-[2.5rem]">
+      {children}
+    </blockquote>
+  ),
+  table: ({ children }: any) => (
+    <div className="overflow-x-auto my-[2.5rem]">
+      <table className="w-full border-collapse border border-pink-200">
+        {children}
+      </table>
+    </div>
+  ),
+  th: ({ children }: any) => (
+    <th className="border border-pink-200 bg-pink-50 px-4 py-2 text-[#590D22] font-bold text-left">
+      {children}
+    </th>
+  ),
+  td: ({ children }: any) => (
+    <td className="border border-pink-200 px-4 py-2 text-[#590D22]">
+      {children}
+    </td>
+  ),
+};
+
+export interface PageProps {
   params: {
     moduleId: string;
     lessonId: string;
@@ -130,11 +237,20 @@ export default function ClassroomPage({ params }: PageProps) {
                 </h1>
               </div>
 
-              {/* Content Area - Typewriter Mode: Zero Margins, 2.5rem Line Height, User Controls Spacing */}
+              {/* Content Area - Markdown Renderer with Custom Styling */}
               <article 
-                className="prose prose-pink prose-xl max-w-none [&_*]:!leading-[2.5rem] [&_p]:!my-0 [&_p]:!text-lg [&_h1]:!mt-[5rem] [&_h1]:!mb-0 [&_h1]:!text-6xl [&_h2]:!mt-[2.5rem] [&_h2]:!mb-0 [&_h2]:!text-4xl [&_h3]:!mt-[2.5rem] [&_h3]:!mb-0 [&_h3]:!text-3xl [&_h4]:!mt-[2.5rem] [&_h4]:!mb-0 [&_ul]:!my-0 [&_ol]:!my-0 [&_li]:!my-0 [&_div_h2]:!mt-0 [&_div.mb-12]:!leading-normal [&_div.mb-12_span]:!leading-normal"
+                className="prose prose-pink prose-xl max-w-none text-[#590D22]"
+                style={{ lineHeight: '2.5rem' }}
               >
-                {ContentComponent && <ContentComponent />}
+                {lesson.markdownContent ? (
+                  // Render markdown content with custom components
+                  <ReactMarkdown components={markdownComponents}>
+                    {lesson.markdownContent}
+                  </ReactMarkdown>
+                ) : (
+                  // Fallback to old ContentComponent for backward compatibility
+                  ContentComponent && <ContentComponent />
+                )}
               </article>
 
               {/* 🧪 PYXIE LAB TEST (Moved above pagination!) */}

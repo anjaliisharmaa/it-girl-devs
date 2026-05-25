@@ -8,7 +8,8 @@ export interface LessonMetadata {
 
 export interface Lesson {
   title: string;
-  content: () => ReactNode; // Content is a React component
+  content?: () => ReactNode; // Content is a React component (optional for backward compatibility)
+  markdownContent?: string; // Raw markdown string for rendering with ReactMarkdown
   metadata?: LessonMetadata;
   prevLesson?: string;
   nextLesson?: string;
