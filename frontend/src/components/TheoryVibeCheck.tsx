@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useProgress } from '@/context/ProgressContext';
 
@@ -20,13 +20,25 @@ export default function TheoryVibeCheck({
   const router = useRouter();
   const { markMastered } = useProgress();
 
-  // TODO: Swap this to use real sipTime when ready
-  // const timerDuration = sipTime ? parseInt(sipTime.split(' ')[0]) * 60 : 360; // default 6 mins
-  const TESTING_TIMER_SECONDS = 10; // 10 seconds for testing
+  // Parse sipTime prop and convert to seconds
+  const timerDuration = useMemo(() => {
+    if (!sipTime) return 180; // default 3 minutes
+    
+    const match = sipTime.match(/(\d+)/);
+    if (!match) return 180; // default 3 minutes if no number found
+    
+    const minutes = parseInt(match[1], 10);
+    return minutes * 60; // convert to seconds
+  }, [sipTime]);
 
-  const [timeRemaining, setTimeRemaining] = useState(TESTING_TIMER_SECONDS);
+  const [timeRemaining, setTimeRemaining] = useState(timerDuration);
   const [reflection, setReflection] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Reset timer when sipTime prop changes
+  useEffect(() => {
+    setTimeRemaining(timerDuration);
+  }, [timerDuration]);
 
   // Countdown timer
   useEffect(() => {
