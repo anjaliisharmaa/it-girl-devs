@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Syne, Outfit, Space_Grotesk, Fraunces } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
-import Navbar from '@/components/layout/Navbar';
+import ConditionalNavbar from '@/components/layout/ConditionalNavbar';
 import { ProgressProvider } from '@/context/ProgressContext';
 
 const syne = Syne({
@@ -44,7 +44,7 @@ export default function RootLayout({
       <body className={`${syne.variable} ${outfit.variable} ${spaceGrotesk.variable} ${fraunces.variable} antialiased`}>
         <ClerkProvider>
           <ProgressProvider>
-            <Navbar />
+            <ConditionalNavbar />
             {children}
           </ProgressProvider>
         </ClerkProvider>

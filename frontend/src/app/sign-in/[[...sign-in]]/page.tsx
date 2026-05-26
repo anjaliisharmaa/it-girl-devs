@@ -39,7 +39,8 @@ export default function SignInPage() {
           <SignIn
             appearance={{
               elements: {
-                card: 'shadow-none border-none bg-transparent',
+                cardBox: 'shadow-none',
+                card: 'shadow-none border-none bg-transparent sm:shadow-none sm:bg-transparent',
                 headerTitle: 'text-gray-900 font-outfit text-2xl font-bold',
                 headerSubtitle: 'text-gray-500 font-outfit',
                 formButtonPrimary:
