@@ -159,7 +159,7 @@ export default function Navbar() {
                     <Unlock size={22} />
                   </button>
                 ) : (
-                  <UserButton fallbackRedirectUrl="/" />
+                  <UserButton />
                 )}
               </motion.div>
             </div>
