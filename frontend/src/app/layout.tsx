@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Syne, Outfit, Space_Grotesk, Fraunces } from 'next/font/google';
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider, ClerkLoading, ClerkLoaded } from '@clerk/nextjs';
 import './globals.css';
 import ConditionalNavbar from '@/components/layout/ConditionalNavbar';
 import { ProgressProvider } from '@/context/ProgressContext';
@@ -42,11 +42,55 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${syne.variable} ${outfit.variable} ${spaceGrotesk.variable} ${fraunces.variable} antialiased`}>
-        <ClerkProvider>
-          <ProgressProvider>
-            <ConditionalNavbar />
-            {children}
-          </ProgressProvider>
+        <ClerkProvider
+          appearance={{
+            variables: {
+              colorPrimary: '#831843',
+              colorTextBrand: '#831843',
+            },
+            elements: {
+              card: 'rounded-2xl border border-pink-100 shadow-xl',
+              formButtonPrimary: 'bg-pink-900 hover:bg-pink-800 text-white rounded-xl shadow-none',
+              profileSectionPrimaryButton: 'bg-pink-900 hover:bg-pink-800 text-white',
+              navbarButton: 'text-pink-800 hover:bg-pink-50',
+              userButtonPopoverCard: 'shadow-xl border border-pink-100',
+              headerTitle: 'text-gray-900 font-outfit text-2xl font-bold',
+              headerSubtitle: 'text-gray-500 font-outfit',
+              formFieldInput: 'border border-gray-200 rounded-lg font-outfit focus:border-pink-900 focus:ring-1 focus:ring-pink-900',
+              footerActionLink: 'text-pink-900 hover:text-opacity-80 font-outfit font-semibold',
+            },
+          }}
+        >
+          <ClerkLoading>
+            {/* Loading State - Smooth Transition During Auth Resolution */}
+            <div className="fixed inset-0 z-50 bg-pink-50 min-h-screen flex flex-col items-center justify-center">
+              {/* Pulsing Spinner */}
+              <style>{`
+                @keyframes pulse-ring {
+                  0% {
+                    box-shadow: 0 0 0 0 rgba(131, 24, 67, 0.7);
+                  }
+                  70% {
+                    box-shadow: 0 0 0 30px rgba(131, 24, 67, 0);
+                  }
+                  100% {
+                    box-shadow: 0 0 0 0 rgba(131, 24, 67, 0);
+                  }
+                }
+                .pulse-spinner {
+                  animation: pulse-ring 2s infinite;
+                }
+              `}</style>
+              <div className="w-16 h-16 bg-pink-900 rounded-full pulse-spinner"></div>
+              <p className="text-pink-900 font-medium mt-4 font-outfit lowercase">syncing your ecosystem...</p>
+            </div>
+          </ClerkLoading>
+          <ClerkLoaded>
+            <ProgressProvider>
+              <ConditionalNavbar />
+              {children}
+            </ProgressProvider>
+          </ClerkLoaded>
         </ClerkProvider>
       </body>
     </html>

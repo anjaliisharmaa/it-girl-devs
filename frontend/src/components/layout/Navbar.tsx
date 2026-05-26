@@ -96,20 +96,7 @@ export default function Navbar() {
                 <Unlock size={18} />
               </motion.button>
             ) : (
-              <UserButton
-                fallbackRedirectUrl="/"
-                appearance={{
-                  variables: {
-                    colorPrimary: '#831843',
-                    colorTextBrand: '#831843',
-                  },
-                  elements: {
-                    userButtonPopoverCard: 'shadow-xl border border-pink-100',
-                    navbarButton: 'text-pink-800 hover:bg-pink-50',
-                    profileSectionPrimaryButton: 'bg-pink-900 hover:bg-pink-800 text-white',
-                  },
-                }}
-              />
+              <UserButton fallbackRedirectUrl="/" />
             )}
           </div>
 
@@ -172,20 +159,7 @@ export default function Navbar() {
                     <Unlock size={22} />
                   </button>
                 ) : (
-                  <UserButton
-                    fallbackRedirectUrl="/"
-                    appearance={{
-                      variables: {
-                        colorPrimary: '#831843',
-                        colorTextBrand: '#831843',
-                      },
-                      elements: {
-                        userButtonPopoverCard: 'shadow-xl border border-pink-100',
-                        navbarButton: 'text-pink-800 hover:bg-pink-50',
-                        profileSectionPrimaryButton: 'bg-pink-900 hover:bg-pink-800 text-white',
-                      },
-                    }}
-                  />
+                  <UserButton fallbackRedirectUrl="/" />
                 )}
               </motion.div>
             </div>
