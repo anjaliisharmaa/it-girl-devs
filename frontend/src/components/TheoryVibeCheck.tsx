@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useProgress } from '@/context/ProgressContext';
+import { useActiveTimer } from '@/hooks/useActiveTimer';
 
 interface TheoryVibeCheckProps {
   lessonId: string;
@@ -31,28 +32,14 @@ export default function TheoryVibeCheck({
     return minutes * 60; // convert to seconds
   }, [sipTime]);
 
-  const [timeRemaining, setTimeRemaining] = useState(timerDuration);
+  // Use the active engagement timer hook
+  const { timeLeft, isIdle } = useActiveTimer(lessonId, timerDuration);
+
   const [reflection, setReflection] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Reset timer when sipTime prop changes
-  useEffect(() => {
-    setTimeRemaining(timerDuration);
-  }, [timerDuration]);
-
-  // Countdown timer
-  useEffect(() => {
-    if (timeRemaining <= 0) return;
-
-    const timer = setInterval(() => {
-      setTimeRemaining((prev) => Math.max(0, prev - 1));
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeRemaining]);
-
   // Check if button should be enabled
-  const isTimerComplete = timeRemaining === 0;
+  const isTimerComplete = timeLeft === 0;
   const hasMinimumText = reflection.trim().length >= 10;
   const isButtonEnabled = isTimerComplete && hasMinimumText;
 
@@ -90,19 +77,23 @@ export default function TheoryVibeCheck({
           </h3>
           <div
             className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono font-semibold text-lg transition-all ${
-              isTimerComplete
+              isIdle
+                ? 'bg-yellow-100 text-yellow-700'
+                : isTimerComplete
                 ? 'bg-green-100 text-green-700'
                 : 'bg-pink-100 text-pink-700'
             }`}
           >
-            <span>{isTimerComplete ? '✅' : '⏱️'}</span>
-            <span>{formatTime(timeRemaining)}</span>
+            <span>{isIdle ? '⏸' : isTimerComplete ? '✅' : '⏱️'}</span>
+            <span>
+              {isIdle ? 'Paused (Are you still there?)' : formatTime(timeLeft)}
+            </span>
           </div>
         </div>
 
         {/* Description */}
         <p className="text-[#590D22] text-base leading-relaxed">
-          Pause and process. Read through the material, then share your biggest takeaway. {isTimerComplete ? "You're ready!" : `Come back in ${formatTime(timeRemaining)}.`}
+          Pause and process. Read through the material, then share your biggest takeaway. {isTimerComplete ? "You're ready!" : isIdle ? '⏸ Timer paused — keep engaging!' : `Come back in ${formatTime(timeLeft)}.`}
         </p>
 
         {/* Textarea for Reflection */}
