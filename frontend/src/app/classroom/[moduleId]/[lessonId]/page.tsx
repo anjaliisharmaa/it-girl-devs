@@ -13,7 +13,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import 'katex/dist/katex.min.css';
 
-interface PageProps {
+interface ClassroomPageProps {
   params: {
     moduleId: string;
     lessonId: string;
@@ -155,14 +155,14 @@ const markdownComponents = {
   ),
 };
 
-export interface PageProps {
+export interface ClassroomPageProps {
   params: {
     moduleId: string;
     lessonId: string;
   };
 }
 
-export default function ClassroomPage({ params }: PageProps) {
+export default function ClassroomPage({ params }: ClassroomPageProps) {
   const { moduleId, lessonId } = params;
 
   // Fetch the module and lesson data
