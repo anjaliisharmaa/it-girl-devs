@@ -13,12 +13,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import 'katex/dist/katex.min.css';
 
-interface ClassroomPageProps {
-  params: {
-    moduleId: string;
-    lessonId: string;
-  };
-}
+
 
 // Interactive Code Block Component with Copy Functionality
 const InteractiveCodeBlock = ({ language, children }: { language: string; children: string }) => {
