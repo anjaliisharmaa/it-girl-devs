@@ -93,7 +93,7 @@ export default function TheoryVibeCheck({
 
         {/* Description */}
         <p className="text-[#590D22] text-base leading-relaxed">
-          Pause and process. Read through the material, then share your biggest takeaway. {isTimerComplete ? "You're ready!" : isIdle ? '⏸ Timer paused — keep engaging!' : `Come back in ${formatTime(timeLeft)}.`}
+          Pause and process. Read through the material, then share your biggest takeaway. {isTimerComplete ? "You're ready!" : isIdle ? '⏸ Timer paused... keep engaging!' : `Come back in ${formatTime(timeLeft)}.`}
         </p>
 
         {/* Textarea for Reflection */}
