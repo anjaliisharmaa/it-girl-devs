@@ -50,9 +50,10 @@ export default function RootLayout({
             },
             elements: {
               card: 'rounded-2xl border border-pink-100 shadow-xl',
-              formButtonPrimary: 'bg-pink-900 hover:bg-pink-800 text-white rounded-xl shadow-none',
-              profileSectionPrimaryButton: 'bg-pink-900 hover:bg-pink-800 text-white',
-              navbarButton: 'text-pink-800 hover:bg-pink-50',
+              formButtonPrimary: 'bg-pink-900 hover:bg-pink-800 text-white hover:text-white shadow-none rounded-xl transition-colors',
+              profileSectionPrimaryButton: 'bg-pink-900 hover:bg-pink-800 text-white hover:text-white transition-colors',
+              formButtonReset: 'text-pink-900 hover:bg-pink-50 transition-colors',
+              navbarButton: 'text-pink-800 hover:bg-pink-50 transition-colors',
               userButtonPopoverCard: 'shadow-xl border border-pink-100',
               headerTitle: 'text-gray-900 font-outfit text-2xl font-bold',
               headerSubtitle: 'text-gray-500 font-outfit',
