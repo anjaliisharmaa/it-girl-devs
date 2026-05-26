@@ -2,14 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Unlock } from 'lucide-react';
-import { useClerk, useUser, UserButton } from '@clerk/nextjs';
+import { useUser, UserButton } from '@clerk/nextjs';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { openSignIn } = useClerk();
+  const router = useRouter();
   const { isSignedIn } = useUser();
 
   // Scroll detection hook
@@ -88,7 +89,7 @@ export default function Navbar() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => openSignIn()}
+                onClick={() => router.push('/sign-in')}
                 className="flex items-center gap-2 bg-it-girl-maroon text-white px-6 py-3 rounded-full font-outfit font-semibold hover:bg-opacity-90 transition-all shadow-lg cursor-pointer"
               >
                 <span>Unlock</span>
@@ -148,7 +149,10 @@ export default function Navbar() {
               >
                 {!isSignedIn ? (
                   <button 
-                    onClick={() => openSignIn()}
+                    onClick={() => {
+                      router.push('/sign-in');
+                      setIsMobileMenuOpen(false);
+                    }}
                     className="flex items-center gap-3 bg-it-girl-maroon text-white px-8 py-4 rounded-full font-outfit font-semibold text-xl shadow-xl cursor-pointer"
                   >
                     <span>Unlock</span>
