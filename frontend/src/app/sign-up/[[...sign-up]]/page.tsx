@@ -1,12 +1,17 @@
 'use client';
 
+import Link from 'next/link';
 import { SignUp } from '@clerk/nextjs';
 
 export default function SignUpPage() {
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Left Side - Brand Vision */}
-      <div className="hidden md:flex flex-col justify-center p-12 lg:p-24 bg-pink-50">
+      <div className="hidden md:flex flex-col justify-center p-12 lg:p-24 bg-pink-50 relative">
+        {/* Escape Hatch */}
+        <Link href="/" className="absolute top-8 left-8 text-pink-800 hover:text-pink-600 font-medium transition-colors font-outfit">
+          ← back to home
+        </Link>
         <div className="max-w-md">
           <h1 className="font-fraunces text-4xl lg:text-5xl text-gray-900 mb-6 font-bold">
             system initialization.
@@ -37,6 +42,7 @@ export default function SignUpPage() {
       <div className="flex items-center justify-center p-8 bg-white">
         <div className="w-full max-w-md">
           <SignUp
+            fallbackRedirectUrl="/episodes"
             appearance={{
               elements: {
                 cardBox: 'shadow-none',
