@@ -131,7 +131,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   // Mark a lesson as mastered, unlock next, and persist to Supabase
   const markMastered = useCallback(
     (lessonId: string) => {
-      const updatePromises: Promise<any>[] = [];
+      // const updatePromises: Promise<any>[] = [];
 
       // Optimistic UI update
       setProgress((prev) => {
@@ -155,43 +155,41 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
 
       // Persist to Supabase
       if (userId) {
-        // Upsert the mastered lesson
-        updatePromises.push(
+        // 1. Upsert the mastered lesson
+        supabase
+          .from('user_progress')
+          .upsert(
+            {
+              user_id: userId,
+              lesson_id: lessonId,
+              status: 'mastered',
+              updated_at: new Date().toISOString(),
+            },
+            { onConflict: 'user_id,lesson_id' }
+          )
+          .then(({ error }) => {
+            if (error) console.error('Failed to save mastered status:', error);
+          });
+
+        // 2. Also upsert the next lesson if it exists
+        const currentIndex = LESSON_SEQUENCE.indexOf(lessonId);
+        if (currentIndex !== -1 && currentIndex < LESSON_SEQUENCE.length - 1) {
+          const nextLessonId = LESSON_SEQUENCE[currentIndex + 1];
           supabase
             .from('user_progress')
             .upsert(
               {
                 user_id: userId,
-                lesson_id: lessonId,
-                status: 'mastered',
+                lesson_id: nextLessonId,
+                status: 'in-progress',
                 updated_at: new Date().toISOString(),
               },
               { onConflict: 'user_id,lesson_id' }
             )
-        );
-
-        // Also upsert the next lesson if it exists
-        const currentIndex = LESSON_SEQUENCE.indexOf(lessonId);
-        if (currentIndex !== -1 && currentIndex < LESSON_SEQUENCE.length - 1) {
-          const nextLessonId = LESSON_SEQUENCE[currentIndex + 1];
-          updatePromises.push(
-            supabase
-              .from('user_progress')
-              .upsert(
-                {
-                  user_id: userId,
-                  lesson_id: nextLessonId,
-                  status: 'in-progress',
-                  updated_at: new Date().toISOString(),
-                },
-                { onConflict: 'user_id,lesson_id' }
-              )
-          );
+            .then(({ error }) => {
+              if (error) console.error('Failed to unlock next lesson:', error);
+            });
         }
-
-        Promise.all(updatePromises).catch((error) =>
-          console.error('Failed to update progress:', error)
-        );
       }
     },
     [userId]
