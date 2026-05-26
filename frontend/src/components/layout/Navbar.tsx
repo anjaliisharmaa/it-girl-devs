@@ -4,10 +4,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Unlock } from 'lucide-react';
+import { useClerk, useUser, UserButton } from '@clerk/nextjs';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { openSignIn } = useClerk();
+  const { isSignedIn } = useUser();
 
   // Scroll detection hook
   useEffect(() => {
@@ -80,17 +83,20 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button - Right (Desktop only) */}
-          <div className="hidden lg:flex items-center">
-            <Link href="/unlock">
+          <div className="hidden lg:flex items-center gap-4">
+            {!isSignedIn ? (
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 bg-it-girl-maroon text-white px-6 py-3 rounded-full font-outfit font-semibold hover:bg-opacity-90 transition-all shadow-lg"
+                onClick={() => openSignIn()}
+                className="flex items-center gap-2 bg-it-girl-maroon text-white px-6 py-3 rounded-full font-outfit font-semibold hover:bg-opacity-90 transition-all shadow-lg cursor-pointer"
               >
                 <span>Unlock</span>
                 <Unlock size={18} />
               </motion.button>
-            </Link>
+            ) : (
+              <UserButton />
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -138,14 +144,19 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.1 }}
-                className="mt-8"
+                className="mt-8 flex gap-4 items-center"
               >
-                <Link href="/unlock" onClick={() => setIsMobileMenuOpen(false)}>
-                  <button className="flex items-center gap-3 bg-it-girl-maroon text-white px-8 py-4 rounded-full font-outfit font-semibold text-xl shadow-xl">
+                {!isSignedIn ? (
+                  <button 
+                    onClick={() => openSignIn()}
+                    className="flex items-center gap-3 bg-it-girl-maroon text-white px-8 py-4 rounded-full font-outfit font-semibold text-xl shadow-xl cursor-pointer"
+                  >
                     <span>Unlock</span>
                     <Unlock size={22} />
                   </button>
-                </Link>
+                ) : (
+                  <UserButton />
+                )}
               </motion.div>
             </div>
           </motion.div>

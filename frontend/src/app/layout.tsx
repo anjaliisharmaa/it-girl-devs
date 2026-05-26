@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Syne, Outfit, Space_Grotesk, Fraunces } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import { ProgressProvider } from '@/context/ProgressContext';
@@ -41,10 +42,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${syne.variable} ${outfit.variable} ${spaceGrotesk.variable} ${fraunces.variable} antialiased`}>
-        <ProgressProvider>
-          <Navbar />
-          {children}
-        </ProgressProvider>
+        <ClerkProvider>
+          <ProgressProvider>
+            <Navbar />
+            {children}
+          </ProgressProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
