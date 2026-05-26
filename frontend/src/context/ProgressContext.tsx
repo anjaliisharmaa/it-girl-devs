@@ -120,7 +120,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
             },
             { onConflict: 'user_id,lesson_id' }
           )
-          .catch((error) => console.error('Failed to update progress:', error));
+          .then(({ error }) => {
+            if (error) console.error('Failed to update progress:', error);
+          });
       }
     },
     [userId]
