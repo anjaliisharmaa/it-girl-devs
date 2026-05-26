@@ -96,7 +96,7 @@ export default function Navbar() {
                 <Unlock size={18} />
               </motion.button>
             ) : (
-              <UserButton afterSignOutUrl="/" />
+              <UserButton />
             )}
           </div>
 
