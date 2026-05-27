@@ -77,12 +77,12 @@ export default function LorePage() {
         <div className="font-outfit space-y-4 text-lg leading-relaxed">
           {/* Introduction */}
           <p className="text-justify">
-            Hi bestie! I'm Anjali, but you can call me Anjo. 🎀
+            Hiii! I'm Anjali, but you can call me Anjo. 🎀
           </p>
 
           <p className="text-justify">
             If you are wondering who is writing all these pink tutorials and turning Python into an aesthetic, it is me. 
-            I am a third-year CSE-AI student at IGDTUW, but honestly, I am just a girl who loves building cool things.
+            I am a final year CSE-AI student at IGDTUW, but honestly, I am just a girl who loves building cool things.
           </p>
 
           <p className="text-justify">
@@ -92,26 +92,20 @@ export default function LorePage() {
           </p>
 
           <p className="text-justify">
-            That is actually how this whole platform started. I literally drew the It-Girl Devs logo myself on my tablet 
-            while sipping my third coffee of the day (yes, I survive entirely on caffeine). I realized that coding is just 
-            another form of art. Instead of paintbrushes, we use syntax. Instead of a canvas, we use an IDE.
+            That is exactly how this platform started. I sketched the It Girl Devs logo on my tablet with a dark roast coffee in hand. I realized programming is just art in a different format. We swap paintbrushes for syntax and a blank canvas for a code editor.
           </p>
 
           {/* The Serious Stuff Section */}
           <h2 className="font-fraunces text-3xl md:text-4xl font-bold mt-16 mb-6">
-            The Serious Stuff (But Make It Cute)
+            Past the Pink
           </h2>
 
           <p className="text-justify">
-            Okay, I know everything here looks pink and sparkly, but I promise I know my stuff! 👩‍💻
+            Okay, I know everything here looks pink and sparkly, but I promise I know my stuff!
           </p>
 
           <p className="text-justify">
-            When I am not listening to Jade Thirlwall's solo music on repeat, I am actually deep into AI research. 
-            I recently interned at DRDO, where I built SHAKTI-AI, a system designed to help women scientist access health 
-            and legal info easily. It was such a special project for me because I have always wanted to use tech to help 
-            other women. I stood in front of a room full of women scientists and presented my work, which was terrifying 
-            but also kind of a power move. 💅
+            When I am not listening to Jade Thirlwall on repeat, I am doing real artificial intelligence research. I recently interned at DRDO, where I built SHAKTI AI, a system designed to help Indian women access health and legal info easily. It was a special project because I have always wanted to use tech to support other women. I even presented my work in front of a room full of senior women scientists. It was terrifying, but honestly a major power move.
           </p>
 
           <p className="text-justify">
@@ -136,14 +130,14 @@ export default function LorePage() {
           </p>
 
           <p className="text-justify">
-            I wanted to create a space where we can be smart and cute. Where we can talk about Neural Networks and nail art 
-            in the same sentence. This isn't about me teaching you from a pedestal; it is about us growing together. I am 
+            I wanted a space where we can be smart and aesthetic. Where we can talk about Neural Networks and nail art 
+            in the same breath. This isn't about me teaching you from a pedestal... it is about us growing together. I am 
             still learning every day, and I want to take you along for the ride.
           </p>
 
           {/* Where To Find Me Section */}
           <h2 className="font-fraunces text-3xl md:text-4xl font-bold mt-16 mb-6">
-            Where To Find Me 🗺️
+            Where To Find Me
           </h2>
 
           <p className="text-justify mb-8">
@@ -177,12 +171,12 @@ export default function LorePage() {
 
           {/* Say Hello Section */}
           <h2 className="font-fraunces text-3xl md:text-4xl font-bold mt-16 mb-6">
-            Say Hello 👋
+            Say Hello
           </h2>
 
           <p className="text-justify">
             Seriously, my email is always open. Whether you are stuck on a bug, want career advice, or just want to talk 
-            about Little Mix, drop me a message at{' '}
+            about anything, drop me a message at{' '}
             <Link 
               href="mailto:itgirldevs@gmail.com"
               className="text-[#590D22] font-bold underline decoration-2 hover:decoration-4 transition-all"
@@ -200,7 +194,7 @@ export default function LorePage() {
           <div className="mt-16 text-center">
             <p className="text-2xl">
               <span className="italic font-light tracking-wide">
-                Love, Anjo 💖
+                Love, Anjo!
               </span>
             </p>
           </div>
