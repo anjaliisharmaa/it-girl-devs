@@ -34,7 +34,7 @@ const socialLinks: SocialLink[] = [
     title: 'The Group Chat (WhatsApp)',
     emoji: '💬',
     description: 'This is for the inner circle. Especially if you are from IGDTUW, this is where we help each other debug, plan projects, and just hype each other up.',
-    url: '#',
+    url: 'https://chat.whatsapp.com/Fig3PZOSmQmKxg3taZu7yx',
   },
   {
     title: 'LinkedIn',
@@ -105,17 +105,28 @@ export default function LorePage() {
           </p>
 
           <p className="text-justify">
-            When I am not listening to Jade Thirlwall on repeat, I am doing real artificial intelligence research. I recently interned at DRDO, where I built SHAKTI AI, a system designed to help Indian women access health and legal info easily. It was a special project because I have always wanted to use tech to support other women. I even presented my work in front of a room full of senior women scientists. It was terrifying, but honestly a major power move.
+            When I am not listening to Jade Thirlwall on repeat, I am doing real artificial intelligence research. I recently interned at DRDO, where I built{' '}
+            <Link 
+              href="https://shakti.celestisolutions.com/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#590D22] font-bold underline decoration-2 hover:decoration-4 transition-all"
+            >
+              SHAKTI-AI
+             </Link>
+             , a system designed to help Indian women access health and legal info easily. It was a special project because I have always wanted to use tech to support other women. I even presented my work in front of a room full of senior women scientists. It was terrifying, but honestly a major power move.
           </p>
 
           <p className="text-justify">
             I also published a research paper on Deepfake Detection (yep, the scary AI stuff) at an international conference. 
             Wanna read?{' '}
             <Link 
-              href="#" 
+              href="https://ieeexplore.ieee.org/document/11031727" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[#590D22] font-bold underline decoration-2 hover:decoration-4 transition-all"
             >
-              Here
+              Here you go.
             </Link>
           </p>
 
