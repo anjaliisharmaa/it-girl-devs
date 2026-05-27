@@ -64,7 +64,7 @@ export default function LorePage() {
         <div className="flex justify-center mb-12">
           <div className="relative w-48 h-48 md:w-56 md:h-56">
             <Image
-              src="/images/lore/picture.png"
+              src="/images/lore/lore.jpg"
               alt="Anjali - It-Girl Devs"
               fill
               className="rounded-full border-4 border-[#590D22] shadow-xl object-cover"
