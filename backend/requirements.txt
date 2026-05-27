@@ -9,7 +9,7 @@ pydantic-settings==2.1.0
 # ===================================
 # AI & Machine Learning
 # ===================================
-google-genai>=0.1.0
+google-genai
 numpy==1.26.3
 pandas==2.1.4
 scikit-learn==1.4.0
@@ -17,13 +17,13 @@ scikit-learn==1.4.0
 # ===================================
 # Database & ORM
 # ===================================
-supabase==2.3.0
-postgrest==0.13.0
+supabase
+postgrest
 
 # ===================================
 # API & HTTP
 # ===================================
-httpx==0.24.1
+httpx
 python-multipart==0.0.6
 
 # ===================================
