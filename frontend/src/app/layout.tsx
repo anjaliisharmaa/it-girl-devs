@@ -91,18 +91,22 @@ export default function RootLayout({
             <ProgressProvider>
               <ConditionalNavbar />
               {children}
+
+              return (
+                <html lang="en">
+                  <body>
+                    {children}
+                    <Analytics /> 
+                  </body>
+                </html>
+              );
+
             </ProgressProvider>
           </ClerkLoaded>
         </ClerkProvider>
 
-          return (
-            <html lang="en">
-              <body>
-                {children}
-                <Analytics /> 
-              </body>
-            </html>
-          );
+          
+          
       </body>
     </html>
   );
