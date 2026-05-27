@@ -31,6 +31,7 @@ allowed_origins = [
     "http://127.0.0.1:3001",
     "http://127.0.0.1:3002",
     "http://127.0.0.1:3003",
+    "https://it-girl-devs.vercel.app",
 ]
 # Also allow custom origins from environment variable if provided
 custom_origins = os.getenv("ALLOWED_ORIGINS")
