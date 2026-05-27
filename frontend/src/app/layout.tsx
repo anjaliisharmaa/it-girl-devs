@@ -4,6 +4,7 @@ import { ClerkProvider, ClerkLoading, ClerkLoaded } from '@clerk/nextjs';
 import './globals.css';
 import ConditionalNavbar from '@/components/layout/ConditionalNavbar';
 import { ProgressProvider } from '@/context/ProgressContext';
+import { Analytics } from '@vercel/analytics/react';
 
 const syne = Syne({
   subsets: ['latin'],
@@ -93,7 +94,17 @@ export default function RootLayout({
             </ProgressProvider>
           </ClerkLoaded>
         </ClerkProvider>
+
+          return (
+            <html lang="en">
+              <body>
+                {children}
+                <Analytics /> 
+              </body>
+            </html>
+          );
       </body>
     </html>
   );
+  
 }
