@@ -164,7 +164,7 @@ pd.set_option('display.expand_frame_repr', False)`);
       };
       
       // Send to backend
-      const response = await fetch('http://localhost:8000/evaluate/vibe-check', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/evaluate/vibe-check`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
