@@ -241,7 +241,7 @@ Then we asked her to predict the future. We told the algorithm you are going to 
 
 **Your Mission:** We are tracking exactly how much we spend on our daily coffee runs and using code to predict our future budget. Because an organized developer always knows her data.
 
-**Dataset:** You can grab your starter data right here at [https://www.kaggle.com/datasets/anjaliisharmaa/the-latte-factor](https://www.kaggle.com/datasets/anjaliisharmaa/the-latte-factor). (Or you can just use **pd.read_csv('latte.csv')** and let Pyxie load it for you right here!) It holds ten weeks of cute coffee purchases. X is the amount of cups per week and Y is the total money spent.
+**Dataset:** You can grab your starter data right here at [https://www.kaggle.com/datasets/anjaliisharmaa/the-latte-factor](https://www.kaggle.com/datasets/anjaliisharmaa/the-latte-factor). (you can just use **pd.read_csv('simple-linear-regression.csv')** and let Pyxie load it for you right here!) It holds ten weeks of cute coffee purchases. X is the amount of cups per week and Y is the total money spent.
 
 **Goal:** Build a linear regression model and answer:
 
