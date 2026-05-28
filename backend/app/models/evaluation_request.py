@@ -3,6 +3,7 @@ Evaluation request model - defines the schema for incoming code submission reque
 """
 
 from pydantic import BaseModel, Field
+from typing import Optional
 
 
 class EvaluationRequest(BaseModel):
@@ -14,12 +15,14 @@ class EvaluationRequest(BaseModel):
         lessonId: The lesson identifier within the module
         fullCode: The complete user-submitted Python code
         executionOutput: The output from executing the code (stdout/stderr)
+        rubric: Optional rubric criteria for evaluating the code
     """
     
     moduleId: str = Field(..., description="Module identifier")
     lessonId: str = Field(..., description="Lesson identifier")
     fullCode: str = Field(..., description="Complete Python code submission")
     executionOutput: str = Field(..., description="Output from code execution")
+    rubric: Optional[str] = Field(None, description="Rubric criteria for evaluation")
     
     class Config:
         json_schema_extra = {

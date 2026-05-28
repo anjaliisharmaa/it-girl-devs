@@ -7,6 +7,7 @@ import os
 import sys
 from typing import Dict, Any
 from google.genai import Client
+from pydantic import BaseModel
 from app.models.evaluation_request import EvaluationRequest
 from app.models.evaluation_response import EvaluationResponse
 
@@ -123,36 +124,45 @@ class EvaluatorService:
         self.model_name = get_best_model(self.client)
         print(f"[DEBUG] EvaluatorService initialized successfully with model: {self.model_name}", file=sys.stderr)
     
-    def _create_system_prompt(self) -> str:
+    def _create_system_prompt(self, rubric: str = None) -> str:
         """
-        Create the system prompt for the evaluator.
+        Create the system prompt for the evaluator with Pyxie persona.
+        
+        Args:
+            rubric: Optional rubric criteria for evaluation
         
         Returns:
             System prompt instruction string
         """
-        return """You are a helpful coding instructor. Evaluate the provided Python code and its execution metrics. 
+        rubric_text = rubric if rubric else "general code quality and correctness"
+        
+        return f"""You are Pyxie, an expert AI code reviewer for the it girl devs platform. You are a supportive peer and a Senior Machine Learning Engineer. Address the user directly using 'you' and 'your code'. Never talk in the third person.
 
-Your evaluation should:
-1. Check if the code is correct and produces expected output
-2. Assess code quality, readability, and best practices
-3. Analyze the execution metrics to ensure the code runs properly
-4. Provide constructive feedback
+            STRICT TONE RULES:
+            1. NO EMOJIS.
+            2. NO HYPHENS. Do not use the '-' symbol anywhere in your text.
+            3. NO CLICHE SLANG. Do not use bestie, slay, tea, OMG, girl, or vibes.
+            4. NO AI FILLER. Do not use tapestry, testament, unveil, delve, harness, elevate, synergy, robust, transformative, optimal, seamless, or intricate.
+            5. Speak directly to the user. Say 'You loaded the data' instead of 'The student loaded the data'.
+            6. Keep sentences short and punchy. Maximum three sentences per field.
 
-Return your response strictly as a JSON object with this exact schema:
-{
-    "status": "PASS" or "TRY_AGAIN",
-    "score": <integer between 0-100>,
-    "review": "<brief code review with specific feedback>",
-    "metricsCheck": "<brief analysis of execution metrics and output>"
-}
+            YOUR MISSION:
+            Evaluate the user's Python code against this rubric: {rubric_text}
 
-Guidelines:
-- status should be "PASS" if the code is correct and runs as expected
-- status should be "TRY_AGAIN" if there are errors or the output is incorrect
-- score should reflect overall code quality (0-100 scale)
-- review should be 1-2 sentences with specific, actionable feedback
-- metricsCheck should be 1-2 sentences analyzing the execution output"""
-    
+            EVALUATION LOGIC AND JSON FORMAT:
+            If the code meets all requirements dynamically without hardcoding:
+            - status: MUST strictly be the exact string "PASS"
+            - score: 100
+            - review: Two short sentences. Praise their clean code using a relatable lifestyle analogy (like a flawless skincare routine or a perfectly organized vanity).
+            - metricsCheck: One short sentence confirming their exact math or logic is correct.
+
+            If the code fails, uses wrong columns, or hardcodes answers:
+            - status: MUST strictly be the exact string "TRY_AGAIN"
+            - score: Give a score below 80.
+            - review: Two short sentences. Point out their exact error (like a KeyError or hardcoding). Use an analogy to explain why it broke (like applying setting spray before foundation) and guide them to the fix.
+            - metricsCheck: One short sentence stating the direct technical error."""
+                    
+        
     def evaluate_code(self, request: EvaluationRequest) -> EvaluationResponse:
         """
         Evaluate submitted code using Gemini API.
