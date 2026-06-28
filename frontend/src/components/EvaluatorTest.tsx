@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import Script from 'next/script';
 import { useEffect } from 'react';
+import { useProgress } from '@/context/ProgressContext';
 
 type Cell = {
   id: number;
@@ -19,14 +20,16 @@ type VibeCheckResult = {
 
 interface PyxieProps {
   datasetFile?: string;
+  lessonId: string;
 }
 
-export default function EvaluatorTest({ datasetFile }: PyxieProps) {
+export default function EvaluatorTest({ datasetFile, lessonId }: PyxieProps) {
   const [isReady, setIsReady] = useState(false);
   const [loadingStatus, setLoadingStatus] = useState('Booting up Python...');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [vibeCheckResult, setVibeCheckResult] = useState<VibeCheckResult>(null);
-  
+  const { markMastered } = useProgress();
+
   const pyodideRef = useRef<any>(null);
 
   const [cells, setCells] = useState<Cell[]>([
@@ -178,6 +181,11 @@ pd.set_option('display.expand_frame_repr', False)`);
       
       const result = await response.json();
       setVibeCheckResult(result);
+
+      if (result?.status === 'PASS') {
+        console.log(`[EvaluatorTest] PASS received for lesson ${lessonId}; saving progress.`);
+        await markMastered(lessonId);
+      }
     } catch (error: any) {
       console.error('Vibe check failed:', error.message);
       setVibeCheckResult({

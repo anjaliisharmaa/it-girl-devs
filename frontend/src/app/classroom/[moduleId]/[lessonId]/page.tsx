@@ -359,7 +359,7 @@ export default function ClassroomPage({ params }: ClassroomPageProps) {
               {/* 🧪 PYXIE LAB TEST or THEORY VIBECHECK */}
               {lesson.projectRubric ? (
                 <div className="mt-12 mb-12">
-                  <EvaluatorTest datasetFile={lesson.datasetFile} />
+                  <EvaluatorTest datasetFile={lesson.datasetFile} lessonId={lessonId} />
                 </div>
               ) : (
                 <TheoryVibeCheck
