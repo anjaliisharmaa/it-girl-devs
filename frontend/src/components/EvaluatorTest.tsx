@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useEffect, useRef, useState, type ChangeEvent } from 'react';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@clerk/nextjs';
 import { useProgress } from '@/context/ProgressContext';
 
 type Cell = {
@@ -28,19 +30,17 @@ export default function EvaluatorTest({ datasetFile, lessonId }: PyxieProps) {
   const [loadingStatus, setLoadingStatus] = useState('Booting up Python...');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [vibeCheckResult, setVibeCheckResult] = useState<VibeCheckResult>(null);
+  const [showUnlockModal, setShowUnlockModal] = useState(false);
   const { markMastered } = useProgress();
+  const { isLoaded, isSignedIn } = useAuth();
+  const router = useRouter();
 
   const pyodideRef = useRef<any>(null);
 
   const [cells, setCells] = useState<Cell[]>([
     { 
       id: 1, 
-      code: "# Let's import our toolkit\nimport numpy as np\nimport pandas as pd\nprint('Libraries loaded!')", 
-      output: "" 
-    },
-    { 
-      id: 2, 
-      code: "# Training our first browser-based ML model!\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.metrics import mean_squared_error, r2_score\n\n# Our messy real-life data\nskincare_hours = np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0]).reshape(-1, 1)\ncompliments = np.array([2, 4, 5, 7, 8, 10, 11, 13, 14, 16])\n\n# Fit the line\nbestie_bot = LinearRegression()\nbestie_bot.fit(skincare_hours, compliments)\n\n# Test accuracy\npredictions = bestie_bot.predict(skincare_hours)\nr2 = r2_score(compliments, predictions)\n\nprint(f\"R² Score: {r2:.2f}\")", 
+      code: '', 
       output: "" 
     }
   ]);
@@ -115,23 +115,23 @@ pd.set_option('display.expand_frame_repr', False)`);
   const addCell = () => {
     const newCell: Cell = {
       id: Date.now(),
-      code: "",
-      output: ""
+      code: '',
+      output: ''
     };
-    setCells([...cells, newCell]);
+    setCells((currentCells) => [...currentCells, newCell]);
   };
 
   // DOM Magic: Auto-resize textarea to fit content without scrollbars
-  const handleCodeChange = (id: number, e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleCodeChange = (id: number, e: ChangeEvent<HTMLTextAreaElement>) => {
     e.target.style.height = 'auto'; // Reset height briefly
     e.target.style.height = `${e.target.scrollHeight}px`; // Expand to fit exact text height
     
     // Update state
-    setCells(cells.map(cell => cell.id === id ? { ...cell, code: e.target.value } : cell));
+    setCells((currentCells) => currentCells.map(cell => cell.id === id ? { ...cell, code: e.target.value } : cell));
   };
 
   const updateCellOutput = (id: number, newOutput: string) => {
-    setCells(cells.map(cell => cell.id === id ? { ...cell, output: newOutput } : cell));
+    setCells((currentCells) => currentCells.map(cell => cell.id === id ? { ...cell, output: newOutput } : cell));
   };
 
   // DOM Magic Part 2: Auto-resize on initial load!
@@ -149,14 +149,18 @@ pd.set_option('display.expand_frame_repr', False)`);
     try {
       setIsSubmitting(true);
       
-      // Stitch all cell code into a single string
-      const fullCode = cells.map(cell => cell.code).join('\n\n');
+      // Stitch all cell code into a single string in display order.
+      const fullCode = cells.map((cell) => cell.code.trimEnd()).join('\n\n');
       
       // Stitch all cell outputs into a single string
       const executionOutput = cells
         .filter(cell => cell.output)
         .map(cell => `[Cell Output]\n${cell.output}`)
         .join('\n\n');
+
+      if (!isLoaded) {
+        throw new Error('Auth state is still loading. Please try again in a moment.');
+      }
       
       // Prepare the payload
       const payload = {
@@ -183,8 +187,12 @@ pd.set_option('display.expand_frame_repr', False)`);
       setVibeCheckResult(result);
 
       if (result?.status === 'PASS') {
-        console.log(`[EvaluatorTest] PASS received for lesson ${lessonId}; saving progress.`);
-        await markMastered(lessonId);
+        if (isSignedIn) {
+          console.log(`[EvaluatorTest] PASS received for lesson ${lessonId}; saving progress.`);
+          await markMastered(lessonId);
+        } else {
+          setShowUnlockModal(true);
+        }
       }
     } catch (error: any) {
       console.error('Vibe check failed:', error.message);
@@ -206,13 +214,51 @@ pd.set_option('display.expand_frame_repr', False)`);
         onReady={initPyodide} 
       />
 
+      {showUnlockModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <button
+            aria-label="Close unlock modal"
+            className="absolute inset-0 bg-black/65 backdrop-blur-sm"
+            onClick={() => setShowUnlockModal(false)}
+          />
+          <div className="relative z-10 w-full max-w-md rounded-3xl border border-pink-200/15 bg-[#1a1a1a] p-6 shadow-2xl text-pink-100">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-200/10 text-2xl">
+                🔓
+              </div>
+              <div>
+                <h3 className="text-xl font-serif text-pink-200">Unlock to save your progress</h3>
+                <p className="text-sm text-pink-100/70">You can keep coding as a guest. Sign in when you’re ready to save this project.</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/sign-in"
+                className="inline-flex flex-1 items-center justify-center rounded-2xl bg-pink-500 px-4 py-3 font-semibold text-white transition-colors hover:bg-pink-600"
+                onClick={() => setShowUnlockModal(false)}
+              >
+                Log in to save
+              </Link>
+              <button
+                type="button"
+                onClick={() => setShowUnlockModal(false)}
+                className="inline-flex flex-1 items-center justify-center rounded-2xl border border-pink-200/15 bg-white/5 px-4 py-3 font-semibold text-pink-100 transition-colors hover:bg-white/10"
+              >
+                Keep exploring
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Sleek Header */}
-      <div className="flex justify-between items-end mb-6 px-2">
+      <div className="flex justify-between items-end mb-6 px-2 gap-4">
         <div>
-          <h2 className="text-3xl font-serif text-[#590D22] mb-1 tracking-tight">Pyxie</h2>
+         <h2 className="text-3xl font-serif text-[#590D22] mb-1 tracking-tight">Pyxie</h2>
           <p className="text-pink-400 text-sm font-medium">Build your mini-project right here. Instant notes when you submit.</p>
         </div>
-        {!isReady && <span className="text-xs font-mono bg-pink-100 text-pink-600 px-3 py-1 rounded-full animate-pulse">{loadingStatus}</span>}
+        {!isReady && <span className="text-xs font-mono bg-pink-200/10 text-pink-200 px-3 py-1 rounded-full animate-pulse border border-pink-200/20">{loadingStatus}</span>}
       </div>
 
       {/* The Cells Wrapper */}
@@ -221,20 +267,21 @@ pd.set_option('display.expand_frame_repr', False)`);
           <div key={cell.id} className="flex flex-col group">
             
             {/* Dark Mode Editor */}
-            <div className="relative bg-[#1E1E2E] rounded-xl shadow-lg border border-white/10 overflow-hidden focus-within:ring-2 focus-within:ring-pink-300 transition-all">
+            <div className="relative rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.32)] border border-pink-200/10 overflow-hidden focus-within:ring-2 focus-within:ring-pink-300/70 transition-all bg-[#1a1a1a]">
               
               {/* macOS Dots */}
-              <div className="bg-[#2A2B3D] px-4 py-2 flex items-center gap-2 border-b border-white/5">
+              <div className="bg-[#232323] px-4 py-2 flex items-center gap-2 border-b border-white/5">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]"></div>
+                <div className="ml-auto text-[11px] uppercase tracking-[0.22em] text-pink-200/40 font-semibold">Pyxie Block</div>
               </div>
 
               <textarea
                 value={cell.code}
                 onChange={(e) => handleCodeChange(cell.id, e)}
                 spellCheck="false"
-                className="it-girl-textarea w-full min-h-[60px] bg-transparent text-pink-50 font-mono text-[14px] p-4 outline-none overflow-hidden resize-none leading-relaxed"
+                className="it-girl-textarea w-full min-h-[120px] bg-transparent text-pink-200 font-mono text-[14px] p-4 outline-none overflow-hidden resize-none leading-relaxed placeholder:text-pink-200/35 selection:bg-pink-300/20"
                 placeholder="# Write your code here..."
               />
               
@@ -242,7 +289,7 @@ pd.set_option('display.expand_frame_repr', False)`);
               <button 
                 onClick={() => runCell(cell.id)}
                 disabled={!isReady}
-                className="absolute top-10 right-3 bg-white/5 hover:bg-pink-500/90 text-pink-300 hover:text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 disabled:opacity-0 shadow-sm backdrop-blur-sm"
+                className="absolute top-10 right-3 bg-white/5 hover:bg-pink-500/90 text-pink-200 hover:text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 disabled:opacity-0 shadow-sm backdrop-blur-sm border border-pink-200/10"
                 title="Run Cell"
               >
                 <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
@@ -270,9 +317,15 @@ pd.set_option('display.expand_frame_repr', False)`);
         disabled={!isReady}
         className="mt-6 w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-pink-50 to-white hover:from-pink-100 hover:to-pink-50 text-pink-500 rounded-xl font-medium border border-pink-100 transition-all shadow-sm group disabled:opacity-50"
       >
-        <span className="text-lg group-hover:scale-125 transition-transform duration-300">✨</span> 
+        <span className="text-lg group-hover:scale-125 transition-transform duration-300"></span> 
         Add Code Block
       </button>
+
+      {isLoaded && !isSignedIn && (
+        <p className="mt-3 px-1 text-xs text-[#590D22]">
+          Guests can run code, but saving your project and progress requires unlocking your account.
+        </p>
+      )}
 
       {/* Premium Submit Button */}
       <button
@@ -280,7 +333,7 @@ pd.set_option('display.expand_frame_repr', False)`);
         disabled={!isReady || isSubmitting}
         className="mt-6 w-full py-3.5 px-6 bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 disabled:from-gray-400 disabled:to-gray-300 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 backdrop-blur-sm border border-pink-300/50 hover:border-pink-400"
       >
-        {isSubmitting ? '✨ Consulting Pyxie...' : '🎯 Submit project for feedback'}
+        {isSubmitting ? 'Consulting Pyxie...' : 'Submit project for feedback'}
       </button>
 
       {/* Aesthetic Feedback Card */}
@@ -297,7 +350,7 @@ pd.set_option('display.expand_frame_repr', False)`);
                 ? 'text-emerald-900'
                 : 'text-amber-900'
             }`}>
-              {vibeCheckResult.status === 'PASS' ? '✨ Amazing Work!' : '💡 Keep Iterating'}
+              {vibeCheckResult.status === 'PASS' ? 'Amazing Work!' : 'Keep Iterating'}
             </h3>
             {vibeCheckResult.status === 'PASS' && (
               <span className="text-2xl">🎉</span>
