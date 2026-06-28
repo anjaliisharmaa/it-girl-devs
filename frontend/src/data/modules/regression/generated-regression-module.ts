@@ -952,17 +952,17 @@ y_plot_svr_rbf = svr_rbf.predict(X_plot)
 
 plt.figure(figsize=(12, 7))
 
-# Plotting our training data
+# plotting our training data
 plt.scatter(X_train, y_train, color='#FF69B4', s=80, alpha=0.6, 
             label='Training Data Your Everyday Peace', zorder=3)
 
-# Plotting the outlier specifically
+# plotting the outlier specifically
 outlier_mask = y_train > 2  
 plt.scatter(X_train[outlier_mask], y_train[outlier_mask], 
             color='#FF1493', s=200, marker='*', 
             label='OUTLIER The Boundary Setting Moment', zorder=4, edgecolors='black', linewidth=1.5)
 
-# Plotting all three models
+# plotting all three models
 plt.plot(X_plot, y_plot_linear, color='#87CEEB', linewidth=2, 
          label='Linear Regression The Anxious Bestie', linestyle='--') # Python syntax requires the double dash here for the line style
 plt.plot(X_plot, y_plot_svr_linear, color='#9370DB', linewidth=2.5, 
@@ -970,7 +970,7 @@ plt.plot(X_plot, y_plot_svr_linear, color='#9370DB', linewidth=2.5,
 plt.plot(X_plot, y_plot_svr_rbf, color='#FF1493', linewidth=2.5, 
          label='SVR RBF The Unbothered Queen')
 
-# Showing the epsilon tube for SVR RBF
+# showing the epsilon tube for SVR RBF
 epsilon = 0.1
 plt.fill_between(X_plot.flatten(), 
                  y_plot_svr_rbf - epsilon, 
@@ -987,7 +987,7 @@ plt.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-# Key insight printer
+# key insight printer
 print("\nTHE TEA")
 print("Notice how Linear Regression lets one toxic data point drag her entire mood down")
 print("SVR says that does not align with my peace and stays completely unbothered")
@@ -1040,7 +1040,7 @@ The model mathematically proves that your peace will drop to critically low leve
 **Your mission**
 
 You are a tech career coach analyzing salary data. Most people follow a normal trend, but some data points are totally wild. We are talking about early founders with massive stock options or people who got a huge lottery win level signing bonus. These are called **Outliers**. If you use a basic model, these wild points will ruin your data. Your goal is to build an SVR model that handles these outliers like a pro.
-Grab the 200-row salary dataset: [**The Salary Negotiation Outlier Handler**](https://www.kaggle.com/datasets/anjaliisharmaa/the-salary-negotiation-outlier-handler) (Or you can just use **pd.read_csv('salary.csv')** and let Pyxie load it for you right here!) and let the model battle begin! Your mission is to build both Linear Regression and SVR (RBF) models to see who handles wild salary outliers better. Compare their MSE and R² scores across 3 different C and epsilon combos, then write a 3-sentence verdict on which model you’d trust for a real-world salary negotiation.`  ,
+Grab the 200-row salary dataset: [**The Salary Negotiation Outlier Handler**](https://www.kaggle.com/datasets/anjaliisharmaa/the-salary-negotiation-outlier-handler) (Or you can just use **pd.read_csv('support-vector-regression.csv')** and let Pyxie load it for you right here!) and let the model battle begin! Your mission is to build both Linear Regression and SVR (RBF) models to see who handles wild salary outliers better. Compare their MSE and R² scores across 3 different C and epsilon combos, then write a 3-sentence verdict on which model you’d trust for a real-world salary negotiation.`  ,
     content: () => React.createElement('div', {}),
     metadata: {
       sipTime: '40 mins',
