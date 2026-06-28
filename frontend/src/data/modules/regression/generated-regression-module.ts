@@ -348,8 +348,8 @@ This code is how we figure out exactly which steps in our routine are giving us 
 We are tracking our hydration levels, our gua sha massage minutes, the number of active serums we use, and our daily sunscreen layers. Balance is everything.
 
 ${'```'}python
-# Predicting our flawless base with multiple factors
-# Because a one product routine just does not work for our complex skin
+# predicting our flawless base with multiple factors
+# because a one product routine just does not work for our complex skin
 
 import numpy as np
 import pandas as pd
@@ -360,8 +360,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 import seaborn as sns
 
-# Our comprehensive routine data
-# We are tracking everything to find our perfect balance
+# our comprehensive routine data
+# we are tracking everything to find our perfect balance
 data = {
     'hydration_level': [9, 12, 15, 18, 21, 10, 14, 19, 22, 8, 13, 17, 20, 11, 16],
     'gua_sha_minutes': [5, 12, 8, 20, 15, 6, 9, 18, 16, 4, 10, 14, 17, 7, 11],
@@ -372,17 +372,17 @@ data = {
 
 df = pd.DataFrame(data)
 
-# Separating our steps from our final glowing result
+# separating our steps from our final glowing result
 feature_names = ['hydration_level', 'gua_sha_minutes', 'active_serums', 'sunscreen_layers']
 routine_steps = df[feature_names]  
 final_glow = df['glow_score'] 
 
-# Standardizing our routine so one product does not overpower the rest
-# We want all our ingredients to play nicely together
+# standardizing our routine so one product does not overpower the rest
+# we want all our ingredients to play nicely together
 scaler = StandardScaler()
 routine_steps_scaled = scaler.fit_transform(routine_steps)
 
-# Splitting our data to test if the routine actually works
+# splitting our data to test if the routine actually works
 # 80 percent for training and 20 percent to verify our results
 X_train, X_test, y_train, y_test = train_test_split(
     routine_steps_scaled, 
@@ -391,16 +391,16 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 
-# Creating our routine prediction model
+# creating our routine prediction model
 glow_oracle = LinearRegression()
 
-# Training the model on our daily habits
+# training the model on our daily habits
 glow_oracle.fit(X_train, y_train)
 
-# Making predictions on our test days
+# making predictions on our test days
 predicted_glow = glow_oracle.predict(X_test)
 
-# Evaluating how well our routine is working
+# evaluating how well our routine is working
 mse = mean_squared_error(y_test, predicted_glow)
 r2 = r2_score(y_test, predicted_glow)
 
@@ -413,8 +413,8 @@ for feature, coef in zip(feature_names, glow_oracle.coef_):
 print(f"\nMean Squared Error: {mse:.2f}")
 print(f"R Squared Score: {r2:.3f}")
 
-# Visualizing which steps actually matter
-# Aesthetic pink bar chart incoming
+# visualizing which steps actually matter
+# aesthetic pink bar chart incoming
 plt.figure(figsize=(10, 6))
 colors = ['#FF69B4', '#FF1493', '#C71585', '#DB7093']
 plt.barh(feature_names, glow_oracle.coef_, color=colors)
@@ -425,8 +425,8 @@ plt.grid(axis='x', alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-# Predicting a brand new routine performance
-# Scenario: Hydration level 15, 10 minutes of gua sha, 2 serums, and 2 sunscreen layers
+# predicting a brand new routine performance
+# scenario: hydration level 15, 10 minutes of gua sha, 2 serums, and 2 sunscreen layers
 new_routine = np.array([[15, 10, 2, 2]])
 new_routine_scaled = scaler.transform(new_routine)
 predicted_results = glow_oracle.predict(new_routine_scaled)
@@ -436,7 +436,7 @@ print(f"   If you focus on level 15 hydration and 10 minutes of facial massage")
 print(f"   with just 2 active serums and 2 layers of SPF...")
 print(f"   Expected glow score: {predicted_results[0]:.0f} points!")
 
-# Checking for redundant products so we do not damage our skin barrier
+# checking for redundant products so we do not damage our skin barrier
 plt.figure(figsize=(8, 6))
 correlation_matrix = df[feature_names].corr()
 sns.heatmap(correlation_matrix, annot=True, cmap='RdPu', center=0, 
@@ -445,7 +445,7 @@ plt.title('Product Overlap Check', fontsize=14, fontweight='bold')
 plt.tight_layout()
 plt.show()
 
-# Actual glow vs predicted glow scatter plot
+# actual glow vs predicted glow scatter plot
 plt.figure(figsize=(8, 6))
 plt.scatter(y_test, predicted_glow, color='#FF69B4', s=100, alpha=0.6, edgecolors='#C71585')
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 
@@ -501,7 +501,7 @@ Our R² score was 0.983 which means our formula is incredibly accurate. When the
 
 **Your Mission:** You are sitting at the negotiation table with top tech companies. You need to know your exact worth and back it up with data. Build a model to predict your starting salary based on your entire profile instead of just one single skill.
 
-**Dataset:  [Get That Bag: Tech Salary Predictor](https://www.kaggle.com/datasets/anjaliisharmaa/get-that-bag-tech-salary-predictor)** (Or you can just use **pd.read_csv('salary.csv')** and let Pyxie load it for you right here!)
+**Dataset:  [Get That Bag: Tech Salary Predictor](https://www.kaggle.com/datasets/anjaliisharmaa/get-that-bag-tech-salary-predictor)** (Or you can just use **pd.read_csv('multiple-linear-regression.csv')** and let Pyxie load it for you right here!)
 
 **Goal:**
 

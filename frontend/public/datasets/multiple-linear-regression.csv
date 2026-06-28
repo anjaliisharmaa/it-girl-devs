@@ -1,4 +1,21 @@
-ID,Feature_1,Feature_2,Feature_3,Target
-1,10.5,20.3,5.1,100.2
-2,12.1,22.5,6.3,115.8
-3,11.8,21.2,5.9,112.4
+Candidate,Experience_Years,Languages_Known,Education_Level,Company_Size,Location_Index,Salary_LPA,Notes
+1,0,3,1,1,8,12.5,Entry-level startup hustle.
+2,2,4,1,2,7,16,Mid-size company... good work-life balance.
+3,1,2,2,3,9,22,Master's degree came in clutch for Big Tech!
+4,5,5,1,3,10,35.5,Senior dev era.
+5,0,3,1,2,5,10,Remote role... living comfortably.
+6,3,4,2,1,8,18.5,Wearing 10 hats at a cute AI startup.
+7,4,3,1,3,9,28,Fueled entirely by strong cold coffee and stock options.
+8,1,5,1,2,6,14.5,Knows too many languages... still Googles syntax.
+9,6,4,2,3,10,42,Team Lead... basically a boss.
+10,0,2,1,1,4,8.5,First internship turned full-time!
+11,2,3,3,2,8,24,PhD flex.
+12,7,6,2,3,10,48.5,Tech lead negotiating like a pro.
+13,1,3,1,3,7,19,FAANG fresher.
+14,3,4,1,1,9,17.5,Startup equity better be worth it...
+15,2,2,2,2,5,15,Chilling at a mid-size firm.
+16,5,5,2,3,8,36,Senior engineer making that money.
+17,0,4,1,2,6,11.5,Good portfolio got her the job.
+18,4,3,3,1,9,29,Research scientist at an AI lab.
+19,2,5,1,3,10,25.5,Big Tech... high rent.
+20,1,3,2,2,7,16.5,Standard post-grad role.
