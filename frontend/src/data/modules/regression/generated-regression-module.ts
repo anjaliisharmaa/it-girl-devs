@@ -755,7 +755,7 @@ Let us figure out exactly how much studying is genuinely too much.”
 
 **Your Mission:** You are going to build a gorgeous Polynomial Regression model to prove exactly when your brain officially clocks out. We need to capture that messy non linear reality between the hours you spend romanticizing your study sessions and your actual exam scores.
 
-**Dataset: [The Study-Overload Curve](https://www.kaggle.com/datasets/anjaliisharmaa/the-study-overload-curve)** (Or you can just use **pd.read_csv('study.csv')** and let Pyxie load it for you right here!) 25 highly relatable data points of effort vs. exhaustion. X = hours studied, Y = exam score.
+**Dataset: [The Study-Overload Curve](https://www.kaggle.com/datasets/anjaliisharmaa/the-study-overload-curve)** (Or you can just use **pd.read_csv('polynomial-regression.csv')** and let Pyxie load it for you right here!) 25 highly relatable data points of effort vs. exhaustion. X = ['Hours Studied'], Y = ['Exam Score'].
 
 **Your Goals:**
 
