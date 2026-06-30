@@ -82,7 +82,7 @@ export default function LorePage() {
 
           <p className="text-justify">
             If you are wondering who is writing all these pink tutorials and turning Python into an aesthetic, it is me. 
-            I am a final year CSE-AI student at IGDTUW, but honestly, I am just a girl who loves building cool things.
+            I am a final year CSE-AI student at IGDTUW, currently interning at Accenture as a Management Consultant Intern. But honestly, I am just a girl who loves building cool things.
           </p>
 
           <p className="text-justify">
