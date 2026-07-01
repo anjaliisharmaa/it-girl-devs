@@ -3,6 +3,7 @@ import { Syne, Outfit, Space_Grotesk, Fraunces } from 'next/font/google';
 import { ClerkProvider, ClerkLoading, ClerkLoaded } from '@clerk/nextjs';
 import './globals.css';
 import ConditionalNavbar from '@/components/layout/ConditionalNavbar';
+import ClerkNewsletterSync from '@/components/newsletter/ClerkNewsletterSync';
 import { ProgressProvider } from '@/context/ProgressContext';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -88,6 +89,7 @@ export default function RootLayout({
             </div>
           </ClerkLoading>
           <ClerkLoaded>
+            <ClerkNewsletterSync />
             <ProgressProvider>
               <ConditionalNavbar />
               {children}
