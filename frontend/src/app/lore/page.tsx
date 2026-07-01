@@ -101,7 +101,7 @@ export default function LorePage() {
           </h2>
 
           <p className="text-justify">
-            Okay, I know everything here looks pink and sparkly, but I promise I know my stuff!
+            Okay, I know everything here looks pink, but I promise I know my stuff!
           </p>
 
           <p className="text-justify">
