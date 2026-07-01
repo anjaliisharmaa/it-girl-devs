@@ -22,7 +22,7 @@ const socialLinks: SocialLink[] = [
     title: 'YouTube',
     emoji: '🎬',
     description: 'The big screen! I am posting everything from detailed tech tutorials to art vlogs. I might even take you with me to tech events so we can experience them together.',
-    url: '#',
+    url: 'https://www.youtube.com/@itgirldevs',
   },
   {
     title: 'Twitter / X',
@@ -40,13 +40,13 @@ const socialLinks: SocialLink[] = [
     title: 'LinkedIn',
     emoji: '💼',
     description: 'The professional side, but still with a girly twist. I share official updates and career wins here.',
-    url: '#',
+    url: 'https://www.linkedin.com/company/it-girl-devs/',
   },
   {
     title: 'The Newsletter',
     emoji: '💌',
     description: 'This is the exclusive club. I send out the really good stuff here, like cold emailing templates, secret resources, and things I do not share anywhere else.',
-    url: '#',
+    url: 'https://it-girl-devs.beehiiv.com/',
   },
 ];
 
