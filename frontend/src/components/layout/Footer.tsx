@@ -1,9 +1,16 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { FormEvent, useState } from 'react';
 import { Github, Instagram, Twitter, Linkedin, MessageCircle, YoutubeIcon } from 'lucide-react';
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
   const socialLinks = [
     { name: 'The Visuals', href: 'https://www.instagram.com/itgirldevs/', icon: Instagram },
     { name: 'The Series', href: '#', icon: YoutubeIcon },
@@ -12,6 +19,48 @@ export default function Footer() {
     { name: 'The Career', href: '#', icon: Linkedin },
     { name: 'The Code', href: 'https://github.com/anjaliisharmaa/it-girl-devs', icon: Github },
   ];
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail) {
+      setStatus('error');
+      setMessage('Drop your email first, bestie.');
+      return;
+    }
+
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: trimmedEmail,
+          source: 'manifest_footer',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.message || 'Subscription failed. Please try again.');
+      }
+
+      setStatus('success');
+      setMessage(data?.message || 'You are in. The Manifest is on the way.');
+      setEmail('');
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Something went wrong. Try again soon.';
+      setStatus('error');
+      setMessage(errorMessage);
+    }
+  };
 
   return (
     <footer className="relative bg-[#FFD1DC] py-16 px-6 overflow-hidden border-t border-[#590D22]/20">
@@ -77,16 +126,31 @@ export default function Footer() {
             </p>
 
             {/* Input Form */}
-            <div className="flex flex-col sm:flex-row gap-2 w-full max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="your@email.com"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                disabled={status === 'loading'}
+                required
+                autoComplete="email"
                 className="w-full px-4 py-2 rounded-full border border-[#590D22]/20 bg-white/50 focus:outline-none focus:border-[#590D22] font-outfit text-sm placeholder:text-[#590D22]/40 transition-colors"
               />
-              <button className="px-6 py-2 rounded-full bg-[#590D22] text-white font-outfit text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap">
-                Claim It ✨
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="px-6 py-2 rounded-full bg-[#590D22] text-white font-outfit text-sm font-medium hover:opacity-90 transition-opacity whitespace-nowrap disabled:opacity-70"
+              >
+                {status === 'loading' ? 'Claiming...' : 'Claim It ✨'}
               </button>
-            </div>
+            </form>
+
+            {message ? (
+              <p className={`mt-3 font-outfit text-xs ${status === 'error' ? 'text-[#9d174d]' : 'text-[#590D22]/80'}`}>
+                {message}
+              </p>
+            ) : null}
           </motion.div>
 
           {/* Right Column: Link Stack (3 columns) */}
