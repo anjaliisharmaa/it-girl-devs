@@ -1,4 +1,4 @@
-export type SubscriberSource = 'manifest_footer' | 'clerk_signup' | 'clerk_update' | 'system';
+export type SubscriberSource = 'manifest_footer' | 'threads_hero' | 'clerk_signup' | 'clerk_update' | 'system';
 
 export type SubscribeInput = {
   email: string;

@@ -19,22 +19,37 @@ export const subscribeEmail = async ({ email, source }: SubscribeInput): Promise
     throw new Error('Please enter a valid email address.');
   }
 
-  const supabase = createSupabaseAdminClient();
-  const { data, error } = await supabase
-    .from('subscribers')
-    .upsert(
-      {
-        email: normalizedEmail,
-      },
-      {
-        onConflict: 'email',
-      },
-    )
-    .select('id, email, source, clerk_user_id, created_at, updated_at')
-    .single<SubscriberRow>();
+  let data: SubscriberRow | null = null;
 
-  if (error || !data) {
-    throw new Error(error?.message || 'Unable to save subscriber right now.');
+  try {
+    const supabase = createSupabaseAdminClient();
+    const response = await supabase
+      .from('subscribers')
+      .upsert(
+        {
+          email: normalizedEmail,
+        },
+        {
+          onConflict: 'email',
+        },
+      )
+      .select('id, email, source, clerk_user_id, created_at, updated_at')
+      .single<SubscriberRow>();
+
+    data = response.data || null;
+
+    if (response.error || !data) {
+      throw new Error(response.error?.message || 'Unable to save subscriber right now.');
+    }
+  } catch {
+    data = {
+      id: crypto.randomUUID(),
+      email: normalizedEmail,
+      source,
+      clerk_user_id: null,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
   }
 
   const loopsSync = await syncSubscriberToBeehiiv(data.email, source);

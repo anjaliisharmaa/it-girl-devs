@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { FormEvent, useState } from 'react';
 import Footer from '@/components/layout/Footer';
 import { Instagram, Twitter, Youtube, Linkedin, Download, Copy, Eye } from 'lucide-react';
 
@@ -180,6 +181,10 @@ const ResourceCard = ({
 };
 
 export default function ThreadsPage() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
   const socialPlatforms = [
     {
       platform: 'Instagram',
@@ -206,6 +211,48 @@ export default function ThreadsPage() {
       link: 'https://www.linkedin.com/company/it-girl-devs/',
     },
   ];
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const trimmedEmail = email.trim();
+
+    if (!trimmedEmail) {
+      setStatus('error');
+      setMessage('Drop your email first, bestie.');
+      return;
+    }
+
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: trimmedEmail,
+          source: 'threads_hero',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.message || 'Subscription failed. Please try again.');
+      }
+
+      setStatus('success');
+      setMessage(data?.message || 'You are in. The Manifest is on the way.');
+      setEmail('');
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Something went wrong. Try again soon.';
+      setStatus('error');
+      setMessage(errorMessage);
+    }
+  };
 
   const resources = [
     {
@@ -274,16 +321,33 @@ export default function ThreadsPage() {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="max-w-2xl mx-auto"
             >
-              <div className="flex flex-col sm:flex-row gap-4 bg-white/50 backdrop-blur-md rounded-2xl p-4 border-2 border-white/60 shadow-2xl">
-                <input
-                  type="email"
-                  placeholder="your.email@gmail.com"
-                  className="flex-grow px-6 py-4 rounded-xl bg-white/80 border-2 border-[#590D22]/20 text-[#590D22] placeholder-[#590D22]/50 focus:outline-none focus:border-[#FF69B4] transition-colors text-lg"
-                />
-                <button className="px-8 py-4 bg-[#590D22] text-white rounded-xl font-bold text-lg hover:bg-[#FF69B4] transition-colors duration-300 whitespace-nowrap shadow-lg hover:shadow-xl">
-                  Notify Me 💌
-                </button>
-              </div>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4 bg-white/50 backdrop-blur-md rounded-2xl p-4 border-2 border-white/60 shadow-2xl">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <input
+                    type="email"
+                    placeholder="your.email@gmail.com"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    disabled={status === 'loading'}
+                    required
+                    autoComplete="email"
+                    className="flex-grow px-6 py-4 rounded-xl bg-white/80 border-2 border-[#590D22]/20 text-[#590D22] placeholder-[#590D22]/50 focus:outline-none focus:border-[#FF69B4] transition-colors text-lg"
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="px-8 py-4 bg-[#590D22] text-white rounded-xl font-bold text-lg hover:bg-[#FF69B4] transition-colors duration-300 whitespace-nowrap shadow-lg hover:shadow-xl disabled:opacity-70"
+                  >
+                    {status === 'loading' ? 'Adding...' : 'Notify Me 💌'}
+                  </button>
+                </div>
+
+                {message ? (
+                  <p className={`text-sm ${status === 'error' ? 'text-[#9d174d]' : 'text-[#590D22]/80'}`}>
+                    {message}
+                  </p>
+                ) : null}
+              </form>
             </motion.div>
           </div>
         </section>
