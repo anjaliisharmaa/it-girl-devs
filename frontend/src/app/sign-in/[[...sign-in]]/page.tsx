@@ -1,9 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { SignIn } from '@clerk/nextjs';
 
 export default function SignInPage() {
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get('redirect_url') || '/episodes';
+
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Left Side - Brand Vision */}
@@ -42,7 +46,8 @@ export default function SignInPage() {
       <div className="flex items-center justify-center p-8 bg-white">
         <div className="w-full max-w-md">
           <SignIn
-            fallbackRedirectUrl="/episodes"
+            fallbackRedirectUrl={redirectUrl}
+            signUpUrl={`/sign-up?redirect_url=${encodeURIComponent(redirectUrl)}`}
             appearance={{
               elements: {
                 cardBox: 'shadow-none',
@@ -70,7 +75,6 @@ export default function SignInPage() {
             }}
             routing="path"
             path="/sign-in"
-            signUpUrl="/sign-up"
           />
         </div>
       </div>

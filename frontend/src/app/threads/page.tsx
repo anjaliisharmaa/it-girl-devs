@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Footer from '@/components/layout/Footer';
 import { Instagram, Twitter, Youtube, Linkedin, Download, Copy, Eye } from 'lucide-react';
@@ -114,36 +115,66 @@ const ResourceCard = ({
   title,
   description,
   icon: Icon,
+  href,
+  ctaLabel,
+  ctaIcon: CtaIcon,
   delay,
 }: {
   title: string;
   description: string;
   icon: any;
+  href?: string;
+  ctaLabel?: string;
+  ctaIcon?: any;
   delay: number;
 }) => {
+  const cardInner = (
+    <div className="relative bg-gradient-to-br from-[#FFD1DC] to-[#FFC0CB] rounded-2xl p-8 border-2 border-[#590D22]/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 h-full">
+      {/* Icon in corner like a file tab */}
+      <div className="absolute -top-3 -right-3 bg-[#590D22] rounded-full p-4 shadow-lg group-hover:rotate-12 transition-transform duration-300">
+        <Icon className="w-6 h-6 text-white" strokeWidth={2} />
+      </div>
+
+      {/* Content */}
+      <div className="space-y-4">
+        <h3 className="text-xl font-bold text-[#590D22] pr-8">{title}</h3>
+        <p className="text-[#590D22]/70 text-sm leading-relaxed">{description}</p>
+      </div>
+
+      {/* Footer action */}
+      <div className="mt-8 flex items-center justify-between">
+        {href && ctaLabel && CtaIcon ? (
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#590D22] px-4 py-2 text-sm font-semibold text-white shadow-lg transition-transform duration-300 group-hover:-translate-y-0.5">
+            <CtaIcon className="h-4 w-4" strokeWidth={2} />
+            <span>{ctaLabel}</span>
+          </div>
+        ) : (
+          <div className="inline-flex items-center rounded-full border border-[#590D22]/10 bg-white/60 px-4 py-2 text-sm font-semibold text-[#590D22]/55">
+            Coming Soon
+          </div>
+        )}
+      </div>
+
+      {/* Bottom corner fold effect */}
+      <div className="absolute bottom-0 right-0 w-8 h-8 bg-[#590D22]/10 rounded-tl-2xl" />
+    </div>
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
-      className="relative group cursor-pointer"
+      className="relative group"
     >
-      <div className="relative bg-gradient-to-br from-[#FFD1DC] to-[#FFC0CB] rounded-2xl p-8 border-2 border-[#590D22]/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 h-full">
-        {/* Icon in corner like a file tab */}
-        <div className="absolute -top-3 -right-3 bg-[#590D22] rounded-full p-4 shadow-lg group-hover:rotate-12 transition-transform duration-300">
-          <Icon className="w-6 h-6 text-white" strokeWidth={2} />
-        </div>
-        
-        {/* Content */}
-        <div className="space-y-4">
-          <h3 className="text-xl font-bold text-[#590D22] pr-8">{title}</h3>
-          <p className="text-[#590D22]/70 text-sm leading-relaxed">{description}</p>
-        </div>
-        
-        {/* Bottom corner fold effect */}
-        <div className="absolute bottom-0 right-0 w-8 h-8 bg-[#590D22]/10 rounded-tl-2xl" />
-      </div>
+      {href ? (
+        <Link href={href} className="block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#590D22] focus-visible:ring-offset-2">
+          {cardInner}
+        </Link>
+      ) : (
+        cardInner
+      )}
     </motion.div>
   );
 };
@@ -178,9 +209,12 @@ export default function ThreadsPage() {
 
   const resources = [
     {
-      title: 'DRDO tracker',
+      title: 'DRDO Labs Tracker',
       description: 'Get contacts of ALL DRDO labs.',
-      icon: Download,
+      icon: Eye,
+      href: '/threads/locker',
+      ctaLabel: 'Open Tracker',
+      ctaIcon: Eye,
     },
     {
       title: 'Cold Email Scripts',
@@ -190,7 +224,7 @@ export default function ThreadsPage() {
     {
       title: 'Pink Python Cheatsheet',
       description: 'Syntax, but make it cute.',
-      icon: Eye,
+      icon: Download,
     },
   ];
 
@@ -255,7 +289,7 @@ export default function ThreadsPage() {
         </section>
 
         {/* Section 2: The Social Grid - "Choose Your Character" */}
-        <section className="py-32 px-6 bg-white/20 backdrop-blur-sm">
+        <section id="locker" className="py-32 px-6 bg-white/20 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
