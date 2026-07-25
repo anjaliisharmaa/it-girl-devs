@@ -166,20 +166,20 @@ export default function ThreadsPage() {
       platform: 'YouTube',
       icon: Youtube,
       description: 'The Classroom. Deep dives & project walkthroughs.',
-      link: '#',
+      link: 'https://www.youtube.com/@itgirldevs',
     },
     {
       platform: 'LinkedIn',
       icon: Linkedin,
       description: 'The Bag. Career tips & professional wins.',
-      link: '#',
+      link: 'https://www.linkedin.com/company/it-girl-devs/',
     },
   ];
 
   const resources = [
     {
-      title: 'The "Hire Me" Resume',
-      description: 'The exact template that got me into DRDO.',
+      title: 'DRDO tracker',
+      description: 'Get contacts of ALL DRDO labs.',
       icon: Download,
     },
     {
