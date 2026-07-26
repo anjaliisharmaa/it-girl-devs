@@ -562,7 +562,7 @@ function GuestGate() {
           <Sparkles className="h-3.5 w-3.5" />
           log in to get access
         </div>
-        <h1 className="font-fraunces text-4xl font-bold text-[#590D22] md:text-5xl">Open The Locker</h1>
+        <h1 className="font-fraunces text-4xl font-bold text-[#590D22] md:text-5xl">DRDO Labs Tracker</h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-[#590D22]/70">
           Sign in or sign up to instantly unlock the full directory of 50 DRDO labs and my copy-paste cold email script.
         </p>
