@@ -450,7 +450,7 @@ function TrackerTable() {
         <div className="mb-4 flex flex-col gap-3 rounded-[1.35rem] border border-[#590D22]/10 bg-[#FFD1DC]/35 px-4 py-3 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#590D22]/65">Location filter</p>
-            <p className="mt-1 text-sm text-[#590D22]/70">Narrow the list by state or union territory.</p>
+            <p className="mt-1 text-sm text-[#590D22]/70">Narrow the list by location.</p>
           </div>
 
           <div className="relative w-full md:w-[260px]">
