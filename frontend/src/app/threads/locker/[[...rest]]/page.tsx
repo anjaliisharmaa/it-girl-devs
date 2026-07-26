@@ -72,7 +72,7 @@ function TrackerTable() {
             </div>
             <h1 className="font-fraunces text-4xl font-bold text-[#590D22] md:text-5xl">DRDO Labs Tracker</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#590D22]/70 md:text-base">
-              Keep the resource on-site, stay in the flow, and use the table below to track labs without leaving the app.
+              Here is the master list of all 50 labs across India. Find the location or research area that matches your domain, grab the POC email, and shoot your shot. Good luck!
             </p>
           </div>
 
@@ -155,12 +155,12 @@ function GuestGate() {
         </div>
         <h1 className="font-fraunces text-4xl font-bold text-[#590D22] md:text-5xl">Open The Locker</h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-[#590D22]/70">
-          Sign in or sign up to view the DRDO Labs Tracker and the cold email template without leaving the site.
+          Sign in or sign up to instantly unlock the full directory of 50 DRDO labs and my copy-paste cold email script.
         </p>
         <div className="mt-8 grid gap-3 text-sm text-[#590D22]/75 md:grid-cols-3">
-          <div className="rounded-2xl border border-[#590D22]/10 bg-[#FFD1DC]/35 p-4">Fast on-site access</div>
-          <div className="rounded-2xl border border-[#590D22]/10 bg-[#FFD1DC]/35 p-4">No external share links</div>
-          <div className="rounded-2xl border border-[#590D22]/10 bg-[#FFD1DC]/35 p-4">Clerk-protected flow</div>
+          <div className="rounded-2xl border border-[#590D22]/10 bg-[#FFD1DC]/35 p-4">50 Lab Contacts</div>
+          <div className="rounded-2xl border border-[#590D22]/10 bg-[#FFD1DC]/35 p-4">15 Locations</div>
+          <div className="rounded-2xl border border-[#590D22]/10 bg-[#FFD1DC]/35 p-4">100% Free</div>
         </div>
       </div>
 

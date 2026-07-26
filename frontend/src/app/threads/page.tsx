@@ -257,7 +257,7 @@ export default function ThreadsPage() {
   const resources = [
     {
       title: 'DRDO Labs Tracker',
-      description: 'Get contacts of ALL DRDO labs.',
+      description: '50 labs, 15 states, and exactly who to email for your internship.',
       icon: Eye,
       href: '/threads/locker',
       ctaLabel: 'Open Tracker',
