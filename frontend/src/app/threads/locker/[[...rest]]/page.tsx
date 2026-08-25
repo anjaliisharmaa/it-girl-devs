@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { SignIn, useAuth } from '@clerk/nextjs';
-import { Copy, Eye, Mail, Sparkles } from 'lucide-react';
+import { Copy, Eye, Sparkles } from 'lucide-react';
 
 
 
