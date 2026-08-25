@@ -582,8 +582,10 @@ function GuestGate() {
           signUpUrl="/sign-up?redirect_url=/threads/locker"
           appearance={{
             elements: {
-              cardBox: 'shadow-none',
-              card: 'shadow-none border-none bg-transparent sm:shadow-none sm:bg-transparent',
+              rootBox: 'w-full max-w-full min-w-0',
+              cardBox: 'w-full max-w-full min-w-0 shadow-none',
+              card: 'w-full max-w-full min-w-0 shadow-none border-none bg-transparent sm:shadow-none sm:bg-transparent',
+              footer: 'w-full max-w-full min-w-0',
               headerTitle: 'text-[#590D22] font-outfit text-2xl font-bold',
               headerSubtitle: 'text-[#590D22]/65 font-outfit',
               formButtonPrimary: 'bg-[#590D22] hover:bg-[#800F2F] text-white shadow-none rounded-xl font-outfit font-semibold py-2.5',
