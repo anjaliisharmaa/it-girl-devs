@@ -556,13 +556,13 @@ function TrackerTable() {
 
 function GuestGate() {
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_420px] lg:items-start">
-      <div className="rounded-[2rem] border border-[#590D22]/15 bg-white/70 p-6 shadow-2xl backdrop-blur-sm md:p-8">
+    <div className="grid max-w-full min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
+      <div className="min-w-0 max-w-full rounded-[2rem] border border-[#590D22]/15 bg-white/70 p-6 shadow-2xl backdrop-blur-sm md:p-8">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#590D22] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white">
           <Sparkles className="h-3.5 w-3.5" />
           log in to get access
         </div>
-        <h1 className="font-fraunces text-4xl font-bold text-[#590D22] md:text-5xl">DRDO Labs Tracker</h1>
+        <h1 className="font-fraunces text-3xl font-bold leading-tight text-[#590D22] sm:text-4xl md:text-5xl">DRDO Labs Tracker</h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-[#590D22]/70">
           Sign in or sign up to instantly unlock the full directory of 50 DRDO labs and my copy-paste cold email script.
         </p>
@@ -573,7 +573,8 @@ function GuestGate() {
         </div>
       </div>
 
-      <div className="rounded-[2rem] border border-[#590D22]/15 bg-white/80 p-4 shadow-2xl backdrop-blur-sm md:p-6">
+      <div className="min-w-0 max-w-full rounded-[2rem] border border-[#590D22]/15 bg-white/80 p-4 shadow-2xl backdrop-blur-sm md:p-6">
+        <div className="w-full max-w-md min-w-0">
         <SignIn
           routing="path"
           path="/threads/locker"
@@ -600,6 +601,7 @@ function GuestGate() {
             },
           }}
         />
+        </div>
       </div>
     </div>
   );
@@ -610,7 +612,7 @@ export default function LockerPage() {
 
   if (!isLoaded) {
     return (
-      <main className="min-h-screen bg-gradient-to-br from-[#FFD1DC] via-[#FFC0CB] to-[#FFB6C1] px-6 py-24">
+      <main className="min-h-screen max-w-full overflow-x-hidden bg-gradient-to-br from-[#FFD1DC] via-[#FFC0CB] to-[#FFB6C1] px-4 py-24 sm:px-6">
         <div className="mx-auto flex min-h-[60vh] max-w-6xl items-center justify-center rounded-[2rem] border border-[#590D22]/15 bg-white/70 p-8 text-[#590D22] shadow-2xl backdrop-blur-sm">
           syncing your access...
         </div>
@@ -619,7 +621,7 @@ export default function LockerPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#FFD1DC] via-[#FFC0CB] to-[#FFB6C1] px-6 py-24">
+    <main className="min-h-screen max-w-full overflow-x-hidden bg-gradient-to-br from-[#FFD1DC] via-[#FFC0CB] to-[#FFB6C1] px-4 py-24 sm:px-6">
       <div className="mx-auto w-full max-w-6xl">
         <div className="mb-8 flex items-center justify-between gap-4">
           <Link href="/threads#locker" className="text-sm font-semibold text-[#590D22]/70 transition-colors hover:text-[#590D22]">
