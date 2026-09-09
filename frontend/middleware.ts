@@ -13,6 +13,6 @@ export const config = {
     // Always run for API routes
     '/(api|trpc)(.*)',
     // Always run for Clerk proxy requests (forces middleware to handle .js files)
-    '/__clerk/(.*)',
+    '/__clerk(.*)',
   ],
 };
