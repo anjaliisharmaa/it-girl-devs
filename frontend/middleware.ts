@@ -8,11 +8,11 @@ export default clerkMiddleware({
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and static files
+    // Skip Next.js static files and internals
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
     // Always run for API routes
     '/(api|trpc)(.*)',
-    // ALWAYS run for Clerk proxy requests (fixes the .js 404)
+    // Always run for Clerk proxy requests (forces middleware to handle .js files)
     '/__clerk/(.*)',
   ],
 };
